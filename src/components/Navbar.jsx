@@ -16,7 +16,7 @@ const Navbar = () => {
           <NavLink className="md:text-sm lg:text-base">Home</NavLink>
           <div className="relative group">
             <span className="md:text-sm lg:text-base cursor-pointer flex items-center gap-1">
-              Service
+              <NavLink to="/services">Service</NavLink>
               <IoChevronDown
                 size={16}
                 className="transition-transform duration-200 group-hover:rotate-180"
@@ -49,10 +49,12 @@ const Navbar = () => {
 
           <NavLink className="md:text-sm lg:text-base">How we work</NavLink>
           <NavLink className="md:text-sm lg:text-base">Learn</NavLink>
-          <NavLink className="md:text-sm lg:text-base">About</NavLink>
+          <NavLink to="/about" className="md:text-sm lg:text-base">
+            About
+          </NavLink>
         </div>
         <div className="hidden md:block">
-          <button className="bg-bg-btn text-white font-inter px-3 py-1.5 cursor-pointer  rounded-lg">
+          <button className="bg-bg-btn hover:bg-[#AD7E1F]  text-white font-inter px-3 py-1.5 cursor-pointer  rounded-lg">
             Get started
           </button>
         </div>

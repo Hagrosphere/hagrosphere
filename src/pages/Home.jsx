@@ -1,13 +1,11 @@
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { FiCheckCircle } from "react-icons/fi";
-import { LuShield } from "react-icons/lu";
-
 import { HagroHero, Worker } from "../assets";
-import { LearnCard, StatsCard, WeServeCard } from "../components";
+import { Carousel, LearnCard, StatsCard, WeServeCard } from "../components";
 import {
   articleData,
   features,
   howWeWork,
+  testimonialData,
   verificationStep,
   weServeData,
 } from "../components/DummyData";
@@ -217,6 +215,43 @@ const Home = () => {
             {articleData.map((item) => (
               <LearnCard key={item.id} {...item} />
             ))}
+          </div>
+        </div>
+      </section>
+      <section className="py-12 md:py-16 bg-bg-secondary w-full">
+        <div className="w-[96%] md:w-[94%] mx-auto">
+          <div className="flex items-center justify-center flex-col">
+            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-6">
+              What Our Users Say
+            </h2>
+            <p className="max-w-lg md:max-w-xl text-center text-text-primary font-inter text-xs md:text-base lg:text-base ">
+              Real experiences from farmers, workers, and buyers across Nigeria.
+            </p>
+          </div>
+          <div className="mt-8 md:mt-10 w-[95%] md:w-[86%] mx-auto">
+            <Carousel data={testimonialData} />
+          </div>
+        </div>
+      </section>
+      <section className="py-12 md:py-16 bg-white w-full">
+        <div className="w-[96%] md:w-[94%] mx-auto">
+          <div className="flex items-center justify-center flex-col">
+            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-4 md:mb-6 leading-8 md:leading-12">
+              Ready to <span className="text-bg-btn">Transform</span> <br />{" "}
+              Nigerian Agriculture?
+            </h2>
+            <p className="max-w-md text-center text-text-primary font-inter text-xs md:text-base lg:text-base ">
+              Join thousands of farmers, agribusinesses, and buyers building a
+              sustainable agricultural future together
+            </p>
+            <div className="mt-9 md:mt-14">
+              <button className="flex items-center gap-x-2 font-inter bg-white shadow-sm px-4 py-2 rounded-3xl cursor-pointer">
+                Start Your Journey
+                <div className="bg-bg-btn-primary text-white flex items-center justify-center w-6 h-6  rounded-full">
+                  <IoIosArrowRoundForward />
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </section>

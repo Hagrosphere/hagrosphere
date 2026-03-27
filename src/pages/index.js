@@ -1,2 +1,11 @@
 export { default as LandingLayout } from "./LandingLayout";
 export { default as Home } from "./Home";
+export { default as About } from "./About";
+export { default as ContactUs } from "./ContactUs";
+export { default as HowWeWork } from "./HowWeWork";
+export { default as Learn } from "./Learn";
+export { default as LearnDetails } from "./LearnDetails";
+export { default as PrivacyPolicy } from "./PrivacyPolicy";
+export { default as Product } from "./Product";
+export { default as Services } from "./Services";
+export { default as ServiceDetails } from "./ServiceDetails";

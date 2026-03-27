@@ -3,3 +3,8 @@ export { default as Footer } from "./Footer";
 export { default as WeServeCard } from "./WeServeCard";
 export { default as StatsCard } from "./StatsCard";
 export { default as LearnCard } from "./LearnCard";
+export { default as TestimonialCard } from "./TestimonialCard";
+export { default as Carousel } from "./Carousel";
+export { default as CarouselRow } from "./CarouselRow";
+export { default as HeroSection } from "./HeroSection";
+export { default as SolutionCard } from "./SolutionCard";

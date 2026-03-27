@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { Home, LandingLayout } from "./pages";
+import { About, Home, LandingLayout, Services } from "./pages";
 
 const routes = [
   {
@@ -9,6 +9,14 @@ const routes = [
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/services",
+        element: <Services />,
       },
     ],
   },
