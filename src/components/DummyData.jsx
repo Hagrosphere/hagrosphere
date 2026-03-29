@@ -332,54 +332,6 @@ export const whoWeServe = [
   },
 ];
 
-export const solutionsData = [
-  {
-    id: "01",
-    tag: "Equipment Coordination",
-    icon: <LuTractor className="h-4 w-4" />,
-    title: "Farm Equipment Access",
-    description:
-      "Coordinate shared access to agricultural machinery across regions. We schedule, verify equipment condition, and align multiple farmers to reduce individual costs and improve operational efficiency.",
-    points: [
-      "Tractor and harvester scheduling",
-      "Equipment condition verification",
-      "Multi-farm coordination",
-      "Regional operator networks",
-    ],
-    image: Equipment,
-  },
-  {
-    id: "02",
-    tag: "Market Coordination",
-    icon: <LuShoppingBasket className="h-4 w-4" />,
-    title: "Agricultural Market Access",
-    description:
-      "Connect farmers to buyers through produce aggregation, quality grading, and transparent coordination. We do not buy or sell  we facilitate verified relationships between producers and commercial buyers.",
-    points: [
-      "Produce aggregation across farms",
-      "Quality grading and standards",
-      "Direct buyer connections",
-      "Logistics coordination support",
-    ],
-    image: Access,
-  },
-  {
-    id: "03",
-    tag: "Labour Coordination",
-    icon: <RiGroupLine className="w-4 h-4" />,
-    title: "Farm Job Agent",
-    description:
-      "Verified worker placement connecting qualified agricultural workers with farms that need them. Every placement is background-checked and experience-validated before coordination begins.",
-    points: [
-      "Worker background verification",
-      "Skills and experience validation",
-      "Farm-to-worker matching",
-      "Placement documentation",
-    ],
-    image: Worker,
-  },
-];
-
 export const processData = [
   {
     id: 1,
@@ -401,5 +353,179 @@ export const processData = [
     title: "Ongoing Support",
     description:
       "Transparent communication, issue resolution, and clear documentation throughout.",
+  },
+];
+
+export const solutionsData = [
+  {
+    id: "01",
+    slug: "farm-equipment",
+    tag: "Equipment Coordination",
+    icon: <LuTractor className="h-4 w-4" />,
+    title: "Farm Equipment Access",
+    subtitle:
+      "Coordinate shared access to agricultural machinery across regions. Reduce operational costs through verified equipment sharing and professional coordination.",
+    description:
+      "Coordinate shared access to agricultural machinery across regions. We schedule, verify equipment condition, and align multiple farmers to reduce individual costs and improve operational efficiency.",
+    points: [
+      "Tractor and harvester scheduling",
+      "Equipment condition verification",
+      "Multi-farm coordination",
+      "Regional operator networks",
+    ],
+    image: Equipment,
+
+    details: {
+      introTitle: "Shared Machinery, Structured Coordination",
+      introText:
+        "Our Equipment Access service coordinates shared use of tractors, harvesters, planters, and other agricultural machinery. We reduce costs by organising equipment sharing among verified farmers across regions.",
+
+      introSubText:
+        "This is not equipment rental or leasing. We coordinate access to existing equipment through structured scheduling and farmer cooperation.",
+
+      whoFor: [
+        {
+          id: 1,
+          title: "Small to Medium Farmers",
+          detail:
+            "Farmers who cannot justify purchasing equipment but need reliable access during planting and harvest seasons.",
+        },
+        {
+          id: 2,
+          title: "Cooperative Groups",
+          detail:
+            "Agricultural cooperatives seeking structured equipment sharing among verified members.",
+        },
+        {
+          id: 3,
+          title: "Equipment Owners",
+          detail:
+            "Farmers with underutilised equipment willing to coordinate shared use with verified participants.",
+        },
+      ],
+
+      howItWorks: [
+        "Submit equipment request",
+        "Match with available machinery",
+        "Schedule usage window",
+        "Track operations and support",
+      ],
+
+      featuresLeft: [
+        "Reliable tractors",
+        "Maintenance included",
+        "Operator availability",
+      ],
+      featuresRight: [
+        "Flexible pricing",
+        "Verified scheduling",
+        "Usage transparency",
+      ],
+    },
+  },
+
+  {
+    id: "02",
+    slug: "market-access",
+    tag: "Market Coordination",
+    icon: <LuShoppingBasket className="h-4 w-4" />,
+    title: "Agricultural Market Access",
+    subtitle:
+      "Connect farmers to buyers through produce aggregation, quality grading, and transparent coordination. Bridge the gap between small farms and commercial markets.",
+    description:
+      "Connect farmers to buyers through produce aggregation, quality grading, and transparent coordination. We do not buy or sell  we facilitate verified relationships between producers and commercial buyers.",
+    points: [
+      "Produce aggregation across farms",
+      "Quality grading and standards",
+      "Direct buyer connections",
+      "Logistics coordination support",
+    ],
+    image: Access,
+
+    details: {
+      introTitle: "Connecting Farmers to Commercial Markets",
+      introText:
+        "Our Market Access service coordinates produce aggregation, quality grading, and buyer connections for farmers who cannot access commercial markets independently.",
+
+      introSubText:
+        "This is not produce purchasing or trading. We coordinate market access between verified farmers and commercial buyers, acting strictly as a facilitation service.",
+
+      whoFor: [
+        {
+          id: 1,
+          title: "Small Scale Farmers",
+          detail:
+            "Farmers producing consistent quality but lacking direct buyer relationships or aggregation capacity.",
+        },
+        {
+          id: 2,
+          title: "Cooperative Groups",
+          detail:
+            "Agricultural cooperatives seeking structured market coordination and verified buyer connections.",
+        },
+        {
+          id: 3,
+          title: "Commercial Buyers",
+          detail:
+            "Produce buyers seeking reliable, graded supply from verified farming networks with traceable documentation.",
+        },
+      ],
+
+      howItWorks: [
+        "Aggregate produce",
+        "Grade quality",
+        "Match with buyers",
+        "Coordinate delivery",
+      ],
+
+      // UNIQUE SECTION
+      connectionTypes: [
+        "Bulk commercial buyers",
+        "Export channels",
+        "Retail distributors",
+      ],
+    },
+  },
+
+  {
+    id: "03",
+    slug: "farm-job",
+    tag: "Labour Coordination",
+    icon: <RiGroupLine className="w-4 h-4" />,
+    title: "Farm Job Agent",
+    subtitle:
+      "Verified worker placement connecting qualified agricultural workers with farms. Structured coordination for reliable farm labour.",
+    description:
+      "Verified worker placement connecting qualified agricultural workers with farms that need them. Every placement is background-checked and experience-validated before coordination begins.",
+    points: [
+      "Worker background verification",
+      "Skills and experience validation",
+      "Farm-to-worker matching",
+      "Placement documentation",
+    ],
+    image: Worker,
+
+    details: {
+      introTitle: "Verified Agricultural Labour Placement",
+      introText:
+        "Our Farm Job Agent service coordinates verified worker placement for agricultural operations. We screen workers, validate experience, and coordinate placements with farms needing reliable labour.",
+
+      introSubText:
+        "This is not a staffing agency or employment service. We coordinate connections between verified workers and verified farms, with transparent expectations on both sides.",
+
+      // UNIQUE SECTION
+      twoSided: {
+        workers: [
+          "Verified job access",
+          "Fair wages",
+          "Consistent opportunities",
+        ],
+        employers: [
+          "Pre-screened workers",
+          "Skill matching",
+          "Reliable placements",
+        ],
+      },
+    },
   },
 ];

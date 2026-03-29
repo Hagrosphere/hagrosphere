@@ -12,7 +12,12 @@ const Services = () => {
       <section className="bg-[#F9F9F9] py-3 md:py-12">
         <div className="max-w-6xl mx-auto px-4">
           {solutionsData.map((item, index) => (
-            <SolutionCard key={item.id} item={item} index={index} />
+            <SolutionCard
+              key={item.id}
+              item={item}
+              index={index}
+              slug={item.slug}
+            />
           ))}
         </div>
         <div className=""></div>

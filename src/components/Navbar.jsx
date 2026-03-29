@@ -13,7 +13,9 @@ const Navbar = () => {
           <img src={HagroLogo} alt="" className="w-16 md:w-24" />
         </Link>
         <div className="hidden md:flex items-center gap-x-6 font-inter">
-          <NavLink className="md:text-sm lg:text-base">Home</NavLink>
+          <NavLink className="md:text-sm lg:text-base" to="/">
+            Home
+          </NavLink>
           <div className="relative group">
             <span className="md:text-sm lg:text-base cursor-pointer flex items-center gap-1">
               <NavLink to="/services">Service</NavLink>
@@ -25,21 +27,21 @@ const Navbar = () => {
 
             <div className="absolute left-0 top-full mt-4.5 w-54 bg-bg-main pb-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-lg">
               <NavLink
-                to="/equipment-access"
+                to="/services/farm-equipment"
                 className="block px-4 py-2 hover:bg-[#1F4D3A]"
               >
                 Equipment Access
               </NavLink>
 
               <NavLink
-                to="/market-access"
+                to="/services/market-access"
                 className="block px-4 py-2 hover:bg-[#1F4D3A]"
               >
                 Market Access
               </NavLink>
 
               <NavLink
-                to="/farm-job-agent"
+                to="/services/farm-job"
                 className="block px-4 py-2 hover:bg-[#1F4D3A]"
               >
                 Farm Job Agent
@@ -47,8 +49,12 @@ const Navbar = () => {
             </div>
           </div>
 
-          <NavLink className="md:text-sm lg:text-base">How we work</NavLink>
-          <NavLink className="md:text-sm lg:text-base">Learn</NavLink>
+          <NavLink className="md:text-sm lg:text-base" to="/how-we-work">
+            How we work
+          </NavLink>
+          <NavLink to="/learn" className="md:text-sm lg:text-base">
+            Learn
+          </NavLink>
           <NavLink to="/about" className="md:text-sm lg:text-base">
             About
           </NavLink>
@@ -70,33 +76,59 @@ const Navbar = () => {
         </div>
       </div>
       {isToggle && (
-        <div className="absolute top-12 w-full h-[60vh] bg-bg-main border-t text-white">
-          <div className="flex items-center justify-center flex-col gap-y-4 pt-8 ">
+        <div className="absolute top-12 w-full h-[65vh] bg-bg-main border-t text-white">
+          <div className="flex items-center justify-center flex-col gap-y-6 pt-8 ">
             <Link
+              to="/"
               className="text-base font-semibold"
               onClick={() => setIsToggle(!isToggle)}
             >
               Home
             </Link>
             <Link
+              to="/services"
               className="text-base font-semibold"
               onClick={() => setIsToggle(!isToggle)}
             >
               Service
             </Link>
             <Link
+              to="/services/farm-equipment"
+              className="text-base font-semibold"
+              onClick={() => setIsToggle(!isToggle)}
+            >
+              Equipment Access
+            </Link>
+            <Link
+              to="/services/market-access"
+              className="text-base font-semibold"
+              onClick={() => setIsToggle(!isToggle)}
+            >
+              Market Access
+            </Link>
+            <Link
+              to="/services/farm-job"
+              className="text-base font-semibold"
+              onClick={() => setIsToggle(!isToggle)}
+            >
+              Farm Job Agent
+            </Link>
+            <Link
+              to="/how-we-work"
               className="text-base font-semibold"
               onClick={() => setIsToggle(!isToggle)}
             >
               How we work
             </Link>
             <Link
+              to="/learn"
               className="text-base font-semibold"
               onClick={() => setIsToggle(!isToggle)}
             >
               Learn
             </Link>
             <Link
+              to="/about"
               className="text-base font-semibold"
               onClick={() => setIsToggle(!isToggle)}
             >

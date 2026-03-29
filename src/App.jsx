@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { About, Home, LandingLayout, Services } from "./pages";
+import { About, Home, LandingLayout, ServiceDetails, Services } from "./pages";
 
 const routes = [
   {
@@ -17,6 +17,10 @@ const routes = [
       {
         path: "/services",
         element: <Services />,
+      },
+      {
+        path: "/services/:slug",
+        element: <ServiceDetails />,
       },
     ],
   },

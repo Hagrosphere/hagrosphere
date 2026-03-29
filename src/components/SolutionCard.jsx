@@ -1,7 +1,10 @@
 import { FiCheckCircle } from "react-icons/fi";
+import { useNavigate } from "react-router";
 
-const SolutionCard = ({ item, index }) => {
+const SolutionCard = ({ item, index, slug }) => {
   const isReversed = index % 2 !== 0;
+
+  const navigate = useNavigate();
 
   return (
     <div className="py-5 md:py-10 border-b border-gray-200">
@@ -47,7 +50,10 @@ const SolutionCard = ({ item, index }) => {
             ))}
           </ul>
 
-          <button className="bg-[#1A3325] text-white px-4 py-2 text-sm rounded font-inter mt-3">
+          <button
+            className="bg-[#1A3325] text-white px-4 py-2 cursor-pointer text-sm rounded font-inter mt-3"
+            onClick={() => navigate(`/services/${slug}`)}
+          >
             Service Details
           </button>
         </div>
