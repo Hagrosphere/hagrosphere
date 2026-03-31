@@ -405,22 +405,93 @@ export const solutionsData = [
       ],
 
       howItWorks: [
-        "Submit equipment request",
-        "Match with available machinery",
-        "Schedule usage window",
-        "Track operations and support",
+        {
+          id: 1,
+          title: "Submit Equipment Request",
+          detail:
+            "Specify equipment needed, farm location, acreage, and preferred timing through our enquiry form.",
+        },
+        {
+          id: 2,
+          title: "Farmer Verification",
+          detail:
+            "We verify your identity, land documentation, and farming operations before coordination begins.",
+        },
+        {
+          id: 3,
+          title: "Equipment Matching",
+          detail:
+            "We coordinate with verified equipment owners in your region to align schedules and capacity.",
+        },
+        {
+          id: 4,
+          title: "Schedule Coordination",
+          detail:
+            "Clear scheduling, cost sharing agreements, and usage terms established before equipment deployment.",
+        },
+        {
+          id: 5,
+          title: "Service Completion",
+          detail:
+            "Equipment use is documented and any issues are resolved through our coordination process.",
+        },
       ],
 
-      featuresLeft: [
-        "Reliable tractors",
-        "Maintenance included",
-        "Operator availability",
+      limitation: [
+        {
+          id: 1,
+          title: "Service Availability",
+          detail:
+            "Equipment coordination depends on availability in your region. We cannot guarantee immediate access during peak planting or harvest seasons.",
+        },
+        {
+          id: 2,
+          title: "Weather Delays",
+          detail:
+            "Schedules may shift due to weather conditions affecting multiple farmers in the coordination network.",
+        },
+        {
+          id: 3,
+          title: "Equipment Condition",
+          detail:
+            "While we coordinate with reputable equipment owners, mechanical issues can occur. We do not guarantee equipment performance.",
+        },
+        {
+          id: 4,
+          title: "Geographic Limitations",
+          detail:
+            "Currently available in select regions. Coverage is expanding but not yet nationwide for all equipment types.",
+        },
       ],
-      featuresRight: [
-        "Flexible pricing",
-        "Verified scheduling",
-        "Usage transparency",
-      ],
+      processDetail: {
+        requirement: [
+          "Valid identification documents",
+          "Proof of land ownership or documented lease agreement",
+          "Farm location within a region where we have equipment coordination partnerships",
+          "Willingness to share usage costs with other verified farmers",
+          "Flexible scheduling within a 2–3 week window",
+        ],
+        timeline: [
+          {
+            id: 1,
+            title: "Verification Phase: ",
+            time: "5–7 business days",
+            detail: "Document review and farmer verification process",
+          },
+          {
+            id: 2,
+            title: "Equipment Coordination: ",
+            time: "7–14 days",
+            detail: "Matching with available equipment and schedule alignment",
+          },
+          {
+            id: 3,
+            title: "Service Deployment:",
+            time: " As scheduled ",
+            detail: "Equipment use based on coordinated schedule",
+          },
+        ],
+      },
     },
   },
 
@@ -472,11 +543,106 @@ export const solutionsData = [
       ],
 
       howItWorks: [
-        "Aggregate produce",
-        "Grade quality",
-        "Match with buyers",
-        "Coordinate delivery",
+        {
+          id: 1,
+          title: "Farmer Registration",
+          detail:
+            "Submit details about your farm, produce types, expected volumes, and harvest schedules through our enquiry form.",
+        },
+        {
+          id: 2,
+          title: "Farm & Produce Verification",
+          detail:
+            "We verify your farming operations, land documentation, and conduct initial produce quality assessment.",
+        },
+        {
+          id: 3,
+          title: "Aggregation Coordination",
+          detail:
+            "We coordinate with other verified farmers in your region to aggregate sufficient volumes for commercial buyers.",
+        },
+        {
+          id: 4,
+          title: "Quality Grading",
+          detail:
+            "Clear sAll aggregated produce is graded using consistent standards before buyer coordination begins.cheduling, cost sharing agreements, and usage terms established before equipment deployment.",
+        },
+        {
+          id: 5,
+          title: "Buyer Coordination",
+          detail:
+            "We coordinate between aggregated supply and verified buyers, facilitating transparent transactions.",
+        },
+        {
+          id: 6,
+          title: "Transaction Support",
+          detail:
+            "Clear documentation, logistics coordination, and dispute resolution support throughout the process.",
+        },
       ],
+
+      limitation: [
+        {
+          id: 1,
+          title: "No Guaranteed Buyers",
+          detail:
+            "We coordinate market access but cannot guarantee buyer commitments. Market conditions and buyer demand fluctuate.",
+        },
+        {
+          id: 2,
+          title: "Price Volatility",
+          detail:
+            "Agricultural markets are subject to price fluctuations. We coordinate transactions but do not set or guarantee prices.",
+        },
+        {
+          id: 3,
+          title: "Quality Requirements",
+          detail:
+            "Produce not meeting commercial standards may be excluded from aggregation. Quality grading is applied consistently and strictly.",
+        },
+        {
+          id: 4,
+          title: "Volume Dependencies",
+          detail:
+            "Market coordination requires minimum aggregated volumes. Individual farmers may need to wait for sufficient network participation.",
+        },
+      ],
+      serviceScope: {
+        requirement: [
+          "Valid identification and farm registration documents",
+          "Consistent produce quality meeting basic commercial standards",
+          "Minimum volume thresholds (varies by produce type)",
+          "Willingness to participate in coordinated aggregation",
+          "Farm location within aggregation coordination zones",
+          "Clear harvest schedules and reliable communication",
+        ],
+        supportedProduce: [
+          {
+            id: 1,
+            title: "Staple Crops",
+            produce: ["Cassava", "yam", "rice", "maize"],
+            detail: "Active buyer networks in most regions",
+          },
+          {
+            id: 2,
+            title: "Vegetables",
+            produce: ["Tomatos", "Peppers", "Onions", "leafy greens"],
+            detail: "Quality grading critical for market access",
+          },
+          {
+            id: 3,
+            title: "Legumes",
+            produce: ["Cowpeas", "soybeans", "groundnuts"],
+            detail: "Growing buyer demand, expanding coordination",
+          },
+          {
+            id: 4,
+            title: "Cash Crops",
+            produce: ["Limited coordination (pilot phase)"],
+            detail: "Contact us for current availability",
+          },
+        ],
+      },
 
       // UNIQUE SECTION
       connectionTypes: [
@@ -514,16 +680,176 @@ export const solutionsData = [
         "This is not a staffing agency or employment service. We coordinate connections between verified workers and verified farms, with transparent expectations on both sides.",
 
       // UNIQUE SECTION
-      twoSided: {
-        workers: [
-          "Verified job access",
-          "Fair wages",
-          "Consistent opportunities",
+      twoSided: [
+        {
+          id: 1,
+          title: "For Farmers",
+          subtitle: "Farms Needing Workers",
+          options: [
+            "Seasonal planting and harvest labour",
+            "Ongoing farm maintenance",
+            "Specialised agricultural tasks",
+            "Cooperative or estate operations",
+          ],
+        },
+        {
+          id: 2,
+          title: "For Workers",
+          subtitle: "Workers Seeking Opportunities",
+          options: [
+            "Verified farm work opportunities",
+            "Clear role expectations and terms",
+            "Professional placement coordination",
+            "Structured agricultural employment",
+          ],
+        },
+      ],
+      twoSidedHowItWorks: [
+        {
+          id: 1,
+          topTag: "For Farmers",
+          title: "How It Works: Requesting Workers",
+          howItWorks: [
+            {
+              id: 1,
+              title: "Submit Worker Request",
+              detail:
+                "Specify workers needed, required skills, duration, location, and compensation.",
+            },
+            {
+              id: 2,
+              title: "Farm Verification",
+              detail:
+                "We verify your farm operations, land documentation, and accommodation arrangements.",
+            },
+            {
+              id: 3,
+              title: "Worker Matching",
+              detail:
+                "We match requirements with verified workers in our network who meet your skill needs.",
+            },
+            {
+              id: 4,
+              title: "Placement Coordination",
+              detail:
+                "Clear terms, expectations, and working arrangements documented before placement begins.",
+            },
+            {
+              id: 5,
+              title: "Ongoing Support",
+              detail:
+                "Coordination support and issue resolution during the placement period.",
+            },
+          ],
+        },
+        {
+          id: 2,
+          topTag: "For Workers",
+          title: "How It Works: Finding Opportunities",
+          howItWorks: [
+            {
+              id: 1,
+              title: "Worker Registration",
+              detail:
+                "Submit your experience, skills, location preferences, and availability.",
+            },
+            {
+              id: 2,
+              title: "Worker Screening",
+              detail:
+                "We verify identity, validate agricultural experience, and conduct reference checks.",
+            },
+            {
+              id: 3,
+              title: "Opportunity Matching",
+              detail:
+                "We coordinate with verified farms seeking workers matching your skills and preferences.",
+            },
+            {
+              id: 4,
+              title: "Terms Review",
+              detail:
+                "Review job details, compensation, duration, and working conditions before accepting.",
+            },
+            {
+              id: 5,
+              title: "Placement Support",
+              detail:
+                "Access coordination support and issue resolution throughout your placement.",
+            },
+          ],
+        },
+      ],
+      requirements: [
+        {
+          id: 1,
+          topTag: "Requirements: Farmers",
+          title: "Eligibility for Farms",
+
+          requirementList: [
+            "Valid farm registration and land documentation",
+            "Clear job descriptions and reasonable compensation plans",
+            "Appropriate worker accommodations if required",
+            "Commitment to documented working conditions and safety",
+            "Willingness to engage with our coordination process",
+          ],
+        },
+        {
+          id: 2,
+          topTag: "Requirements: Workers",
+          title: "Eligibility for Workers",
+
+          requirementList: [
+            "Valid identification documents",
+            "Verifiable agricultural work experience or relevant training",
+            "Professional references from previous agricultural employers",
+            "Clear availability and location flexibility",
+            "Commitment to professional conduct and agreed working terms",
+          ],
+        },
+      ],
+
+      processingDetail: {
+        limitation: [
+          {
+            id: 1,
+            title: "No Guaranteed Placements",
+            detail:
+              "We coordinate connections but cannot guarantee immediate placements for workers or instant worker availability for farms.",
+          },
+          {
+            id: 2,
+            title: "Not Employment Services",
+            detail:
+              "We coordinate introductions. The employment relationship is between farmer and worker. We are not employers or staffing agents.",
+          },
+          {
+            id: 3,
+            title: "Performance Variability",
+            detail:
+              "While we verify experience and references, we cannot guarantee worker performance or farmer satisfaction.",
+          },
         ],
-        employers: [
-          "Pre-screened workers",
-          "Skill matching",
-          "Reliable placements",
+        timeline: [
+          {
+            id: 1,
+            title: "Verification Phase: ",
+            time: "5–7 business days",
+            detail: "Identity verification, document review, reference ",
+          },
+          {
+            id: 2,
+            title: "Matching Phase: 1–2 weeks",
+            time: "1–2 weeks",
+            detail:
+              "Worker-farm matching based on skills, location, and availability",
+          },
+          {
+            id: 3,
+            title: "Placement Start: ",
+            time: "After terms agreement",
+            detail: "Placement begins once both parties confirm arrangements",
+          },
         ],
       },
     },
