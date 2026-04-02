@@ -8,7 +8,7 @@ const LearnCard = ({ image, tag, title, description }) => {
 
       <div className="p-5">
         {/* Tag */}
-        <span className="text-xs font-inter font-semibold bg-[#B07D2A0D] text-bg-btn px-3 py-1 rounded-3xl">
+        <span className="text-xs font-inter font-semibold bg-[#B07D2A0D] text-bg-btn px-3 py-1 rounded-3xl uppercase">
           {tag}
         </span>
 

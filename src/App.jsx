@@ -1,5 +1,15 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { About, Home, LandingLayout, ServiceDetails, Services } from "./pages";
+import {
+  About,
+  Home,
+  HowWeWork,
+  LandingLayout,
+  Learn,
+  PrivacyPolicy,
+  Product,
+  ServiceDetails,
+  Services,
+} from "./pages";
 
 const routes = [
   {
@@ -21,6 +31,22 @@ const routes = [
       {
         path: "/services/:slug",
         element: <ServiceDetails />,
+      },
+      {
+        path: "/how-we-work",
+        element: <HowWeWork />,
+      },
+      {
+        path: "/learn",
+        element: <Learn />,
+      },
+      {
+        path: "/produce",
+        element: <Product />,
+      },
+      {
+        path: "/policy",
+        element: <PrivacyPolicy />,
       },
     ],
   },

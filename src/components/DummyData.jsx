@@ -146,6 +146,46 @@ export const articleData = [
     description:
       "Navigate the process of securing financing for your agricultural business with our comprehensive guide to loan...",
   },
+  {
+    id: 4,
+    image: LearnThree,
+    tag: "FINANCING",
+    title: "Accessing Agricultural Loans: A Complete Guide",
+    description:
+      "Navigate the process of securing financing for your agricultural business with our comprehensive guide to loan...",
+  },
+  {
+    id: 5,
+    image: LearnThree,
+    tag: "Diaspora Guide",
+    title: "Agricultural Participation for Nigerians Abroad",
+    description:
+      "Understanding realistic opportunities and considerations for diaspora agricultural engagement.",
+  },
+  {
+    id: 6,
+    image: LearnThree,
+    tag: "FINANCING",
+    title: "Accessing Agricultural Loans: A Complete Guide",
+    description:
+      "Navigate the process of securing financing for your agricultural business with our comprehensive guide to loan...",
+  },
+  {
+    id: 7,
+    image: LearnThree,
+    tag: "FINANCING",
+    title: "Accessing Agricultural Loans: A Complete Guide",
+    description:
+      "Navigate the process of securing financing for your agricultural business with our comprehensive guide to loan...",
+  },
+  {
+    id: 8,
+    image: LearnThree,
+    tag: "FINANCING",
+    title: "Accessing Agricultural Loans: A Complete Guide",
+    description:
+      "Navigate the process of securing financing for your agricultural business with our comprehensive guide to loan...",
+  },
 ];
 
 export const testimonialData = [
@@ -853,5 +893,156 @@ export const solutionsData = [
         ],
       },
     },
+  },
+];
+
+export const phases = [
+  {
+    id: 1,
+    title: "Verification",
+    icon: <LuShield className="h-5 w-5 md:h-6 md:w-6 text-[#2E6B4F]" />,
+    detail:
+      "Every participant undergoes identity verification, documentation review, and eligibility assessment before coordination begins. No exceptions.",
+  },
+  {
+    id: 2,
+    title: "Coordination",
+    icon: <LuShield className="h-5 w-5 md:h-6 md:w-6 text-[#2E6B4F]" />,
+    detail:
+      "We coordinate services, schedules, and expectations between verified participants with clear, written documentation at every stage.",
+  },
+  {
+    id: 3,
+    title: "Ongoing Support",
+    icon: <FiEye className="h-5 w-5 md:h-6 md:w-6 text-[#2E6B4F]" />,
+    detail:
+      "Transparent communication, issue resolution, and honest updates throughout the coordination period. No silence, no excuses.",
+  },
+];
+
+export const verificationProcess = [
+  {
+    id: 1,
+    icon: <LuShield className="h-5 w-5 md:h-6 md:w-6 text-[#2E6B4F]" />,
+    title: "Farmer Verification Process",
+    content: [
+      {
+        id: 1,
+        title: "Identity Verification",
+        detail:
+          "Valid government-issued identification, phone number verification, and basic background checks.",
+      },
+      {
+        id: 2,
+        title: "Land Documentation",
+        detail:
+          "Proof of land ownership or documented lease agreements. Farm location verification and boundary confirmation.",
+      },
+      {
+        id: 3,
+        title: "Farm Operations Assessment",
+        detail:
+          "Crop types, farming practices, current operations, and production capacity evaluation.",
+      },
+      {
+        id: 4,
+        title: "Reference Checks",
+        detail:
+          "Where applicable, we verify farming history through local agricultural officers or cooperative memberships.",
+      },
+    ],
+  },
+  {
+    id: 2,
+    icon: <RiGroupLine className="h-5 w-5 md:h-6 md:w-6 text-[#2E6B4F]" />,
+    title: "Worker Screening Process",
+    content: [
+      {
+        id: 1,
+        title: "Identity & Background",
+        detail:
+          "Government-issued identification verification, residential address confirmation, and contact validation.",
+      },
+      {
+        id: 2,
+        title: "Experience Validation",
+        detail:
+          "Review of agricultural work history, specific skills, and relevant training or certifications.",
+      },
+      {
+        id: 3,
+        title: "Reference Verification",
+        detail:
+          "Contact with previous employers or supervisors to verify work history and professional conduct.",
+      },
+      {
+        id: 4,
+        title: "Skills Assessment",
+        detail:
+          "Practical skills evaluation for specialised agricultural tasks where applicable.",
+      },
+    ],
+  },
+  {
+    id: 3,
+    icon: <LuShield className="h-5 w-5 md:h-6 md:w-6 text-[#2E6B4F]" />,
+    title: "Partner Due Diligence",
+    content: [
+      {
+        id: 1,
+        title: "Business Registration",
+        detail:
+          "Equipment owners, produce buyers, and service providers undergo operational verification and registration checks.",
+      },
+      {
+        id: 2,
+        title: "Track Record Assessment",
+        detail:
+          "Review of history in agricultural services, previous coordination outcomes, and participant feedback.",
+      },
+      {
+        id: 3,
+        title: "Financial Review",
+        detail:
+          "Stability and operational capacity review before inclusion in coordination network.",
+      },
+      {
+        id: 4,
+        title: "Transparency Commitment",
+        detail:
+          "All partners must commit to transparent business practices as a condition of participation.",
+      },
+    ],
+  },
+  {
+    id: 4,
+    icon: <FiEye className="h-5 w-5 md:h-6 md:w-6 text-[#2E6B4F]" />,
+    title: "Produce Quality Standards",
+    content: [
+      {
+        id: 1,
+        title: "Visual Inspection",
+        detail:
+          "Size, colour, blemishes, and physical condition assessed against established grading criteria.",
+      },
+      {
+        id: 2,
+        title: "Grading Classification",
+        detail:
+          "Produce classified by quality tier for accurate market coordination and buyer expectation alignment.",
+      },
+      {
+        id: 3,
+        title: "Contamination Checks",
+        detail:
+          "Foreign matter detection and cleanliness verification before aggregation.",
+      },
+      {
+        id: 4,
+        title: "Volume Verification",
+        detail:
+          "Accurate weight or quantity measurement documented before market coordination.",
+      },
+    ],
   },
 ];

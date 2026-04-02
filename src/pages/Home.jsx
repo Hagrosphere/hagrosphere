@@ -212,7 +212,7 @@ const Home = () => {
             </p>
           </div>
           <div className="mt-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[90%] mx-auto gap-8">
-            {articleData.map((item) => (
+            {articleData.slice(0, 3).map((item) => (
               <LearnCard key={item.id} {...item} />
             ))}
           </div>

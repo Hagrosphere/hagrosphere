@@ -1,6 +1,7 @@
 import HagroLogo from "./hagro-logo.svg";
 import HagroHero from "./hagro-hero.jpg";
 import HagroHeroTwo from "./hagrohero.png";
+import Hub from "./hub.png";
 import Agribuss from "./agribuss.svg";
 import Farmer from "./farmer.svg";
 import Buyer from "./buyer.svg";
@@ -32,4 +33,5 @@ export {
   AboutFallback,
   Equipment,
   Access,
+  Hub,
 };
