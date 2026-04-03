@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { HagroLogo } from "../assets";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
@@ -6,28 +7,41 @@ const Footer = () => {
     {
       id: 1,
       header: "Service",
-      other: ["Equipment Access", "Market Access", "Farm Agent Job"],
+      other: [
+        { id: 1, text: "Equipment Access", link: "/services/farm-equipment" },
+        { id: 2, text: "Market Access", link: "/services/market-access" },
+        { id: 3, text: "Farm Agent Job", link: "/services/farm-job" },
+      ],
     },
     {
       id: 2,
       header: "Learn",
-      other: ["Content Hub", "Produce by State", "How we work"],
+      other: [
+        { id: 1, text: "Content Hub", link: "/learn" },
+        { id: 2, text: "Produce by State", link: "/learn/produce-by-state" },
+        { id: 3, text: "How we work", link: "/how-we-work" },
+      ],
     },
     {
       id: 3,
       header: "Company",
-      other: ["About us", "Contact", "Terms & Privacy"],
+      other: [
+        { id: 1, text: "About us", link: "/about" },
+        { id: 2, text: "Contact", link: "/contact-us" },
+        { id: 3, text: "Terms & Privacy", link: "/privacy-policy" },
+      ],
     },
     {
       id: 4,
       header: "Contact Us",
       other: [
-        "+234 803 816 3298",
-        "hello@hagrosphere.nga",
-        "15 Admiralty Way, Lekki Phase 1 Lagos, Nigeria",
+        { id: 1, text: "+234 803 816 3298" },
+        { id: 2, text: "hello@hagrosphere.nga" },
+        { id: 3, text: "15 Admiralty Way, Lekki Phase 1 Lagos, Nigeria" },
       ],
     },
   ];
+
   return (
     <div className="w-full bg-bg-deepmain py-5 text-white">
       <div className="w-[96%] md:w-[94%] mx-auto ">
@@ -55,22 +69,31 @@ const Footer = () => {
           <hr />
         </div>
         <div className="my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 font-inter gap-y-7  ">
-          {footerData.map((item) => (
-            <div key={item.id}>
+          {footerData.map((section) => (
+            <div key={section.id}>
               <h2 className="text-white font-semibold text-sm md:text-base lg:text-lg">
-                {item.header}
+                {section.header}
               </h2>
-
-              <ul className="flex flex-col gap-y-3 mt-2.5">
-                {item.other.map((link, index) => (
-                  <li
-                    key={index}
-                    className="text-xs md:text-sm text-text-footer"
-                  >
-                    {link}
-                  </li>
-                ))}
-              </ul>
+              <div className="flex flex-col gap-y-3 mt-2.5">
+                {section.other.map((item) =>
+                  item.link ? (
+                    <Link
+                      to={item.link}
+                      key={item.id}
+                      className="text-xs md:text-sm text-text-footer"
+                    >
+                      {item.text}
+                    </Link>
+                  ) : (
+                    <span
+                      key={item.id}
+                      className="text-xs md:text-sm text-text-footer"
+                    >
+                      {item.text}
+                    </span>
+                  ),
+                )}
+              </div>
             </div>
           ))}
         </div>
