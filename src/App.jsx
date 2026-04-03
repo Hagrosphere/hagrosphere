@@ -45,7 +45,7 @@ const routes = [
         element: <Product />,
       },
       {
-        path: "/policy",
+        path: "/privacy-policy",
         element: <PrivacyPolicy />,
       },
     ],
