@@ -9,3 +9,4 @@ export { default as PrivacyPolicy } from "./PrivacyPolicy";
 export { default as Product } from "./Product";
 export { default as Services } from "./Services";
 export { default as ServiceDetails } from "./ServiceDetails";
+export { default as Errorpage } from "./Errorpage";

@@ -9,6 +9,7 @@ import {
   Product,
   ServiceDetails,
   Services,
+  Errorpage,
 } from "./pages";
 
 const routes = [
@@ -48,11 +49,11 @@ const routes = [
         path: "/privacy-policy",
         element: <PrivacyPolicy />,
       },
+      {
+        path: "*",
+        element: <Errorpage />,
+      },
     ],
-  },
-  {
-    path: "*",
-    element: <h1>404 Not Found</h1>,
   },
 ];
 
