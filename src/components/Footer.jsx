@@ -44,7 +44,7 @@ const Footer = () => {
 
   return (
     <div className="w-full bg-bg-deepmain py-5 text-white">
-      <div className="w-[96%] md:w-[94%] mx-auto ">
+      <div className="w-[93%] md:w-[94%] mx-auto ">
         <div className="flex items-start gap-7 md:items-center justify-between flex-col md:flex-row">
           <div className="">
             <img src={HagroLogo} alt="logo" className="w-20 md:w-24" />

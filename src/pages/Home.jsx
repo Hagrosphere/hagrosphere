@@ -109,7 +109,7 @@ const Home = () => {
       </section>
 
       <section className="py-12 md:py-16 bg-bg-secondary w-full">
-        <div className="w-[96%] md:w-[94%] mx-auto">
+        <div className="w-[92%] md:w-[94%] mx-auto">
           <div className="flex items-center justify-center flex-col">
             <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-6">
               How We Work
@@ -144,7 +144,7 @@ const Home = () => {
       </section>
 
       <section className="py-9 md:py-12  bg-white w-full">
-        <div className="w-[96%] md:w-[94%] mx-auto">
+        <div className="w-[90%] md:w-[94%] mx-auto">
           <div className="flex items-start flex-col-reverse md:flex-row gap-7">
             <div className="w-full md:w-[50%]">
               <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold ">
