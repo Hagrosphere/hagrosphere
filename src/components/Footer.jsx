@@ -18,7 +18,7 @@ const Footer = () => {
       header: "Learn",
       other: [
         { id: 1, text: "Content Hub", link: "/learn" },
-        { id: 2, text: "Produce by State", link: "/learn/produce-by-state" },
+        { id: 2, text: "Produce by State", link: "/produce" },
         { id: 3, text: "How we work", link: "/how-we-work" },
       ],
     },

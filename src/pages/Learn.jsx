@@ -36,8 +36,18 @@ const Learn = () => {
                 </div>
               </div>
             </div>
-            <div className="hidden md:block w-full md:w-[50%] h-full">
+            {/* <div className="hidden md:block w-full md:w-[50%] h-full ">
               <img src={Hub} alt="hub-image" className="h-full" />
+            </div> */}
+            <div className="hidden md:block w-full md:w-[50%] h-full relative">
+              <img
+                src={Hub}
+                alt="hub-image"
+                className="h-full w-full object-cover"
+              />
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/50"></div>
             </div>
           </div>
         </div>
@@ -46,7 +56,7 @@ const Learn = () => {
       <section className="py-4 md:pb-16 bg-white w-full">
         <div className="w-[96%] md:w-[94%] mx-auto">
           <h2 className="text-xl md:text-2xl lg:text-3xl">Latest Articles</h2>
-          <div className="mt-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 lg:gap-4">
+          <div className="mt-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8 lg:gap-10">
             {articleData.map((item) => (
               <LearnCard key={item.id} {...item} />
             ))}

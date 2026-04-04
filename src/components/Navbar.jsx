@@ -1,11 +1,12 @@
 import { HagroLogo } from "../assets";
 import { Link, NavLink } from "react-router";
-import { IoMdMenu } from "react-icons/io";
+import { IoMdMenu, IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { IoChevronDown, IoClose } from "react-icons/io5";
 import { useState } from "react";
 
 const Navbar = () => {
   const [isToggle, setIsToggle] = useState(false);
+  const [openService, setOpenService] = useState(false);
   return (
     <div className="w-full bg-bg-main py-2 fixed top-0 left-0 z-50">
       <div className="w-[92%] md:w-[94%] mx-auto flex items-center justify-between text-white">
@@ -77,60 +78,79 @@ const Navbar = () => {
       </div>
       {isToggle && (
         <div className="absolute top-12 w-full h-[65vh] bg-bg-main border-t text-white">
-          <div className="flex items-center justify-center flex-col gap-y-6 pt-8 ">
+          <div className="flex flex-col gap-y-4 pt-5 w-[94%] mx-auto">
+            {/* Home */}
             <Link
               to="/"
-              className="text-base font-semibold"
-              onClick={() => setIsToggle(!isToggle)}
+              className="text-base font-semibold border-b border-b-[#E5DDD0] pb-3"
+              onClick={() => setIsToggle(false)}
             >
               Home
             </Link>
-            <Link
-              to="/services"
-              className="text-base font-semibold"
-              onClick={() => setIsToggle(!isToggle)}
-            >
-              Service
-            </Link>
-            <Link
-              to="/services/farm-equipment"
-              className="text-base font-semibold"
-              onClick={() => setIsToggle(!isToggle)}
-            >
-              Equipment Access
-            </Link>
-            <Link
-              to="/services/market-access"
-              className="text-base font-semibold"
-              onClick={() => setIsToggle(!isToggle)}
-            >
-              Market Access
-            </Link>
-            <Link
-              to="/services/farm-job"
-              className="text-base font-semibold"
-              onClick={() => setIsToggle(!isToggle)}
-            >
-              Farm Job Agent
-            </Link>
+
+            {/* Service (Dropdown Trigger) */}
+            <div>
+              <div
+                className="text-base font-semibold border-b border-b-[#E5DDD0] pb-3 flex justify-between items-center cursor-pointer"
+                onClick={() => setOpenService(!openService)}
+              >
+                Service
+                <span>
+                  {openService ? <IoIosArrowDown /> : <IoIosArrowUp />}
+                </span>
+              </div>
+
+              {/* Dropdown Items */}
+              {openService && (
+                <div className="flex flex-col gap-y-4 mt-3 ">
+                  <Link
+                    to="/services/farm-equipment"
+                    className="text-base font-medium border-b border-b-[#E5DDD0] pb-3"
+                    onClick={() => setIsToggle(false)}
+                  >
+                    Equipment Access
+                  </Link>
+
+                  <Link
+                    to="/services/market-access"
+                    className="text-base font-medium border-b border-b-[#E5DDD0] pb-3"
+                    onClick={() => setIsToggle(false)}
+                  >
+                    Market Access
+                  </Link>
+
+                  <Link
+                    to="/services/farm-job"
+                    className="text-base font-medium border-b border-b-[#E5DDD0] pb-3"
+                    onClick={() => setIsToggle(false)}
+                  >
+                    Farm Job Agent
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Other Links */}
             <Link
               to="/how-we-work"
-              className="text-base font-semibold"
-              onClick={() => setIsToggle(!isToggle)}
+              className="text-base font-semibold border-b border-b-[#E5DDD0] pb-3"
+              onClick={() => setIsToggle(false)}
             >
               How we work
             </Link>
+
             <Link
               to="/learn"
-              className="text-base font-semibold"
-              onClick={() => setIsToggle(!isToggle)}
+              className="text-base font-semibold border-b border-b-[#E5DDD0] pb-3"
+              onClick={() => setIsToggle(false)}
             >
               Learn
             </Link>
+
             <Link
               to="/about"
               className="text-base font-semibold"
-              onClick={() => setIsToggle(!isToggle)}
+              onClick={() => setIsToggle(false)}
             >
               About
             </Link>

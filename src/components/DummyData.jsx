@@ -1046,3 +1046,339 @@ export const verificationProcess = [
     ],
   },
 ];
+
+export const states = [
+  {
+    id: 1,
+    name: "Abia State",
+    zone: "south east",
+    primary: ["Oil Palm", "Cassava", "Yam"],
+    secondary: ["Rice", "Maize", "Cocoyam"],
+    emerging: ["Vegetables"],
+    season: [
+      {
+        id: 1,
+        name: "Climate",
+        description: "Tropical rainforest with two rainy seasons",
+      },
+      {
+        id: 2,
+        name: "Planting",
+        description: "March–April, September–October",
+      },
+      {
+        id: 3,
+        name: "Harvest",
+        description: "August–September, January–February",
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "Adamawa State",
+    zone: "north east",
+    primary: ["Cotton", "Groundnut", "Maize"],
+    secondary: ["Sorghum", "Rice", "Soybean"],
+    emerging: ["Ginger"],
+    season: [
+      {
+        id: 1,
+        name: "Climate",
+        description: "Guinea Savannah with single rainy season",
+      },
+      {
+        id: 2,
+        name: "Planting",
+        description: "May–June",
+      },
+      {
+        id: 3,
+        name: "Harvest",
+        description: "October–December",
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "Akwa Ibom State",
+    zone: "south south",
+    primary: ["Oil Palm", "Cassava", "Cocoyam"],
+    secondary: ["Plantain", "Yam", "Vegetables"],
+    emerging: ["Pineapple", "Watermelon"],
+    season: [
+      {
+        id: 1,
+        name: "Climate",
+        description: "Tropical rainforest, high rainfall",
+      },
+      {
+        id: 2,
+        name: "Planting",
+        description: "March–April, September–October",
+      },
+      {
+        id: 3,
+        name: "Harvest",
+        description: "August–September, January–February",
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: "Benue State",
+    zone: "north central",
+    primary: ["Yam", "Rice", "Cassava"],
+    secondary: ["Soybean", "Sesame", "Groundnut"],
+    emerging: ["Cashew"],
+    season: [
+      {
+        id: 1,
+        name: "Climate",
+        description: "Guinea Savannah, moderate rainfall",
+      },
+      {
+        id: 2,
+        name: "Planting",
+        description: "April–June",
+      },
+      {
+        id: 3,
+        name: "Harvest",
+        description: "September–December",
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: "Cross River State",
+    zone: "south south",
+    primary: ["Oil Palm", "Cocoa", "Cassava"],
+    secondary: ["Plantain", "Banana", "Rice"],
+    emerging: ["Rubber"],
+    season: [
+      {
+        id: 1,
+        name: "Climate",
+        description: "Tropical rainforest, heavy rainfall",
+      },
+      {
+        id: 2,
+        name: "Planting",
+        description: "March–May, September–October",
+      },
+      {
+        id: 3,
+        name: "Harvest",
+        description: "August–October, January–March",
+      },
+    ],
+  },
+  {
+    id: 6,
+    name: "Delta State",
+    zone: "south south",
+    primary: ["Oil Palm", "Cassava", "Rubber"],
+    secondary: ["Plantain", "Yam", "Maize"],
+    emerging: ["Vegetables", "Aquaculture"],
+    season: [
+      {
+        id: 1,
+        name: "Climate",
+        description: "Tropical rainforest with coastal influence",
+      },
+      {
+        id: 2,
+        name: "Planting",
+        description: "March–April, September–October",
+      },
+      {
+        id: 3,
+        name: "Harvest",
+        description: "August–September, January–February",
+      },
+    ],
+  },
+  {
+    id: 7,
+    name: "Ebonyi State",
+    zone: "south east",
+    primary: ["Rice", "Cassava", "Yam"],
+    secondary: ["Maize", "Beans", "Palm  Oil"],
+    emerging: ["Soybean"],
+    season: [
+      {
+        id: 1,
+        name: "Climate",
+        description: "Derived savannah transitioning to rainforest",
+      },
+      {
+        id: 2,
+        name: "Planting",
+        description: "March–May",
+      },
+      {
+        id: 3,
+        name: "Harvest",
+        description: "August–November",
+      },
+    ],
+  },
+  {
+    id: 8,
+    name: "Kaduna State",
+    zone: "north west",
+    primary: ["Maize", "Sorghum", "Groundnut"],
+    secondary: ["Cotton", "Ginger", "Soybean"],
+    emerging: ["Tomatoes", "Onions"],
+    season: [
+      {
+        id: 1,
+        name: "Climate",
+        description: "Northern Guinea Savannah",
+      },
+      {
+        id: 2,
+        name: "Planting",
+        description: "May–June",
+      },
+      {
+        id: 3,
+        name: "Harvest",
+        description: "September–November",
+      },
+    ],
+  },
+  {
+    id: 9,
+    name: "Kano State",
+    zone: "north west",
+    primary: ["Groundnut", "Millet", "Cotton"],
+    secondary: ["Sorghum", "Wheat", "Tomatoes"],
+    emerging: ["Onions", "Peppers"],
+    season: [
+      {
+        id: 1,
+        name: "Climate",
+        description: "Sudan Savannah, dry season irrigation",
+      },
+      {
+        id: 2,
+        name: "Planting",
+        description: "May–July",
+      },
+      {
+        id: 3,
+        name: "Harvest",
+        description: "September–December",
+      },
+    ],
+  },
+  {
+    id: 10,
+    name: "Lagos State",
+    zone: "south west",
+    primary: ["Vegetables", "Cassava", "Maize"],
+    secondary: ["Plantain", "Poultry"],
+    emerging: ["Urban farming systems"],
+    season: [
+      {
+        id: 1,
+        name: "Climate",
+        description: "Tropical with coastal influence",
+      },
+      {
+        id: 2,
+        name: "Planting",
+        description: "March–April, September–October",
+      },
+      {
+        id: 3,
+        name: "Harvest",
+        description: "Year-round for vegetables",
+      },
+    ],
+  },
+  {
+    id: 11,
+    name: "Ogun State",
+    zone: "south west",
+    primary: ["Cassava", "Maize", "Cocoa"],
+    secondary: ["Oil Palm", "Kola Nut", "Rice"],
+    emerging: ["Pineapple", "Citrus"],
+    season: [
+      {
+        id: 1,
+        name: "Climate",
+        description: "Tropical with derived savannah",
+      },
+      {
+        id: 2,
+        name: "Planting",
+        description: "March–May, September–October",
+      },
+      {
+        id: 3,
+        name: "Harvest",
+        description: "August–October, January–February",
+      },
+    ],
+  },
+  {
+    id: 12,
+    name: "Oyo State",
+    zone: "south west",
+    primary: ["Cassava", "Yam", "Maize"],
+    secondary: ["Cocoa", "Tobacco", "Cashew"],
+    emerging: ["Vegetables"],
+    season: [
+      {
+        id: 1,
+        name: "Climate",
+        description: "Derived savannah with moderate rainfall",
+      },
+      {
+        id: 2,
+        name: "Planting",
+        description: "March–May",
+      },
+      {
+        id: 3,
+        name: "Harvest",
+        description: "August–November",
+      },
+    ],
+  },
+];
+
+export const ZONE_THEME = {
+  "south east": {
+    badgeBg: "bg-[#ECFDF5]",
+    badgeBorder: "border-[#A4F4CF]",
+    badgeText: "text-[#007A55]",
+  },
+  "north east": {
+    badgeBg: "bg-[#FFFBEB]",
+    badgeBorder: "border-[#FDE68A]",
+    badgeText: "text-[#B45309]",
+  },
+  "north central": {
+    badgeBg: "bg-[#FFF7ED]",
+    badgeBorder: "border-[#FFD6A8]",
+    badgeText: "text-[#CA3500]",
+  },
+  "north west": {
+    badgeBg: "bg-[#FEFCE8]",
+    badgeBorder: "border-[#FFF085]",
+    badgeText: "text-[#A65F00]",
+  },
+  "south south": {
+    badgeBg: "bg-[#F0FDFA]",
+    badgeBorder: "border-[#96F7E4]",
+    badgeText: "text-[#00786F]",
+  },
+  "south west": {
+    badgeBg: "bg-[#F0FDF4]",
+    badgeBorder: "border-[#B9F8CF]",
+    badgeText: "text-[#008236]",
+  },
+};
