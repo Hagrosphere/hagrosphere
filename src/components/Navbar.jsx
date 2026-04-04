@@ -8,7 +8,7 @@ const Navbar = () => {
   const [isToggle, setIsToggle] = useState(false);
   return (
     <div className="w-full bg-bg-main py-2 fixed top-0 left-0 z-50">
-      <div className="w-[96%] md:w-[94%] mx-auto flex items-center justify-between text-white">
+      <div className="w-[92%] md:w-[94%] mx-auto flex items-center justify-between text-white">
         <Link to="/" className="">
           <img src={HagroLogo} alt="" className="w-16 md:w-24" />
         </Link>
