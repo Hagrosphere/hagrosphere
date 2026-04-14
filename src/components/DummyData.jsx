@@ -52,6 +52,7 @@ export const features = [
     desc: "Connect directly with buyers and sellers across Nigeria. Our digital marketplace eliminates intermediaries, ensuring fair prices and transparent transactions for all participants in the agricultural value chain.",
     image: Direct,
     reverse: false,
+    link: "/services/market-access",
   },
   {
     id: 2,
@@ -98,25 +99,25 @@ export const verificationStep = [
   {
     id: 1,
     title: "Farmer Verification",
-    icon: <FiCheckCircle className="h-6 w-6" />,
+    icon: <FiCheckCircle className="w-6 h-6" />,
     describe: "Land documentation and identity checks",
   },
   {
     id: 2,
     title: "Worker Screening",
-    icon: <FiCheckCircle className="h-6 w-6" />,
+    icon: <FiCheckCircle className="w-6 h-6" />,
     describe: "Experience validation and reference checks",
   },
   {
     id: 3,
     title: "Quality Standards",
-    icon: <FiCheckCircle className="h-6 w-6" />,
+    icon: <FiCheckCircle className="w-6 h-6" />,
     describe: "Produce grading and market coordination",
   },
   {
     id: 4,
     title: "Clear Disclaimers",
-    icon: <LuShield className="h-6 w-6" />,
+    icon: <LuShield className="w-6 h-6" />,
     describe: "Honest about risks and limitations",
   },
 ];
@@ -200,7 +201,7 @@ export const testimonialData = [
     id: 2,
     name: "Fatima Ibrahim",
     testimonial:
-      '"I found consistent farm work through AFRIKULTURE. The verification process made me feel secure about every placement."',
+      '"I found consistent farm work through HAGROSPHERE . The verification process made me feel secure about every placement."',
     location: "Agricultural Worker • Kaduna State",
   },
   {
@@ -256,7 +257,7 @@ export const testimonialData = [
     id: 10,
     name: "Blessing Ojo",
     testimonial:
-      '"AFRIKULTURE has simplified how I source fresh produce for my restaurant. Consistency is key for my business."',
+      '"HAGROSPHERE has simplified how I source fresh produce for my restaurant. Consistency is key for my business."',
     location: "Restaurant Owner • Ibadan",
   },
   {
@@ -401,7 +402,7 @@ export const solutionsData = [
     id: "01",
     slug: "farm-equipment",
     tag: "Equipment Coordination",
-    icon: <LuTractor className="h-4 w-4" />,
+    icon: <LuTractor className="w-4 h-4" />,
     title: "Farm Equipment Access",
     subtitle:
       "Coordinate shared access to agricultural machinery across regions. Reduce operational costs through verified equipment sharing and professional coordination.",
@@ -539,7 +540,7 @@ export const solutionsData = [
     id: "02",
     slug: "market-access",
     tag: "Market Coordination",
-    icon: <LuShoppingBasket className="h-4 w-4" />,
+    icon: <LuShoppingBasket className="w-4 h-4" />,
     title: "Agricultural Market Access",
     subtitle:
       "Connect farmers to buyers through produce aggregation, quality grading, and transparent coordination. Bridge the gap between small farms and commercial markets.",

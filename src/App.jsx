@@ -12,6 +12,7 @@ import {
   Services,
   Errorpage,
   ContactUs,
+  LearnDetails,
 } from "./pages";
 
 const routes = [
@@ -25,6 +26,7 @@ const routes = [
       { path: "/services/:slug", element: <ServiceDetails /> },
       { path: "/how-we-work", element: <HowWeWork /> },
       { path: "/learn", element: <Learn /> },
+      { path: "/learn/:id", element: <LearnDetails /> },
       { path: "/produce", element: <Product /> },
       { path: "/privacy-policy", element: <PrivacyPolicy /> },
       { path: "/contact-us", element: <ContactUs /> },
@@ -46,7 +48,7 @@ function App() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <div className="animate-spin rounded-full h-14 w-14 border-t-4 border-b-4 border-bg-btn-primary"></div>
+        <div className="border-t-4 border-b-4 rounded-full animate-spin h-14 w-14 border-bg-btn-primary"></div>
       </div>
     );
   }

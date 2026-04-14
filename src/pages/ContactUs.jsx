@@ -18,22 +18,22 @@ const ContactUs = () => {
     {
       question: "How long until I hear back?",
       answer:
-        "We review all enquiries and typically respond within 2–3 business days.",
+        "We review all enquiries within 2-3 business days. Complex requests may require additional assessment time.",
     },
     {
       question: "Does enquiry guarantee service?",
       answer:
-        "Submitting an enquiry does not guarantee service access. Requests are assessed individually.",
+        "No. Enquiry submission allows us to assess eligibility. Service availability depends on verification and regional capacity.",
     },
     {
       question: "What information should I include?",
       answer:
-        "Include your location, timeframe, and specific requirements to help us assess your needs effectively.",
+        "Include your location, farm details (if applicable), specific service needs, timing requirements, and any relevant experience.",
     },
     {
       question: "Is my information secure?",
       answer:
-        "Yes, all submitted information is handled securely and treated with strict confidentiality.",
+        "Yes. We protect all participant data and use it only for coordination purposes. We never sell your information.",
     },
   ];
 

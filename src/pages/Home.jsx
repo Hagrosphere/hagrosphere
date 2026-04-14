@@ -9,8 +9,10 @@ import {
   verificationStep,
   weServeData,
 } from "../components/DummyData";
+import { useNavigate } from "react-router";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-full">
       <div
@@ -22,32 +24,38 @@ const Home = () => {
         <div className="absolute inset-0 bg-black/50"></div>
 
         <div className="relative z-10 w-[90%] mx-auto mt-5 md:mt-8">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-9 md:leading-16 lg:leading-20">
+          <h2 className="text-2xl font-bold leading-9 md:text-4xl lg:text-5xl md:leading-16 lg:leading-20">
             Trust-First Agricultural <br /> Coordination in Africa
           </h2>
 
-          <p className="mt-6 leading-6 md:leading-8 max-w-xl  text-sm md:text-base lg:text-lg">
+          <p className="max-w-xl mt-6 text-sm leading-6 md:leading-8 md:text-base lg:text-lg">
             Facilitating transparency, coordination, and structured
             participation in agriculture for farmers, workers, buyers, and the
             diaspora through verified process.
           </p>
-          <div className="mt-12 flex items-center gap-x-7 md:gap-x-10 font-inter">
-            <button className="bg-bg-btn text-white text-sm md:text-base px-3 py-2 rounded-lg">
+          <div className="flex items-center mt-12 gap-x-7 md:gap-x-10 font-inter">
+            <button
+              className="px-3 py-2 text-sm text-white rounded-lg cursor-pointer bg-bg-btn md:text-base"
+              onClick={() => navigate("/contact-us")}
+            >
               Submit Enquiry
             </button>
-            <button className="border border-white px-3 py-2 text-sm md:text-base rounded-lg">
+            <button
+              className="px-3 py-2 text-sm border border-white rounded-lg md:text-base"
+              onClick={() => navigate("/services")}
+            >
               Explore Services
             </button>
           </div>
         </div>
       </div>
-      <section className="py-12 md:py-16 bg-bg-secondary w-full">
+      <section className="w-full py-12 md:py-16 bg-bg-secondary">
         <div className="w-[96%] md:w-[94%] mx-auto">
-          <div className="flex items-center justify-center flex-col">
-            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-6">
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="mb-6 text-xl font-semibold md:text-2xl lg:text-3xl xl:text-4xl">
               Who We Serve
             </h2>
-            <p className="max-w-lg text-center text-text-primary font-inter text-xs md:text-base lg:text-base ">
+            <p className="max-w-lg text-xs text-center text-text-primary font-inter md:text-base lg:text-base ">
               HAGROSPHERE coordinates agricultural services for <br /> diverse
               participants across Nigeria and the diaspora.
             </p>
@@ -60,13 +68,13 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-white w-full">
+      <section className="w-full py-12 bg-white md:py-16">
         <div className="w-[96%] md:w-[94%] mx-auto">
-          <div className="flex items-center justify-center flex-col">
-            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-6">
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="mb-6 text-xl font-semibold md:text-2xl lg:text-3xl xl:text-4xl">
               Our Services
             </h2>
-            <p className="max-w-lg text-center text-text-primary font-inter text-xs md:text-base lg:text-base ">
+            <p className="max-w-lg text-xs text-center text-text-primary font-inter md:text-base lg:text-base ">
               Three core services designed to improve coordination, <br />{" "}
               access, and transparency in Nigerian agriculture.
             </p>
@@ -86,15 +94,15 @@ const Home = () => {
                 </div>
 
                 <div className="w-full md:w-[50%] font-inter">
-                  <h4 className="text-xs text-bg-btn font-semibold">
+                  <h4 className="text-xs font-semibold text-bg-btn">
                     {item.tag}
                   </h4>
 
-                  <h2 className="my-4 md:my-6 font-semibold text-xl md:text-2xl lg:text-3xl">
+                  <h2 className="my-4 text-xl font-semibold md:my-6 md:text-2xl lg:text-3xl">
                     {item.title}
                   </h2>
 
-                  <p className="text-text-primary text-sm md:text-base">
+                  <p className="text-sm text-text-primary md:text-base">
                     {item.desc}
                   </p>
 
@@ -108,13 +116,13 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-bg-secondary w-full">
+      <section className="w-full py-12 md:py-16 bg-bg-secondary">
         <div className="w-[92%] md:w-[94%] mx-auto">
-          <div className="flex items-center justify-center flex-col">
-            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-6">
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="mb-6 text-xl font-semibold md:text-2xl lg:text-3xl xl:text-4xl">
               How We Work
             </h2>
-            <p className="max-w-lg md:max-w-xl text-center text-text-primary font-inter text-xs md:text-base lg:text-base ">
+            <p className="max-w-lg text-xs text-center md:max-w-xl text-text-primary font-inter md:text-base lg:text-base ">
               A structured, transparent process designed to build trust at every
               step.
             </p>
@@ -122,32 +130,35 @@ const Home = () => {
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 md:gap-10 w-[95%] mx-auto">
             {howWeWork.map((item) => (
               <div className="font-inter" key={item.id}>
-                <div className="bg-bg-btn-primary rounded-full w-8 md:w-10 h-8 md:h-10 flex items-center justify-center ">
-                  <h2 className="text-white text-base md:text-lg lg:text-xl font-semibold">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-bg-btn-primary md:w-10 md:h-10 ">
+                  <h2 className="text-base font-semibold text-white md:text-lg lg:text-xl">
                     {item.id}
                   </h2>
                 </div>
                 <h2 className="my-3 font-semibold">{item.title} </h2>
-                <p className="text-text-primary text-xs md:text-sm">
+                <p className="text-xs text-text-primary md:text-sm">
                   {item.detail}
                 </p>
               </div>
             ))}
           </div>
-          <div className="mt-16 flex items-center justify-center font-inter">
-            <button className="text-bg-btn-primary flex items-center gap-x-1 cursor-pointer hover:underline text-sm md:text-base">
+          <div className="flex items-center justify-center mt-16 font-inter">
+            <button
+              className="flex items-center text-sm cursor-pointer text-bg-btn-primary gap-x-1 hover:underline md:text-base"
+              onClick={() => navigate("/how-we-work")}
+            >
               View Our Complete Process
-              <IoIosArrowRoundForward className="w-5 md:h-6 h-5 md:w-6" />
+              <IoIosArrowRoundForward className="w-5 h-5 md:h-6 md:w-6" />
             </button>
           </div>
         </div>
       </section>
 
-      <section className="py-9 md:py-12  bg-white w-full">
+      <section className="w-full bg-white py-9 md:py-12">
         <div className="w-[90%] md:w-[94%] mx-auto">
-          <div className="flex items-start flex-col-reverse md:flex-row gap-7">
+          <div className="flex flex-col-reverse items-start md:flex-row gap-7">
             <div className="w-full md:w-[50%]">
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold ">
+              <h2 className="text-xl font-semibold md:text-2xl lg:text-3xl ">
                 Built on Trust and Verification
               </h2>
               <p className="text-text-primary max-w-lg font-inter my-3.5 text-sm md:text-base">
@@ -155,21 +166,21 @@ const Home = () => {
                 structured verification process. We prioritize transparency over
                 promises.
               </p>
-              <div className="mt-6 flex items-start gap-y-5 md:gap-y-6 flex-col">
+              <div className="flex flex-col items-start mt-6 gap-y-5 md:gap-y-6">
                 {verificationStep.map((item) => (
                   <div className="flex items-start gap-x-4 " key={item.id}>
                     {item.icon}
                     <div className="font-inter">
                       <h3 className="text-base md:text-lg ">{item.title}</h3>
-                      <p className="text-text-primary text-sm md:text-base">
+                      <p className="text-sm text-text-primary md:text-base">
                         {item.describe}
                       </p>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="mt-8 flex justify-center md:justify-start">
-                <button className="bg-bg-btn-primary flex items-center justify-center text-white rounded-lg px-3 py-2 font-inter text-sm md:text-base cursor-pointer">
+              <div className="flex justify-center mt-8 md:justify-start">
+                <button className="flex items-center justify-center px-3 py-2 text-sm text-white rounded-lg cursor-pointer bg-bg-btn-primary font-inter md:text-base">
                   Read Our Verification Process
                 </button>
               </div>
@@ -178,19 +189,19 @@ const Home = () => {
               <img
                 src={Worker}
                 alt="worker"
-                className="rounded-xl w-full md:h-full"
+                className="w-full rounded-xl md:h-full"
               />
             </div>
           </div>
         </div>
       </section>
-      <section className="py-12 md:py-16 bg-bg-plane w-full">
+      <section className="w-full py-12 md:py-16 bg-bg-plane">
         <div className="w-[96%] md:w-[94%] mx-auto">
-          <div className="flex items-center justify-center flex-col">
-            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-6">
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="mb-6 text-xl font-semibold md:text-2xl lg:text-3xl xl:text-4xl">
               Coordination at Scale
             </h2>
-            <p className="max-w-lg md:max-w-3xl text-center text-text-primary font-inter text-xs md:text-base lg:text-base ">
+            <p className="max-w-lg text-xs text-center md:max-w-3xl text-text-primary font-inter md:text-base lg:text-base ">
               Figures reflect verified coordination activity since 2024. Not
               projected or estimated.
             </p>
@@ -200,13 +211,13 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="py-12 md:py-16 bg-white w-full">
+      <section className="w-full py-12 bg-white md:py-16">
         <div className="w-[96%] md:w-[94%] mx-auto">
-          <div className="flex items-center justify-center flex-col">
-            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-6">
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="mb-6 text-xl font-semibold md:text-2xl lg:text-3xl xl:text-4xl">
               Learn About Agriculture
             </h2>
-            <p className="max-w-lg md:max-w-md text-center text-text-primary font-inter text-xs md:text-base lg:text-base ">
+            <p className="max-w-lg text-xs text-center md:max-w-md text-text-primary font-inter md:text-base lg:text-base ">
               Educational content, market insights, and crop guides <br /> for
               Nigerian agriculture.
             </p>
@@ -218,13 +229,13 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="py-12 md:py-16 bg-bg-secondary w-full">
+      <section className="w-full py-12 md:py-16 bg-bg-secondary">
         <div className="w-[96%] md:w-[94%] mx-auto">
-          <div className="flex items-center justify-center flex-col">
-            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-6">
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="mb-6 text-xl font-semibold md:text-2xl lg:text-3xl xl:text-4xl">
               What Our Users Say
             </h2>
-            <p className="max-w-lg md:max-w-xl text-center text-text-primary font-inter text-xs md:text-base lg:text-base ">
+            <p className="max-w-lg text-xs text-center md:max-w-xl text-text-primary font-inter md:text-base lg:text-base ">
               Real experiences from farmers, workers, and buyers across Nigeria.
             </p>
           </div>
@@ -233,21 +244,24 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="py-12 md:py-16 bg-white w-full">
+      <section className="w-full py-12 bg-white md:py-16">
         <div className="w-[96%] md:w-[94%] mx-auto">
-          <div className="flex items-center justify-center flex-col">
-            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-4 md:mb-6 leading-8 md:leading-12">
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="mb-4 text-xl font-semibold leading-8 md:text-2xl lg:text-3xl xl:text-4xl md:mb-6 md:leading-12">
               Ready to <span className="text-bg-btn">Transform</span> <br />{" "}
               Nigerian Agriculture?
             </h2>
-            <p className="max-w-md text-center text-text-primary font-inter text-xs md:text-base lg:text-base ">
+            <p className="max-w-md text-xs text-center text-text-primary font-inter md:text-base lg:text-base ">
               Join thousands of farmers, agribusinesses, and buyers building a
               sustainable agricultural future together
             </p>
             <div className="mt-9 md:mt-14">
-              <button className="flex items-center gap-x-2 font-inter bg-white shadow-sm px-4 py-2 rounded-3xl cursor-pointer">
+              <button
+                className="flex items-center px-4 py-2 bg-white shadow-sm cursor-pointer gap-x-2 font-inter rounded-3xl"
+                onClick={() => navigate("/services")}
+              >
                 Start Your Journey
-                <div className="bg-bg-btn-primary text-white flex items-center justify-center w-6 h-6  rounded-full">
+                <div className="flex items-center justify-center w-6 h-6 text-white rounded-full bg-bg-btn-primary">
                   <IoIosArrowRoundForward />
                 </div>
               </button>
