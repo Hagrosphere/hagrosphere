@@ -90,7 +90,11 @@ const Home = () => {
                 }`}
               >
                 <div className="w-full md:w-[50%]">
-                  <img src={item.image} alt={item.title} />
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="rounded-2xl"
+                  />
                 </div>
 
                 <div className="w-full md:w-[50%] font-inter">
@@ -178,11 +182,6 @@ const Home = () => {
                     </div>
                   </div>
                 ))}
-              </div>
-              <div className="flex justify-center mt-8 md:justify-start">
-                <button className="flex items-center justify-center px-3 py-2 text-sm text-white rounded-lg cursor-pointer bg-bg-btn-primary font-inter md:text-base">
-                  Read Our Verification Process
-                </button>
               </div>
             </div>
             <div className="w-full md:w-[50%]">
