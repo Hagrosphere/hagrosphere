@@ -110,7 +110,10 @@ const Home = () => {
                     {item.desc}
                   </p>
 
-                  <button className="mt-7 md:mt-12 bg-bg-btn-primary text-white text-sm md:text-base rounded-md py-1.5 md:py-2 px-3 cursor-pointer">
+                  <button
+                    className="mt-7 md:mt-12 bg-bg-btn-primary text-white text-sm md:text-base rounded-md py-1.5 md:py-2 px-3 cursor-pointer"
+                    onClick={() => navigate(`${item.link}`)}
+                  >
                     Explore Platform
                   </button>
                 </div>
