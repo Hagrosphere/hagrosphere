@@ -65,6 +65,7 @@ export const features = [
     desc: "Access flexible financing options tailored to agricultural cycles. We partner with financial institutions to provide loans, insurance, and investment opportunities that support your business growth and sustainability.",
     image: Growth,
     reverse: true, // 👈 this controls layout
+    link: "/services/growth-capital",
   },
   {
     id: 3,
@@ -73,6 +74,7 @@ export const features = [
     desc: "Efficient logistics network connecting farms to markets. Our technology-enabled distribution system ensures timely delivery, reduces post-harvest losses, and maintains product quality throughout the supply chain.",
     image: Seam,
     reverse: false,
+    link: "/services/seamless-distribut",
   },
 ];
 
