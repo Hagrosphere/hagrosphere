@@ -3,8 +3,18 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { HeroSection, LearnCard } from "../components";
 import { Hub } from "../assets";
 import { articleData } from "../components/DummyData";
+import { useState } from "react";
 
 const Learn = () => {
+  const [activeTag, setActiveTag] = useState("ALL");
+  const filtered =
+    activeTag === "ALL"
+      ? articleData
+      : articleData.filter((a) => a.tag === activeTag);
+  const allTags = [
+    "ALL",
+    ...Array.from(new Set(articleData.map((a) => a.tag))),
+  ];
   return (
     <div className="w-full">
       <HeroSection
@@ -36,9 +46,7 @@ const Learn = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="hidden md:block w-full md:w-[50%] h-full ">
-              <img src={Hub} alt="hub-image" className="h-full" />
-            </div> */}
+
             <div className="hidden md:block w-full md:w-[50%] h-full relative">
               <img
                 src={Hub}
@@ -55,9 +63,35 @@ const Learn = () => {
 
       <section className="w-full py-4 bg-white md:pb-16">
         <div className="w-[96%] md:w-[94%] mx-auto">
-          <h2 className="text-xl md:text-2xl lg:text-3xl">Latest Articles</h2>
-          <div className="grid grid-cols-1 gap-8 mt-9 md:grid-cols-2 lg:grid-cols-3 md:gap-8 lg:gap-10">
-            {articleData.map((item) => (
+          {/* Heading */}
+          <h2 className="text-xl font-semibold md:text-2xl lg:text-3xl">
+            Latest Articles
+          </h2>
+
+          <div className="flex flex-wrap gap-2 mt-6 mb-8 ">
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setActiveTag(tag)}
+                className={`
+            text-xs font-medium px-3 py-1 md:py-1.5 rounded-full
+            tracking-[0.04em] transition-all duration-200
+            border cursor-pointer
+            ${
+              activeTag === tag
+                ? "bg-bg-btn-primary border-[#5C8A3A] text-white"
+                : "bg-[#FAF8F3] border-[#D9D4C7] text-[#5B5B5B] hover:border-[#5C8A3A] hover:text-[#2F4F2F]"
+            }
+          `}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+
+          {/* Articles */}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10 mt-9">
+            {filtered.map((item) => (
               <LearnCard key={item.id} {...item} />
             ))}
           </div>

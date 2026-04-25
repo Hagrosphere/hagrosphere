@@ -2,6 +2,8 @@ import { FiCheckCircle, FiEye } from "react-icons/fi";
 import { LuShield } from "react-icons/lu";
 import { BsBullseye } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+import { FaArrowTrendUp } from "react-icons/fa6";
+import { AiOutlineApartment } from "react-icons/ai";
 import { LuShoppingBasket, LuTractor } from "react-icons/lu";
 import { RiGroupLine } from "react-icons/ri";
 
@@ -9,7 +11,9 @@ import {
   Access,
   Agribuss,
   Buyer,
+  Capital,
   Direct,
+  Distribution,
   Equipment,
   Farmer,
   Growth,
@@ -125,67 +129,521 @@ export const verificationStep = [
 export const articleData = [
   {
     id: 1,
-    image: LearnOne,
     tag: "FARMING TIPS",
     title: "Sustainable Farming Practices for Nigerian Climate",
-    description:
+    subtitle:
       "Learn how to implement eco-friendly farming techniques that increase yield while preserving soil health and long-term productivity.",
+    author: "Dr. Chukwuemeka Okafor",
+    date: "March 15, 2024",
+    readTime: "8 min read",
+    image:
+      "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&auto=format&fit=crop",
+    content: [
+      {
+        type: "intro",
+        text: "Nigeria's diverse climate zones present unique opportunities and challenges for farmers. From the humid south to the semi-arid north, sustainable farming practices can dramatically improve yields while protecting our environment for future generations.",
+      },
+      { type: "heading", text: "Understanding Your Climate Zone" },
+      {
+        type: "paragraph",
+        text: "Nigeria spans six ecological zones — Sahel Savannah, Sudan Savannah, Guinea Savannah, Rainforest, Freshwater Swamp, and Mangrove Swamp. Each zone demands a tailored approach to farming. Southern farmers in rainforest zones enjoy year-round rainfall but must manage soil erosion, while northern farmers in the Sahel must optimise every drop of seasonal rainfall.",
+      },
+      {
+        type: "paragraph",
+        text: "Successful sustainable farming begins with knowing your zone's rainfall patterns, temperature ranges, and natural vegetation — then working with these forces rather than against them.",
+      },
+      { type: "subheading", text: "Recommended Crops by Zone" },
+      {
+        type: "list",
+        items: [
+          "Sahel & Sudan Savannah: millet, sorghum, groundnuts, cowpea",
+          "Guinea Savannah: maize, yam, soybean, cassava",
+          "Rainforest: cocoa, plantain, palm oil, rubber",
+          "Freshwater & Mangrove: rice, vegetables, fish farming",
+        ],
+      },
+      { type: "heading", text: "Soil Health and Conservation" },
+      {
+        type: "paragraph",
+        text: "Healthy soil is the foundation of sustainable agriculture. Many Nigerian soils are under pressure from decades of intensive farming without adequate replenishment. Practices such as cover cropping, composting, and minimal tillage can dramatically reverse soil degradation within two to three growing seasons.",
+      },
+      {
+        type: "quote",
+        text: "A farmer who takes care of the soil is borrowing from the earth and paying back with interest — the next harvest will always reflect today's stewardship.",
+        author: "Prof. Adaeze Nwosu, University of Agriculture Makurdi",
+      },
+      { type: "subheading", text: "Composting and Organic Matter" },
+      {
+        type: "paragraph",
+        text: "Composting crop residues, animal manure, and kitchen waste is one of the most cost-effective ways to improve soil fertility. A well-maintained compost heap can generate mature compost in 6–8 weeks during the warm, humid rainy season. Apply 2–3 tonnes per hectare before planting to see measurable improvement in both yield and soil structure.",
+      },
+      { type: "heading", text: "Water Management Strategies" },
+      {
+        type: "paragraph",
+        text: "Water is increasingly unpredictable across Nigeria due to changing rainfall patterns. Rainwater harvesting, drip irrigation, and mulching are three techniques every sustainable farmer should adopt.",
+      },
+      {
+        type: "list",
+        items: [
+          "Rainwater harvesting: collect runoff from rooftops or build small earth dams",
+          "Mulching: covering soil with straw or leaves reduces moisture loss by up to 60%",
+          "Drip irrigation: cuts water usage by 40–50% compared to flood irrigation",
+          "Contour farming: reduces runoff and keeps topsoil in place",
+        ],
+      },
+      {
+        type: "tip",
+        title: "Cost-Saving Tip",
+        text: "Local materials like guinea grass, rice straw, or dried banana leaves make excellent mulch at zero cost. A 5 cm layer of mulch can reduce weeding frequency by half and keep soil moist for an extra 3–5 days after rainfall.",
+      },
+      { type: "heading", text: "Integrated Pest Management" },
+      {
+        type: "paragraph",
+        text: "Chemical pesticides are expensive and can damage soil ecosystems. Integrated Pest Management (IPM) combines biological, cultural, and minimal chemical controls to keep pests in check without destroying beneficial insects or soil organisms. Key strategies include crop rotation, intercropping with pest-repellent plants like basil, and using neem-based organic sprays only when necessary.",
+      },
+    ],
   },
   {
     id: 2,
-    image: LearnTwo,
     tag: "MARKET INSIGHTS",
     title: "Understanding Seasonal Price Trends in Agriculture",
-    description:
-      "Discover how to leverage market data and seasonal patterns to maximize profits and make informed decisions...",
+    subtitle:
+      "Discover how to leverage market data and seasonal patterns to maximise profits and make informed planting decisions.",
+    author: "Fatima Al-Hassan",
+    date: "February 28, 2024",
+    readTime: "6 min read",
+    image:
+      "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=1200&auto=format&fit=crop",
+    content: [
+      {
+        type: "intro",
+        text: "Agricultural commodity prices in Nigeria follow predictable seasonal rhythms shaped by planting and harvest cycles, weather events, and supply chain dynamics. Farmers who understand these patterns can time their sales strategically and capture significantly higher margins.",
+      },
+      { type: "heading", text: "The Nigerian Agricultural Price Calendar" },
+      {
+        type: "paragraph",
+        text: "Prices for most staple crops follow a broad pattern: they are lowest immediately after the main harvest season (October–December for most of the country) and highest during the lean season (May–July), when stored supplies run low and the next harvest is still months away. This price swing can be dramatic — tomatoes, for example, may cost 3–5 times more during the dry season than at peak harvest.",
+      },
+      { type: "subheading", text: "Key Price Periods to Know" },
+      {
+        type: "list",
+        items: [
+          "Harvest glut (Oct–Dec): Prices lowest — ideal time to purchase inputs and invest in storage",
+          "Early dry season (Jan–Mar): Prices begin to rise — good time to sell stored produce",
+          "Lean season peak (May–Jul): Highest prices for most crops — maximise sales of stored inventory",
+          "New rains (Aug–Sep): Prices moderate as fresh produce enters market",
+        ],
+      },
+      { type: "heading", text: "How to Use Price Data" },
+      {
+        type: "paragraph",
+        text: "Tracking prices doesn't require expensive software. Simple tools like WhatsApp groups with fellow farmers, weekly market visits, and free apps like Farmcrowdy and Pricepally can give you reliable local price intelligence. The goal is to identify your personal price floor — the minimum at which selling is profitable — and never sell below it.",
+      },
+      {
+        type: "quote",
+        text: "The farmers who prosper are not always those with the biggest harvests — they are the ones who sell at the right time with the right information.",
+        author: "Musa Danjuma, Commodity Market Analyst",
+      },
+      { type: "heading", text: "Storage as a Market Strategy" },
+      {
+        type: "paragraph",
+        text: "On-farm storage is the simplest way to profit from seasonal price swings. Improved storage technologies — hermetic bags, metal silos, and community warehouses — can preserve grain quality for 6–12 months with minimal post-harvest losses.",
+      },
+      {
+        type: "paragraph",
+        text: "The Warehouse Receipt System (WRS), available through the Central Bank of Nigeria and state commodity boards, allows farmers to deposit stored grain as collateral for short-term loans, effectively letting you access cash without being forced to sell at low post-harvest prices.",
+      },
+      {
+        type: "tip",
+        title: "Market Insight",
+        text: "Joining a cooperative or farmer group gives you access to collective bargaining power, bulk transport cost savings, and real-time market information networks that individual farmers cannot access alone.",
+      },
+    ],
   },
   {
     id: 3,
-    image: LearnThree,
     tag: "FINANCING",
     title: "Accessing Agricultural Loans: A Complete Guide",
-    description:
-      "Navigate the process of securing financing for your agricultural business with our comprehensive guide to loan...",
+    subtitle:
+      "Navigate the process of securing financing for your agricultural business with our comprehensive guide to loans, grants, and cooperatives.",
+    author: "Nkechi Obi-Williams",
+    date: "January 20, 2024",
+    readTime: "10 min read",
+    image:
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&auto=format&fit=crop",
+    content: [
+      {
+        type: "intro",
+        text: "Access to affordable financing is one of the most significant barriers facing Nigerian farmers today. Yet more options exist than most farmers realise — from government-backed schemes to cooperative savings, mobile lending platforms, and impact investors.",
+      },
+      { type: "heading", text: "Government Agricultural Lending Schemes" },
+      {
+        type: "paragraph",
+        text: "The Central Bank of Nigeria (CBN) operates several dedicated agricultural finance programmes. The Anchor Borrowers Programme (ABP), launched in 2015, has disbursed loans to hundreds of thousands of smallholder farmers linked to large-scale processors as 'anchors'.",
+      },
+      { type: "subheading", text: "Key CBN Programmes" },
+      {
+        type: "list",
+        items: [
+          "Anchor Borrowers Programme (ABP): 9% loans for smallholders producing for anchored off-takers",
+          "Agricultural Credit Guarantee Scheme Fund (ACGSF): Bank loan guarantees up to ₦20 million",
+          "Commercial Agriculture Credit Scheme (CACS): 9% loans for commercial-scale farming",
+          "NIRSAL: Technical assistance plus credit guarantees for agribusinesses",
+        ],
+      },
+      { type: "heading", text: "Commercial Bank Agricultural Loans" },
+      {
+        type: "paragraph",
+        text: "To qualify for a commercial agricultural loan, you will typically need: a valid Bank Verification Number (BVN), land title documentation or proof of leasehold, a farm business plan covering at least two seasons, and evidence of prior farm income.",
+      },
+      {
+        type: "quote",
+        text: "The best loan application tells a story — where you've been, where you are now, and exactly what the money will do to get you where you're going.",
+        author: "Olumide Fashola, Agricultural Finance Specialist",
+      },
+      { type: "heading", text: "Cooperative and Group Lending" },
+      {
+        type: "paragraph",
+        text: "Joining or forming a farmer cooperative remains one of the most practical financing strategies available to smallholders. Cooperatives pool savings to create a lending fund, negotiate lower input prices through bulk purchasing, and access larger loans that individual members could not qualify for alone.",
+      },
+      { type: "subheading", text: "Steps to Form a Productive Cooperative" },
+      {
+        type: "list",
+        items: [
+          "Identify 10–30 farmers with complementary interests and a history of reliability",
+          "Register with the State Ministry of Agriculture (typically under ₦50,000)",
+          "Establish a regular savings schedule — even ₦1,000 per week per member builds significant capital",
+          "Draft clear bylaws covering loan terms, penalties for default, and profit-sharing rules",
+        ],
+      },
+      {
+        type: "tip",
+        title: "Important Note",
+        text: "Beware of informal lending groups that lack proper documentation. Always insist on written agreements, witnessed by a local government official, before joining any financial arrangement.",
+      },
+    ],
   },
   {
     id: 4,
-    image: LearnThree,
-    tag: "FINANCING",
-    title: "Accessing Agricultural Loans: A Complete Guide",
-    description:
-      "Navigate the process of securing financing for your agricultural business with our comprehensive guide to loan...",
+    tag: "CROP GUIDE",
+    title: "Cassava Cultivation in Southern Nigeria: Complete Guide",
+    subtitle:
+      "Comprehensive planting, maintenance, and harvest practices for cassava production in southern regions.",
+    author: "Dr. Adeyemi Spokane",
+    date: "March 5, 2024",
+    readTime: "12 min read",
+    image:
+      "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=1200&auto=format&fit=crop",
+    content: [
+      {
+        type: "intro",
+        text: "Cassava is one of the most important food security crops in southern Nigeria, providing sustenance and income for millions of farming households. This comprehensive guide covers the complete cultivation cycle, with special attention to conditions in southern regions.",
+      },
+      { type: "heading", text: "Land Selection and Preparation" },
+      {
+        type: "paragraph",
+        text: "Cassava is well-adapted to poor soils and can tolerate drought, but achieves its best yields in well-drained, sandy-loam soils with good organic matter content and a pH between 5.5 and 6.5. In southern Nigeria, the heavy clay soils of river valleys require ridge-and-furrow preparation to prevent waterlogging, which is the most common cause of root rot.",
+      },
+      { type: "heading", text: "Planting Materials and Timing" },
+      {
+        type: "paragraph",
+        text: "Cassava is propagated through stem cuttings called 'stakes'. Healthy stakes should be 20–30 cm long with at least 5 nodes, cut from mature stems that are free of disease and pest damage.",
+      },
+      {
+        type: "subheading",
+        text: "Recommended Varieties for Southern Nigeria",
+      },
+      {
+        type: "list",
+        items: [
+          "TMS 30572: High yield (30+ tonnes/ha), excellent for gari processing",
+          "NR 8082: Disease-resistant, good for areas with cassava mosaic virus pressure",
+          "TMS 98/0505: Dual-purpose food and industrial starch, excellent dry matter content",
+          "IITA TME 419: Fast-maturing (9–10 months), ideal for short-term land leases",
+        ],
+      },
+      {
+        type: "quote",
+        text: "Cassava's resilience makes it ideal for food security, but proper varieties with good practices can double your yield compared to traditional methods.",
+        author: "Dr. Adeyemi Spokane",
+      },
+      { type: "heading", text: "Crop Management Practices" },
+      { type: "subheading", text: "Weeding Schedule" },
+      {
+        type: "paragraph",
+        text: "Cassava is most vulnerable to weed competition in the first three months after planting. Two to three weeding sessions are necessary: first at 4–6 weeks, second at 8–10 weeks, and a final light weeding at 3 months if needed. After canopy closure at around 3–4 months, the cassava plant naturally shades out most weeds.",
+      },
+      { type: "subheading", text: "Fertiliser Application" },
+      {
+        type: "paragraph",
+        text: "The recommended rate is 400 kg/ha of NPK 12:12:17 applied in two splits — half at planting and half at 8–10 weeks. In southern Nigeria's acidic soils, liming before fertiliser application can improve nutrient uptake by 30–40%.",
+      },
+      { type: "heading", text: "Harvest and Post-Harvest Handling" },
+      {
+        type: "paragraph",
+        text: "Most improved varieties mature at 9–12 months. Damaged tubers deteriorate within 24–48 hours, so have your processing plan in place before harvest begins.",
+      },
+      {
+        type: "list",
+        items: [
+          "Process for gari within 24 hours of harvest for best quality",
+          "Ferment peeled, grated cassava for 2–3 days at room temperature",
+          "Dry gari to below 12% moisture content for safe storage up to 3 months",
+          "Sort market-bound fresh cassava by size — uniform tubers command premium prices",
+        ],
+      },
+    ],
   },
   {
     id: 5,
-    image: LearnThree,
-    tag: "Diaspora Guide",
+    tag: "DIASPORA GUIDE",
     title: "Agricultural Participation for Nigerians Abroad",
-    description:
+    subtitle:
       "Understanding realistic opportunities and considerations for diaspora agricultural engagement.",
+    author: "Adaeze Ekezie",
+    date: "February 10, 2024",
+    readTime: "9 min read",
+    image:
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&auto=format&fit=crop",
+    content: [
+      {
+        type: "intro",
+        text: "The Nigerian diaspora remits billions of dollars annually, yet relatively little of this capital finds its way into agriculture — the sector with the highest potential for both social impact and long-term returns. This guide explores practical, realistic ways Nigerians abroad can participate.",
+      },
+      {
+        type: "heading",
+        text: "Why Agriculture? The Case for Diaspora Investment",
+      },
+      {
+        type: "paragraph",
+        text: "Agriculture accounts for approximately 24% of Nigeria's GDP and employs over 70% of the rural population, yet remains chronically undercapitalised. The sector consistently offers returns of 15–40% per annum for well-managed ventures — significantly above global average equity market returns.",
+      },
+      {
+        type: "heading",
+        text: "Models of Diaspora Agricultural Participation",
+      },
+      {
+        type: "subheading",
+        text: "Model 1: Remote Ownership with Local Management",
+      },
+      {
+        type: "paragraph",
+        text: "The most common diaspora farming model involves purchasing or leasing farmland and engaging a local farm manager or agribusiness company to handle day-to-day operations. Platforms like Agropartnerships, Farmcrowdy, and Thrive Agric offer structured investment schemes where diaspora investors contribute capital and receive fixed or profit-share returns.",
+      },
+      {
+        type: "subheading",
+        text: "Model 2: Technology-Enabled Direct Involvement",
+      },
+      {
+        type: "paragraph",
+        text: "Advances in farm monitoring technology now allow diaspora farmers to stay closely involved in their farms from abroad. Solar-powered cameras, drone imagery, and IoT soil sensors can transmit real-time farm data, while mobile banking platforms facilitate seamless fund transfers for farm expenses.",
+      },
+      { type: "subheading", text: "Model 3: Processing and Value Addition" },
+      {
+        type: "paragraph",
+        text: "Investing in agro-processing rather than primary farming removes many of the weather and yield risks associated with crop production. Processing facilities for cassava starch, tomato paste, palm oil refining, and cocoa grinding offer stable returns backed by consistent raw material supply from thousands of smallholder farmers.",
+      },
+      {
+        type: "quote",
+        text: "The most successful diaspora agricultural investments are built on trust networks — family, community, or verifiable professional relationships with local partners.",
+        author: "Chidi Okonkwo, Diaspora Investment Advisor",
+      },
+      { type: "heading", text: "Risks and How to Mitigate Them" },
+      {
+        type: "list",
+        items: [
+          "Always visit the farm in person or send a trusted representative before investing significant capital",
+          "Insist on legally registered business structures with clear shareholding documentation",
+          "Start with a small pilot investment before committing your full intended capital",
+          "Join the Nigerian Diaspora Agricultural Network (NIDAN) for peer resources and verified introductions",
+          "Use regulated investment platforms that offer insurance, escrow, and exit options",
+        ],
+      },
+      {
+        type: "tip",
+        title: "Diaspora Tip",
+        text: "The Nigerian Investment Promotion Commission (NIPC) offers free investment facilitation services for diaspora investors, including introductions to verified local partners and regulatory guidance. Contact them before making any major investment decision.",
+      },
+    ],
   },
   {
     id: 6,
-    image: LearnThree,
-    tag: "FINANCING",
-    title: "Accessing Agricultural Loans: A Complete Guide",
-    description:
-      "Navigate the process of securing financing for your agricultural business with our comprehensive guide to loan...",
+    tag: "BEST PRACTICES",
+    title: "Soil Health Management for Nigerian Farms",
+    subtitle:
+      "Practical approaches to maintaining soil fertility and productivity across different farming regions.",
+    author: "Prof. Emeka Nwosu",
+    date: "January 8, 2024",
+    readTime: "7 min read",
+    image:
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&auto=format&fit=crop",
+    content: [
+      {
+        type: "intro",
+        text: "Soil degradation is silently undermining agricultural productivity across Nigeria. Studies suggest that up to 60% of farmland in the sub-Saharan region has experienced significant soil fertility decline over the past three decades. Yet with the right practices, farmers can rebuild soil health within a few growing seasons.",
+      },
+      { type: "heading", text: "Understanding Soil Health Indicators" },
+      {
+        type: "paragraph",
+        text: "Healthy soil is a living ecosystem. A single teaspoon of productive soil contains billions of microorganisms — bacteria, fungi, protozoa, and nematodes — that work together to break down organic matter, fix nitrogen, and make nutrients available to plant roots.",
+      },
+      {
+        type: "list",
+        items: [
+          "Colour: Dark, rich brown soil indicates good organic matter — pale or reddish soil signals depletion",
+          "Texture: Good soil crumbles easily and doesn't form hard crusts after rain",
+          "Water retention: Healthy soil absorbs rainfall quickly without puddling or runoff",
+          "Earthworm presence: More than 10 earthworms per square metre indicates strong biological activity",
+        ],
+      },
+      { type: "heading", text: "Crop Rotation Strategies" },
+      {
+        type: "paragraph",
+        text: "Rotating crops across seasons is one of the most powerful — and completely free — soil health interventions available to farmers. The key principle is alternating between nitrogen-depleting crops (maize, sorghum, cassava) and nitrogen-fixing legumes (cowpea, groundnut, soybean).",
+      },
+      { type: "subheading", text: "Recommended Rotation Sequences" },
+      {
+        type: "list",
+        items: [
+          "Season 1: Maize → Season 2: Cowpea → Season 3: Yam (classic southern Nigeria sequence)",
+          "Season 1: Sorghum → Season 2: Groundnut → Season 3: Maize (northern Nigeria sequence)",
+          "Year 1: Tomato/Pepper → Year 2: Maize → Year 3: Cowpea (market garden sequence)",
+        ],
+      },
+      {
+        type: "quote",
+        text: "Farmers who rotate crops consistently for three years typically see a 20–35% yield increase without any additional fertiliser — the legumes do the work for free.",
+        author: "Dr. Blessing Okoye, National Crops Research Institute",
+      },
+      { type: "heading", text: "Green Manure and Cover Crops" },
+      {
+        type: "paragraph",
+        text: "Mucuna (velvet bean) is particularly effective in southern Nigeria — it suppresses weeds, fixes 100–150 kg of nitrogen per hectare, and can be grown in the off-season without requiring any additional inputs.",
+      },
+      {
+        type: "tip",
+        title: "Research Finding",
+        text: "Farmers in Benue State who incorporated mucuna into their rotation for two consecutive years before planting yam reported average yam yields 45% higher than neighbours using conventional practices — with no additional fertiliser costs.",
+      },
+    ],
   },
   {
     id: 7,
-    image: LearnThree,
-    tag: "FINANCING",
-    title: "Accessing Agricultural Loans: A Complete Guide",
-    description:
-      "Navigate the process of securing financing for your agricultural business with our comprehensive guide to loan...",
+    tag: "SUPPLY CHAIN",
+    title: "Planting Calendar for North-Central Nigeria",
+    subtitle:
+      "Region-specific timing for major crops based on rainfall patterns and climate conditions.",
+    author: "Halima Ibrahim",
+    date: "December 5, 2023",
+    readTime: "5 min read",
+    image:
+      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1200&auto=format&fit=crop",
+    content: [
+      {
+        type: "intro",
+        text: "North-Central Nigeria — covering states like Benue, Kogi, Nasarawa, Niger, Plateau, and Kwara — sits at the crossroads of Guinea Savannah and Rainforest ecological zones, giving it some of the country's most versatile farming conditions.",
+      },
+      { type: "heading", text: "Understanding the North-Central Climate" },
+      {
+        type: "paragraph",
+        text: "North-Central Nigeria typically receives 1,100–1,500 mm of rainfall annually, concentrated in a single rainy season from April to October. The dry season runs November to March, with harmattan winds peaking in December and January.",
+      },
+      { type: "heading", text: "Monthly Planting Calendar" },
+      {
+        type: "subheading",
+        text: "January – February: Land Preparation Season",
+      },
+      {
+        type: "paragraph",
+        text: "Use the dry season to prepare land without the pressure of planting deadlines. This is the ideal time for deep ploughing, clearing residue from the previous season, applying lime if soil pH tests indicate acidity, and constructing or repairing irrigation infrastructure.",
+      },
+      { type: "subheading", text: "March – April: First Planting Window" },
+      {
+        type: "paragraph",
+        text: "Early rains arrive in March–April. This is the primary planting window for maize (plant when rains are reliable, targeting 2–3 consecutive rain days), yam (plant yam setts in mounds as early as late March), and early-season vegetables like tomatoes, peppers, and onions.",
+      },
+      { type: "subheading", text: "May – June: Main Season Planting" },
+      {
+        type: "paragraph",
+        text: "Full rainy season is established. Plant sorghum, millet, cowpeas, soybeans, and cassava stakes for December harvest. Also the optimal time for groundnuts in the drier northern parts of the zone.",
+      },
+      {
+        type: "quote",
+        text: "Timing your planting to the first reliable rain — not the first rain — saves more crops than any other single practice in North-Central Nigeria.",
+        author: "Mallam Sani Abubakar, Extension Agent, Nasarawa State",
+      },
+      { type: "subheading", text: "October – December: Harvest and Storage" },
+      {
+        type: "paragraph",
+        text: "Main harvest season. Prioritise early harvest of crops at risk from early dry-season winds. Commence drying and processing immediately, targeting less than 13% moisture content in stored grain.",
+      },
+      {
+        type: "list",
+        items: [
+          "Maize: harvest at full maturity for grain (90–100 days)",
+          "Sorghum: harvest when top grains begin to harden (90–120 days)",
+          "Cowpea: harvest pods when 80% are fully dry but before shattering occurs",
+          "Yam: harvest when leaves begin to yellow and die back naturally (7–9 months from planting)",
+        ],
+      },
+    ],
   },
   {
     id: 8,
-    image: LearnThree,
-    tag: "FINANCING",
-    title: "Accessing Agricultural Loans: A Complete Guide",
-    description:
-      "Navigate the process of securing financing for your agricultural business with our comprehensive guide to loan...",
+    tag: "TOMATO FARMING",
+    title: "Tomato Production: From Planting to Market",
+    subtitle:
+      "Step-by-step guide for successful tomato farming including variety selection, pest management, and market linkage.",
+    author: "Agric Business Team",
+    date: "November 12, 2023",
+    readTime: "11 min read",
+    image:
+      "https://images.unsplash.com/photo-1592921870789-04563d55041c?w=1200&auto=format&fit=crop",
+    content: [
+      {
+        type: "intro",
+        text: "Tomato is one of the most profitable and most challenging vegetable crops in Nigeria. The country is paradoxically one of Africa's largest tomato producers yet imports significant quantities of tomato paste annually — a gap that represents a massive opportunity for commercial tomato farmers with the right knowledge.",
+      },
+      { type: "heading", text: "Variety Selection" },
+      {
+        type: "paragraph",
+        text: "Choosing the right variety is the single most important decision a tomato farmer makes. Open-pollinated varieties (OPVs) like Roma VF are cheap to seed-save but perform poorly under pest pressure. Hybrid varieties yield significantly more and resist common diseases, but seeds must be purchased fresh each season.",
+      },
+      {
+        type: "list",
+        items: [
+          "UC82B: Excellent for paste processing, high solid content, good disease resistance",
+          "Padma F1: Best fresh market variety, large fruits, 75-day maturity, handles transport well",
+          "Cobra F1: Compact plant suited to small plots, high yield in rainy season",
+          "Roma VF: Affordable OPV for farmers who want to save seed",
+        ],
+      },
+      { type: "heading", text: "Nursery Management" },
+      {
+        type: "paragraph",
+        text: "Tomato seedlings must be raised in a protected nursery for 3–4 weeks before transplanting. Use a raised bed nursery with a simple shade net or bamboo structure to protect seedlings from direct rain and intense sun. Fill nursery beds with a mixture of topsoil, river sand, and well-composted manure in equal parts.",
+      },
+      { type: "heading", text: "Irrigation Management" },
+      {
+        type: "paragraph",
+        text: "Consistent soil moisture is critical for tomatoes — irregular watering is the leading cause of fruit cracking and blossom end rot. Drip irrigation is strongly recommended for commercial tomato production. It reduces water use by 50% and minimises foliar disease by keeping leaves dry.",
+      },
+      {
+        type: "quote",
+        text: "The tomato farmer who masters nursery management and transplanting shock reduction has solved 40% of their production problems before the main crop even begins.",
+        author: "Sunday Ekwueme, Commercial Tomato Farmer, Jos Plateau",
+      },
+      { type: "heading", text: "Harvest and Market Linkage" },
+      {
+        type: "paragraph",
+        text: "Harvest when fruits are at 'breaker stage' — just beginning to turn from green to orange — for long-distance transport, or fully red for local markets and processing. One hectare of well-managed tomatoes can produce 25–40 tonnes in the dry season under irrigation.",
+      },
+      {
+        type: "tip",
+        title: "Market Connection",
+        text: "Link up with tomato paste processors before planting to secure an off-take agreement. Off-take contracts provide price certainty and often come with access to subsidised inputs and technical support.",
+      },
+    ],
   },
 ];
 
@@ -890,6 +1348,284 @@ export const solutionsData = [
             title: "Placement Start: ",
             time: "After terms agreement",
             detail: "Placement begins once both parties confirm arrangements",
+          },
+        ],
+      },
+    },
+  },
+
+  {
+    id: "04",
+    slug: "growth-capital",
+    tag: "Capital Coordination",
+    icon: <FaArrowTrendUp className="w-4 h-4" />,
+    title: "Growth Capital Solutions",
+    subtitle:
+      "Facilitate access to agricultural financing and investment opportunities. We connect verified farmers to capital providers, financial institutions, and investment networks seeking agricultural opportunities.",
+    description:
+      "Connect farmers to buyers through produce aggregation, quality grading, and transparent coordination. We do not buy or sell  we facilitate verified relationships between producers and commercial buyers.",
+    points: [
+      "Financial institution partnerships",
+      "Investment readiness assessment",
+      "Capital provider matching",
+      "Transparent terms coordination",
+    ],
+    image: Capital,
+
+    details: {
+      introTitle: "Agricultural Finance Coordination",
+      introText:
+        "Our Growth Capital Solutions service facilitates connections between verified farmers and capital providers, including banks, microfinance institutions, impact investors, and agricultural development funds.",
+
+      introSubText:
+        "We do not provide loans or investment capital ourselves. We coordinate the documentation, verification, and relationship-building process between farmers seeking capital and financial institutions offering agricultural financing.",
+
+      whoFor: [
+        {
+          id: 1,
+          title: "Expanding Farmers",
+          detail:
+            "Established farmers with documented operations seeking capital for expansion, equipment purchase, or increased production capacity.",
+        },
+        {
+          id: 2,
+          title: "Agricultural Cooperatives",
+          detail:
+            "Cooperative groups with verified membership seeking collective financing for shared infrastructure or bulk input purchases.",
+        },
+        {
+          id: 3,
+          title: "Diaspora Investors",
+          detail:
+            "Nigerian diaspora seeking structured agricultural investment opportunities in their home country with verified farming partners.",
+        },
+      ],
+
+      howItWorks: [
+        {
+          id: 1,
+          title: "Submit Capital Request",
+          detail:
+            "Specify capital needs, intended use, business plan, and current operational status through our enquiry form.",
+        },
+        {
+          id: 2,
+          title: "Financial Readiness Assessment",
+          detail:
+            "We verify documentation, farming operations, financial history, and assess readiness for capital provider engagement.",
+        },
+        {
+          id: 3,
+          title: "Capital Provider Matching",
+          detail:
+            "We coordinate with appropriate financial institutions, investors, or development funds based on your profile and needs.",
+        },
+        {
+          id: 4,
+          title: "Documentation Coordination",
+          detail:
+            "Facilitate preparation of required documents, business plans, and financial projections for capital provider review.",
+        },
+        {
+          id: 5,
+          title: "Relationship Facilitation",
+          detail:
+            "Coordinate introductions, terms discussions, and ongoing communication between farmers and capital providers.",
+        },
+      ],
+
+      limitation: [
+        {
+          id: 1,
+          title: "No Guarantee of Approval",
+          detail:
+            "We facilitate connections but cannot guarantee capital approval. Final decisions rest with financial institutions based on their criteria and risk assessment.",
+        },
+        {
+          id: 2,
+          title: "Interest Rates & Terms",
+          detail:
+            "We do not control financing terms, interest rates, or repayment conditions. These are set by capital providers based on market rates and risk profiles.",
+        },
+        {
+          id: 3,
+          title: "Repayment Obligations",
+          detail:
+            "Agricultural financing carries repayment obligations. Poor harvests, market conditions, or operational challenges do not eliminate debt responsibilities.",
+        },
+        {
+          id: 4,
+          title: "Limited Early-Stage Support",
+          detail:
+            "Most capital providers prefer established operations with track records. New or first-time farmers may face limited financing options.",
+        },
+      ],
+      processDetail: {
+        requirement: [
+          "Valid identification and business registration documents",
+          "Documented farming operations history (minimum 2 years preferred)",
+          "Clear business plan outlining capital use and expected returns",
+          "Land ownership documentation or long-term lease agreements",
+          "Willingness to undergo financial assessment and due diligence",
+        ],
+        timeline: [
+          {
+            id: 1,
+            title: "Initial Assessment: ",
+            time: "7-10 business days ",
+            detail: "Document review and financial readiness evaluation",
+          },
+          {
+            id: 2,
+            title: "Capital Provider Matching: ",
+            time: "14–21 days ",
+            detail: "Coordination with appropriate financial institutions",
+          },
+          {
+            id: 3,
+            title: "Due Diligence & Approval: ",
+            time: "Varies widely",
+            detail:
+              "Depends on capital provider processes and amount requested",
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: "05",
+    slug: "seamless-distribut",
+    tag: "Distribution Coordination",
+    icon: <AiOutlineApartment className="w-4 h-4" />,
+    title: "Seamless Distribution",
+    subtitle:
+      "Coordinate efficient distribution channels from farm to market. We connect producers to retail networks, wholesalers, and distribution partners nationwide for streamlined market access.",
+    description:
+      "Verified worker placement connecting qualified agricultural workers with farms that need them. Every placement is background-checked and experience-validated before coordination begins.",
+    points: [
+      "Retail network partnerships",
+      "Distribution channel matching",
+      "Quality standards alignment",
+      "Nationwide coverage coordination",
+    ],
+    image: Distribution,
+
+    details: {
+      introTitle: "Farm-to-Market Distribution Networks",
+      introText:
+        "Our Seamless Distribution service coordinates connections between farmers and established distribution networks, including retail chains, wholesalers, food processors, and export channels across Nigeria.",
+
+      introSubText:
+        "We do not operate distribution channels ourselves. We facilitate relationships between verified producers and distribution partners, coordinating quality standards, volume requirements, and delivery schedules.",
+
+      whoFor: [
+        {
+          id: 1,
+          title: "Commercial Farmers",
+          detail:
+            "Farmers producing consistent volumes of quality produce seeking reliable distribution channels beyond local markets.",
+        },
+        {
+          id: 2,
+          title: "Agricultural Cooperatives",
+          detail:
+            "Cooperative groups with aggregated produce volumes ready for structured distribution to retail and wholesale networks.",
+        },
+        {
+          id: 3,
+          title: "Specialty Producers",
+          detail:
+            "Farmers growing high-quality or specialty crops seeking premium distribution channels and export opportunities.",
+        },
+      ],
+
+      howItWorks: [
+        {
+          id: 1,
+          title: "Submit Distribution Request",
+          detail:
+            "Specify produce type, production volumes, quality standards, and distribution preferences through our enquiry form.",
+        },
+        {
+          id: 2,
+          title: "Producer Verification",
+          detail:
+            "We verify farming operations, production capacity, quality consistency, and ability to meet distribution requirements.",
+        },
+        {
+          id: 3,
+          title: "Distribution Partner Matching",
+          detail:
+            "We coordinate with retail networks, wholesalers, or export channels that match your produce specifications and volumes.",
+        },
+        {
+          id: 4,
+          title: "Standards Alignment",
+          detail:
+            "Coordinate quality requirements, packaging specifications, delivery schedules, and pricing structures with distribution partners.",
+        },
+        {
+          id: 5,
+          title: "Ongoing Coordination",
+          detail:
+            "Facilitate regular communication, volume planning, quality feedback, and issue resolution throughout the distribution relationship.",
+        },
+      ],
+
+      limitation: [
+        {
+          id: 1,
+          title: "Volume Requirements",
+          detail:
+            "Distribution partners often require minimum volumes and consistent supply. Small-scale or irregular production may not meet their requirements.",
+        },
+        {
+          id: 2,
+          title: "Quality Standard",
+          detail:
+            "Retail and export channels have strict quality standards. Produce that does not meet specifications will be rejected, creating potential losses.",
+        },
+        {
+          id: 3,
+          title: "Payment Terms",
+          detail:
+            "Distribution partners set their own payment schedules, which may involve 30–90 day terms. Cash flow planning is essential.",
+        },
+        {
+          id: 4,
+          title: "Competition & Displacement",
+          detail:
+            "Distribution relationships are not exclusive. Partners may source from multiple producers and reduce orders based on market conditions.",
+        },
+      ],
+      processDetail: {
+        requirement: [
+          "Valid identification and business documentation",
+          "Proven production capacity to meet consistent volume requirements",
+          "Quality standards compliance and grading capabilities",
+          "Ability to meet distribution partner delivery schedules",
+          "Willingness to adhere to packaging and presentation specifications",
+        ],
+        timeline: [
+          {
+            id: 1,
+            title: "Verification Phase:  ",
+            time: "5–7 business days ",
+            detail: "Producer assessment and capacity verification",
+          },
+          {
+            id: 2,
+            title: "Partner Coordination:",
+            time: " 14–21 days ",
+            detail:
+              "Matching with distribution networks and standards alignment",
+          },
+          {
+            id: 3,
+            title: "Relationship Building:  ",
+            time: "Ongoing",
+            detail:
+              "Trial deliveries, quality feedback, and volume scaling over time",
           },
         ],
       },

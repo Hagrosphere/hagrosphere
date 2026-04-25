@@ -8,3 +8,4 @@ export { default as Carousel } from "./Carousel";
 export { default as CarouselRow } from "./CarouselRow";
 export { default as HeroSection } from "./HeroSection";
 export { default as SolutionCard } from "./SolutionCard";
+export { default as ContentBlock } from "./ContentBlock";

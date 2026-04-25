@@ -42,7 +42,7 @@ const ServiceDetails = () => {
             <img
               src={image}
               alt={title}
-              className="w-full h-64 md:h-72 object-cover"
+              className="w-full h-64 md:h-72 object-cover rounded-xl"
             />
           </div>
         </div>

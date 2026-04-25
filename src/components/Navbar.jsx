@@ -15,19 +15,35 @@ const Navbar = () => {
           <img src={HagroLogo} alt="" className="w-16 md:w-24" />
         </Link>
         <div className="items-center hidden md:flex gap-x-6 font-inter">
-          <NavLink className="md:text-sm lg:text-base" to="/">
+          <NavLink
+            className={({ isActive }) =>
+              `md:text-sm lg:text-base relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:bg-bg-btn after:transition-all after:duration-200 ${
+                isActive ? "after:w-full" : "after:w-0 hover:text-bg-btn"
+              }`
+            }
+            to="/"
+          >
             Home
           </NavLink>
           <div className="relative group">
             <span className="flex items-center gap-1 cursor-pointer md:text-sm lg:text-base">
-              <NavLink to="/services">Service</NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  `relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:bg-bg-btn after:transition-all after:duration-200 ${
+                    isActive ? "after:w-full" : "after:w-0 hover:text-bg-btn"
+                  }`
+                }
+                to="/services"
+              >
+                Service
+              </NavLink>
               <IoChevronDown
                 size={16}
                 className="transition-transform duration-200 group-hover:rotate-180"
               />
             </span>
 
-            <div className="absolute left-0 top-full mt-4.5 w-54 bg-bg-main pb-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-lg">
+            <div className="absolute left-0 top-full mt-4.5 w-56 bg-bg-main pb-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-lg">
               <NavLink
                 to="/services/farm-equipment"
                 className="block px-4 py-2 hover:bg-[#1F4D3A]"
@@ -48,16 +64,49 @@ const Navbar = () => {
               >
                 Farm Job Agent
               </NavLink>
+              <NavLink
+                to="/services/growth-capital"
+                className="block px-4 py-2 hover:bg-[#1F4D3A]"
+              >
+                Growth Capital Solutions
+              </NavLink>
+              <NavLink
+                to="/services/seamless-distribut"
+                className="block px-4 py-2 hover:bg-[#1F4D3A]"
+              >
+                Seamless Distribution
+              </NavLink>
             </div>
           </div>
 
-          <NavLink className="md:text-sm lg:text-base" to="/how-we-work">
+          <NavLink
+            className={({ isActive }) =>
+              `md:text-sm lg:text-base relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:bg-bg-btn after:transition-all after:duration-200 ${
+                isActive ? "after:w-full" : "after:w-0 hover:text-bg-btn"
+              }`
+            }
+            to="/how-we-work"
+          >
             How we work
           </NavLink>
-          <NavLink to="/learn" className="md:text-sm lg:text-base">
+          <NavLink
+            to="/learn"
+            className={({ isActive }) =>
+              `md:text-sm lg:text-base relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:bg-bg-btn after:transition-all after:duration-200 ${
+                isActive ? "after:w-full" : "after:w-0 hover:text-bg-btn"
+              }`
+            }
+          >
             Editorial / updates
           </NavLink>
-          <NavLink to="/about" className="md:text-sm lg:text-base">
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `md:text-sm lg:text-base relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:bg-bg-btn after:transition-all after:duration-200 ${
+                isActive ? "after:w-full" : "after:w-0 hover:text-bg-btn"
+              }`
+            }
+          >
             About
           </NavLink>
         </div>

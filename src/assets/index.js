@@ -15,6 +15,8 @@ import LearnThree from "./learn3.svg";
 import AboutFallback from "./aboutFallback.svg";
 import Equipment from "./equipment.svg";
 import Access from "./access.svg";
+import Capital from "./growthcap.svg";
+import Distribution from "./distribution.svg";
 
 export {
   HagroLogo,
@@ -34,4 +36,6 @@ export {
   Equipment,
   Access,
   Hub,
+  Capital,
+  Distribution,
 };

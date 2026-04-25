@@ -7,7 +7,7 @@ const SolutionCard = ({ item, index, slug }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="py-5 md:py-10 border-b border-gray-200">
+    <div className="py-5 border-b border-gray-200 md:py-10">
       <div
         className={`grid lg:grid-cols-12 gap-6 items-center ${
           isReversed
@@ -24,17 +24,17 @@ const SolutionCard = ({ item, index, slug }) => {
 
         {/* TEXT */}
         <div className="lg:col-span-5">
-          <div className="flex items-center gap-x-2 mb-4 font-inter text-xs md:text-sm">
-            <div className="border-2 border-bg-main flex items-center justify-center h-7 w-7 md:w-8 md:h-8 rounded-md text-bg-main">
+          <div className="flex items-center mb-4 text-xs gap-x-2 font-inter md:text-sm">
+            <div className="flex items-center justify-center border-2 rounded-md border-bg-main h-7 w-7 md:w-8 md:h-8 text-bg-main">
               {item.icon}
             </div>
             <h4 className="text-[#B07D2A] ">{item.tag}</h4>
           </div>
-          <h2 className="text-xl md:text-2xl font-semibold mb-3">
+          <h2 className="mb-3 text-xl font-semibold md:text-2xl">
             {item.title}
           </h2>
 
-          <p className="text-gray-600 text-sm mb-4 font-inter ">
+          <p className="mb-4 text-sm text-gray-600 font-inter ">
             {item.description}
           </p>
 
@@ -44,7 +44,7 @@ const SolutionCard = ({ item, index, slug }) => {
                 key={i}
                 className="text-sm text-[#4A4A42] flex font-inter items-center gap-2.5"
               >
-                <FiCheckCircle className="text-green-600 h-4 w-4 md:h-5 md:w-5" />
+                <FiCheckCircle className="w-4 h-4 text-green-600 md:h-5 md:w-5" />
                 {point}
               </li>
             ))}
@@ -63,7 +63,7 @@ const SolutionCard = ({ item, index, slug }) => {
           <img
             src={item.image}
             alt={item.title}
-            className="w-full h-55 md:h-80 object-cover rounded"
+            className="object-cover w-full rounded-xl h-55 md:h-80"
           />
         </div>
       </div>
