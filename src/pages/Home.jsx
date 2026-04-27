@@ -25,26 +25,27 @@ const Home = () => {
 
         <div className="relative z-10 w-[90%] mx-auto mt-5 md:mt-8">
           <h2 className="text-2xl font-bold leading-9 md:text-4xl lg:text-5xl md:leading-16 lg:leading-20">
-            Trust-First Agricultural <br /> Coordination in Africa
+            Connecting Agriculture Through <br /> Structure & Trust
           </h2>
 
-          <p className="max-w-xl mt-6 text-sm leading-6 md:leading-8 md:text-base lg:text-lg">
-            Facilitating transparency, coordination, and structured
-            participation in agriculture for farmers, workers, buyers, and the
-            diaspora through verified process.
+          <p className="max-w-2xl mt-6 text-base leading-6 md:mt-10 lg:mt-14 md:leading-8 md:text-lg lg:text-xl">
+            We connect farmers, workers, and markets through structured,
+            transparent agricultural systems. By improving access to resources,
+            streamlining coordination, and enabling trusted dealings, we help
+            build a more efficient and sustainable agricultural ecosystem.
           </p>
           <div className="flex items-center mt-12 gap-x-7 md:gap-x-10 font-inter">
             <button
               className="px-3 py-2 text-sm text-white rounded-lg cursor-pointer bg-bg-btn md:text-base"
               onClick={() => navigate("/contact-us")}
             >
-              Submit Enquiry
+              Work With Us
             </button>
             <button
               className="px-3 py-2 text-sm border border-white rounded-lg md:text-base"
               onClick={() => navigate("/services")}
             >
-              Explore Services
+              View Services
             </button>
           </div>
         </div>
@@ -60,7 +61,7 @@ const Home = () => {
               participants across Nigeria and the diaspora.
             </p>
           </div>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 w-[85%] mx-auto gap-6 md:gap-8">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-[95%] mx-auto gap-4 md:gap-6">
             {weServeData.map((item) => (
               <WeServeCard key={item.id} {...item} />
             ))}

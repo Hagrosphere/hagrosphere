@@ -27,23 +27,30 @@ import {
 export const weServeData = [
   {
     id: 1,
-    title: "Farmer",
+    title: "Farmers seeking structure & support",
     description:
       " Access markets, financing, and resources to grow your agricultural business sustainably.",
     image: Farmer,
   },
   {
     id: 2,
-    title: "Agribusinesses",
+    title: "Agribusiness operators",
     description:
       "Scale your operations with technology-driven logistics, financing, and market intelligence.",
     image: Agribuss,
   },
   {
     id: 3,
-    title: "Buyers",
+    title: "Buyers & off-takers",
     description:
       "Source quality produce directly from verified farmers and agribusinesses nationwide.",
+    image: Buyer,
+  },
+  {
+    id: 4,
+    title: "Nigerians in the diaspora",
+    description:
+      "Access verified, structured pathways to participate in agriculture from anywhere.",
     image: Buyer,
   },
 ];

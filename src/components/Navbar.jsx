@@ -12,7 +12,7 @@ const Navbar = () => {
     <div className="fixed top-0 left-0 z-50 w-full py-2 bg-bg-main">
       <div className="w-[92%] md:w-[94%] mx-auto flex items-center justify-between text-white">
         <Link to="/" className="">
-          <img src={HagroLogo} alt="" className="w-16 md:w-24" />
+          <img src={HagroLogo} alt="" className="w-18 md:w-28" />
         </Link>
         <div className="items-center hidden md:flex gap-x-6 font-inter">
           <NavLink
@@ -35,7 +35,7 @@ const Navbar = () => {
                 }
                 to="/services"
               >
-                Service
+                Our Services
               </NavLink>
               <IoChevronDown
                 size={16}
@@ -55,20 +55,20 @@ const Navbar = () => {
                 to="/services/market-access"
                 className="block px-4 py-2 hover:bg-[#1F4D3A]"
               >
-                Market Access
+                Market Linkage
               </NavLink>
 
               <NavLink
                 to="/services/farm-job"
                 className="block px-4 py-2 hover:bg-[#1F4D3A]"
               >
-                Farm Job Agent
+                Workforce Placement
               </NavLink>
               <NavLink
                 to="/services/growth-capital"
                 className="block px-4 py-2 hover:bg-[#1F4D3A]"
               >
-                Growth Capital Solutions
+                Agricultural Training
               </NavLink>
               <NavLink
                 to="/services/seamless-distribut"

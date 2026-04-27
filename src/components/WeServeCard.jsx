@@ -8,14 +8,12 @@ const WeServeCard = ({ title, image, description }) => {
           <img src={image} alt={`${title}`} className="w-full rounded-lg" />
         </div>
         <div className="font-inter">
-          <h2 className="text-base md:text-lg lg:text-xl font-semibold ">
-            {title}
-          </h2>
-          <p className="my-2 text-xs md:text-sm lg:text-base text-text-primary">
+          <h2 className="text-sm font-semibold md:text-base ">{title}</h2>
+          <p className="my-2 text-xs md:text-sm text-text-primary">
             {description}
           </p>
-          <button className="flex items-center cursor-pointer gap-x-1 text-bg-btn text-xs md:text-sm lg:text-base">
-            Learn More <IoIosArrowRoundForward className="h-5 w-5" />{" "}
+          <button className="flex items-center mt-4 text-xs cursor-pointer gap-x-1 text-bg-btn md:text-sm lg:text-base">
+            Learn More <IoIosArrowRoundForward className="w-5 h-5" />{" "}
           </button>
         </div>
       </div>
