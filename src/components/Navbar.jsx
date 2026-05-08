@@ -113,7 +113,7 @@ const Navbar = () => {
         <div className="hidden md:block">
           <button
             className="bg-bg-btn hover:bg-[#AD7E1F]  text-white font-inter px-3 py-1.5 cursor-pointer  rounded-lg"
-            onClick={() => navigate("/services")}
+            onClick={() => navigate("/contact-us")}
           >
             Get started
           </button>

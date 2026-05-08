@@ -37,9 +37,9 @@ const Home = () => {
           <div className="flex items-center mt-12 gap-x-7 md:gap-x-10 font-inter">
             <button
               className="px-3 py-2 text-sm text-white rounded-lg cursor-pointer bg-bg-btn md:text-base"
-              onClick={() => navigate("/contact-us")}
+              onClick={() => navigate("/equipment-listing")}
             >
-              Work With Us
+              Book Equipment
             </button>
             <button
               className="px-3 py-2 text-sm border border-white rounded-lg md:text-base"
