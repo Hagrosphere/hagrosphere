@@ -13,6 +13,10 @@ import {
   Errorpage,
   ContactUs,
   LearnDetails,
+  EquiptmentListing,
+  EquiptmentListingDetails,
+  Jobs,
+  JobDetails,
 } from "./pages";
 
 const routes = [
@@ -30,6 +34,13 @@ const routes = [
       { path: "/produce", element: <Product /> },
       { path: "/privacy-policy", element: <PrivacyPolicy /> },
       { path: "/contact-us", element: <ContactUs /> },
+      { path: "/equipment-listing", element: <EquiptmentListing /> },
+      {
+        path: "/equipment-listing-details/:id",
+        element: <EquiptmentListingDetails />,
+      },
+      { path: "/job-listing", element: <Jobs /> },
+      { path: "/job-listing-details/:id", element: <JobDetails /> },
       { path: "*", element: <Errorpage /> },
     ],
   },

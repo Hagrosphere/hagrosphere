@@ -12,6 +12,7 @@ import {
   Agribuss,
   Buyer,
   Capital,
+  Diaspora,
   Direct,
   Distribution,
   Equipment,
@@ -51,7 +52,7 @@ export const weServeData = [
     title: "Nigerians in the diaspora",
     description:
       "Access verified, structured pathways to participate in agriculture from anywhere.",
-    image: Buyer,
+    image: Diaspora,
   },
 ];
 
@@ -2128,3 +2129,920 @@ export const ZONE_THEME = {
     badgeText: "text-[#008236]",
   },
 };
+
+export const equipmentData = [
+  {
+    id: "massey-ferguson-375",
+    category: "TRACTORS",
+    status: "Available",
+    name: "Massey Ferguson 375 Tractor",
+    description:
+      "75HP 4WD agricultural tractor suitable for plowing, harrowing, and general farm operations.",
+    fullDescription:
+      "High-performance 75HP 4WD agricultural tractor ideal for plowing, harrowing, planting, and general farm operations. Well-maintained and regularly serviced unit with low operating hours.",
+    state: "Ebonyi State",
+    price: "₦15,000/day",
+    lastServiced: "January 2026",
+    usageCategory:
+      "Suitable for medium to large-scale farming operations including land preparation, planting, and haulage.",
+    images: [
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Engine Power", value: "75 HP" },
+      { label: "Drive Type", value: "4-Wheel Drive (4WD)" },
+      { label: "Transmission", value: "8 Forward, 2 Reverse" },
+      { label: "Operating Weight", value: "2,850 kg" },
+      { label: "Fuel Type", value: "Diesel" },
+      { label: "PTO Power", value: "63 HP" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+      "Regular maintenance records",
+    ],
+  },
+  {
+    id: "new-holland-td90",
+    category: "TRACTORS",
+    status: "Available",
+    name: "New Holland TD90 Tractor",
+    description:
+      "90HP tractor with front loader attachment, ideal for heavy-duty farm operations.",
+    fullDescription:
+      "The New Holland TD90 is a robust 90HP workhorse equipped with a front loader, making it ideal for heavy-duty farm tasks including loading, hauling, and land clearing.",
+    state: "Benue State",
+    price: "₦18,000/day",
+    lastServiced: "February 2026",
+    usageCategory:
+      "Best suited for large-scale farms requiring heavy lifting, material handling, and intensive land preparation.",
+    images: [
+      "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Engine Power", value: "90 HP" },
+      { label: "Drive Type", value: "4-Wheel Drive (4WD)" },
+      { label: "Transmission", value: "Power Shuttle 12F/12R" },
+      { label: "Operating Weight", value: "3,400 kg" },
+      { label: "Fuel Type", value: "Diesel" },
+      { label: "Loader Capacity", value: "1,200 kg" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+      "Regular maintenance records",
+    ],
+  },
+  {
+    id: "john-deere-5075e",
+    category: "TRACTORS",
+    status: "In Use",
+    name: "John Deere 5075E Tractor",
+    description:
+      "75HP utility tractor with PowerReverser transmission, suitable for diverse farm tasks.",
+    fullDescription:
+      "The John Deere 5075E delivers reliable 75HP performance with a PowerReverser transmission for smooth direction changes. A go-to tractor for diverse operations from tillage to hay baling.",
+    state: "Niger State",
+    price: "₦16,500/day",
+    lastServiced: "March 2026",
+    usageCategory:
+      "Ideal for medium farms handling tillage, baling, loader work, and general cultivation activities.",
+    images: [
+      "https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Engine Power", value: "75 HP" },
+      { label: "Drive Type", value: "2WD / 4WD Option" },
+      { label: "Transmission", value: "PowerReverser 9F/3R" },
+      { label: "Operating Weight", value: "3,020 kg" },
+      { label: "Fuel Type", value: "Diesel" },
+      { label: "PTO Power", value: "66 HP" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+      "Regular maintenance records",
+    ],
+  },
+  {
+    id: "kubota-l3301",
+    category: "TRACTORS",
+    status: "Available",
+    name: "Kubota L3301 Compact Tractor",
+    description:
+      "33HP compact tractor perfect for small to medium farms, orchards, and garden operations.",
+    fullDescription:
+      "The Kubota L3301 is a versatile compact tractor offering 33HP in a small footprint. Perfect for orchards, vegetable farms, and tight spaces where larger tractors cannot manoeuvre.",
+    state: "Ogun State",
+    price: "₦9,000/day",
+    lastServiced: "December 2025",
+    usageCategory:
+      "Designed for smallholder farmers, market gardeners, and orchard operations requiring precision and agility.",
+    images: [
+      "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Engine Power", value: "33 HP" },
+      { label: "Drive Type", value: "4-Wheel Drive (4WD)" },
+      { label: "Transmission", value: "HST (Hydrostatic)" },
+      { label: "Operating Weight", value: "1,215 kg" },
+      { label: "Fuel Type", value: "Diesel" },
+      { label: "PTO Power", value: "27 HP" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+    ],
+  },
+
+  // ── HARVESTERS ────────────────────────────────────────────────────────────
+  {
+    id: "john-deere-combine",
+    category: "HARVESTERS",
+    status: "Available",
+    name: "John Deere Combine Harvester",
+    description:
+      "High-capacity combine harvester for rice and wheat harvesting operations.",
+    fullDescription:
+      "This John Deere combine harvester delivers exceptional throughput for rice and wheat harvesting. Equipped with an advanced grain cleaning system and high-capacity grain tank for uninterrupted operation.",
+    state: "Kaduna State",
+    price: "₦25,000/day",
+    lastServiced: "January 2026",
+    usageCategory:
+      "Optimised for large-scale grain and rice farms requiring fast, efficient harvesting with minimal grain loss.",
+    images: [
+      "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1536657464919-892534f60d6e?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Engine Power", value: "250 HP" },
+      { label: "Header Width", value: "6.1 m" },
+      { label: "Grain Tank", value: "9,000 L" },
+      { label: "Threshing System", value: "Axial-Flow" },
+      { label: "Fuel Type", value: "Diesel" },
+      { label: "Unload Rate", value: "113 L/s" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+      "Regular maintenance records",
+    ],
+  },
+  {
+    id: "claas-lexion-750",
+    category: "HARVESTERS",
+    status: "Available",
+    name: "Claas Lexion 750 Harvester",
+    description:
+      "Premium combine harvester with CEMOS auto-optimization, ideal for large-scale grain farms.",
+    fullDescription:
+      "The Claas Lexion 750 is a top-tier combine with CEMOS automatic optimization that continuously adapts settings for maximum efficiency and grain quality even in difficult crop conditions.",
+    state: "Katsina State",
+    price: "₦30,000/day",
+    lastServiced: "February 2026",
+    usageCategory:
+      "Suited for large commercial grain farms where high throughput, grain quality, and minimal downtime are critical.",
+    images: [
+      "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Engine Power", value: "354 HP" },
+      { label: "Header Width", value: "7.5 m" },
+      { label: "Grain Tank", value: "12,000 L" },
+      { label: "Threshing System", value: "APS Hybrid" },
+      { label: "Fuel Type", value: "Diesel" },
+      { label: "Optimization", value: "CEMOS Auto" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+      "Regular maintenance records",
+    ],
+  },
+  {
+    id: "rice-reaper-binder",
+    category: "HARVESTERS",
+    status: "In Use",
+    name: "Rice Reaper Binder",
+    description:
+      "Self-propelled rice reaper with binding mechanism, handles up to 3 acres per day.",
+    fullDescription:
+      "A compact self-propelled rice reaper binder that cuts and binds paddy in one pass. Lightweight and manoeuvrable in paddy fields, covering 3 acres per day with minimal operator fatigue.",
+    state: "Kebbi State",
+    price: "₦12,000/day",
+    lastServiced: "November 2025",
+    usageCategory:
+      "Ideal for smallholder and medium-scale rice farmers looking to mechanise harvesting affordably.",
+    images: [
+      "https://images.unsplash.com/photo-1536657464919-892534f60d6e?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Engine Power", value: "5 HP" },
+      { label: "Cutting Width", value: "1.2 m" },
+      { label: "Drive Type", value: "Self-Propelled" },
+      { label: "Daily Capacity", value: "3 acres" },
+      { label: "Fuel Type", value: "Petrol" },
+      { label: "Weight", value: "280 kg" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+    ],
+  },
+
+  // ── PLANTERS ──────────────────────────────────────────────────────────────
+  {
+    id: "row-crop-planter",
+    category: "PLANTERS",
+    status: "In Use",
+    name: "Row Crop Planter",
+    description:
+      "Precision planter for maize, soybean, and other row crops with adjustable spacing.",
+    fullDescription:
+      "A high-precision row crop planter engineered for accurate seed placement of maize, soybean, and legumes. Features adjustable row spacing and seed rate for flexible planting configurations.",
+    state: "Kano State",
+    price: "₦8,000/day",
+    lastServiced: "October 2025",
+    usageCategory:
+      "Best for commercial farmers planting maize, soybean, and sunflower across large, flat fields.",
+    images: [
+      "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "No. of Rows", value: "6 Rows" },
+      { label: "Row Spacing", value: "Adjustable 50–90 cm" },
+      { label: "Seed Types", value: "Maize, Soybean, Sunflower" },
+      { label: "Hopper Capacity", value: "25 kg per row" },
+      { label: "Drive Type", value: "Tractor-Mounted" },
+      { label: "Working Width", value: "4.5 m" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+      "Regular maintenance records",
+    ],
+  },
+  {
+    id: "pneumatic-seed-drill",
+    category: "PLANTERS",
+    status: "Available",
+    name: "Pneumatic Seed Drill",
+    description:
+      "12-row pneumatic seed drill for uniform seeding of wheat, rice, and other small grains.",
+    fullDescription:
+      "This 12-row pneumatic seed drill ensures accurate, uniform seed placement for small-grain crops. The pneumatic metering system handles a wide range of seed sizes with minimal damage.",
+    state: "Sokoto State",
+    price: "₦7,000/day",
+    lastServiced: "January 2026",
+    usageCategory:
+      "Ideal for wheat, rice, and sorghum farmers requiring uniform seeding depth and spacing.",
+    images: [
+      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "No. of Rows", value: "12 Rows" },
+      { label: "Row Spacing", value: "18 cm" },
+      { label: "Seed Types", value: "Wheat, Rice, Sorghum" },
+      { label: "Hopper Capacity", value: "350 kg" },
+      { label: "Drive Type", value: "Tractor-Mounted" },
+      { label: "Seeding Depth", value: "2–8 cm adjustable" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+      "Regular maintenance records",
+    ],
+  },
+
+  // ── IRRIGATION ────────────────────────────────────────────────────────────
+  {
+    id: "drip-irrigation-kit",
+    category: "IRRIGATION",
+    status: "Available",
+    name: "Drip Irrigation System Kit",
+    description:
+      "Complete drip irrigation system for up to 2 hectares, includes pumps and fittings.",
+    fullDescription:
+      "A complete drip irrigation solution covering up to 2 hectares. Includes main line, drip tapes, filtration unit, pressure regulators, and a 1.5HP pump. Reduces water usage by up to 60% compared to flood irrigation.",
+    state: "Lagos State",
+    price: "₦5,000/day",
+    lastServiced: "March 2026",
+    usageCategory:
+      "Best for vegetable farms, greenhouses, and horticultural operations requiring precise water delivery.",
+    images: [
+      "https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Coverage Area", value: "Up to 2 hectares" },
+      { label: "Pump Power", value: "1.5 HP" },
+      { label: "Emitter Flow Rate", value: "2–4 L/hr" },
+      { label: "Filtration", value: "Screen & Disc Filter" },
+      { label: "Pipe Material", value: "HDPE" },
+      { label: "Water Saving", value: "Up to 60%" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+    ],
+  },
+  {
+    id: "centre-pivot-irrigation",
+    category: "IRRIGATION",
+    status: "Available",
+    name: "Centre Pivot Irrigation System",
+    description:
+      "Motorised centre-pivot system covering up to 50 hectares with automated scheduling.",
+    fullDescription:
+      "A large-scale motorised centre-pivot irrigation system capable of uniformly irrigating up to 50 hectares per rotation. Features automated scheduling, variable rate irrigation, and remote monitoring.",
+    state: "Adamawa State",
+    price: "₦35,000/day",
+    lastServiced: "February 2026",
+    usageCategory:
+      "Designed for large commercial farms growing maize, wheat, or vegetables that require consistent and uniform irrigation.",
+    images: [
+      "https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Coverage Area", value: "Up to 50 hectares" },
+      { label: "Span Length", value: "400 m" },
+      { label: "Application Rate", value: "Variable Rate" },
+      { label: "Drive Type", value: "Electric Motorised Towers" },
+      { label: "Monitoring", value: "Remote GPS Monitoring" },
+      { label: "Water Source", value: "Borehole / Canal" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+      "Regular maintenance records",
+    ],
+  },
+
+  // ── PROCESSING ────────────────────────────────────────────────────────────
+  {
+    id: "rice-milling-machine",
+    category: "PROCESSING",
+    status: "Available",
+    name: "Rice Milling Machine",
+    description:
+      "Medium-scale rice milling equipment for paddy processing with destoner.",
+    fullDescription:
+      "A medium-capacity rice milling machine complete with a destoner, whitener, and polisher. Processes paddy from raw grain to market-ready white rice with high milling efficiency and low breakage.",
+    state: "Ebonyi State",
+    price: "₦12,000/day",
+    lastServiced: "January 2026",
+    usageCategory:
+      "Suited for rice cooperatives, aggregators, and processors looking to add value to paddy at scale.",
+    images: [
+      "https://images.unsplash.com/photo-1536657464919-892534f60d6e?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Capacity", value: "500 kg/hour" },
+      { label: "Milling Recovery", value: "68–72%" },
+      { label: "Power Source", value: "Electric / Diesel" },
+      { label: "Motor Rating", value: "15 kW" },
+      { label: "Includes", value: "Destoner, Whitener, Polisher" },
+      { label: "Weight", value: "850 kg" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+      "Regular maintenance records",
+    ],
+  },
+  {
+    id: "cassava-processing-equipment",
+    category: "PROCESSING",
+    status: "Available",
+    name: "Cassava Processing Equipment",
+    description:
+      "Complete cassava processing line from peeling to grating for garri production.",
+    fullDescription:
+      "A full cassava processing line integrating a peeler, grater, hydraulic press, and fryer. Designed for efficient garri production with consistent quality, processing up to 1 tonne of fresh cassava per hour.",
+    state: "Imo State",
+    price: "₦10,000/day",
+    lastServiced: "December 2025",
+    usageCategory:
+      "Suitable for cassava farmer groups, garri producers, and agro-processing SMEs seeking to scale production.",
+    images: [
+      "https://images.unsplash.com/photo-1611735341450-74d61e660ad2?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1536657464919-892534f60d6e?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Capacity", value: "1 tonne/hour" },
+      { label: "Process Line", value: "Peeler → Grater → Press → Fryer" },
+      { label: "Power Source", value: "Electric" },
+      { label: "Motor Rating", value: "7.5 kW" },
+      { label: "Output", value: "Garri / Starch" },
+      { label: "Weight", value: "620 kg" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+    ],
+  },
+  {
+    id: "maize-sheller-machine",
+    category: "PROCESSING",
+    status: "In Use",
+    name: "Maize Sheller Machine",
+    description: "Electric maize shelling machine with 500kg/hour capacity.",
+    fullDescription:
+      "A robust electric maize sheller delivering 500kg/hour throughput with minimal grain damage. Features a grain-cob separator and blower for clean output, suitable for cooperatives and aggregators.",
+    state: "Plateau State",
+    price: "₦6,000/day",
+    lastServiced: "November 2025",
+    usageCategory:
+      "Ideal for maize aggregators, processors, and farmer cooperatives handling large post-harvest volumes.",
+    images: [
+      "https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1611735341450-74d61e660ad2?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1536657464919-892534f60d6e?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Capacity", value: "500 kg/hour" },
+      { label: "Shelling Efficiency", value: ">98%" },
+      { label: "Power Source", value: "Electric" },
+      { label: "Motor Rating", value: "3 kW" },
+      { label: "Includes", value: "Grain-Cob Separator, Blower" },
+      { label: "Weight", value: "185 kg" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+      "Regular maintenance records",
+    ],
+  },
+
+  // ── SPRAYERS ──────────────────────────────────────────────────────────────
+  {
+    id: "boom-sprayer",
+    category: "SPRAYERS",
+    status: "Available",
+    name: "Boom Sprayer (Tractor-Mounted)",
+    description:
+      "12-metre boom sprayer with 600L tank for herbicide and pesticide application.",
+    fullDescription:
+      "A tractor-mounted 12-metre boom sprayer with a 600L polyethylene tank and 24 nozzles. Delivers precise, uniform chemical application for herbicide, fungicide, and pesticide programmes.",
+    state: "Imo State",
+    price: "₦7,500/day",
+    lastServiced: "February 2026",
+    usageCategory:
+      "Best for medium to large crop farms with flat terrain requiring efficient chemical application.",
+    images: [
+      "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Boom Width", value: "12 m" },
+      { label: "Tank Capacity", value: "600 L" },
+      { label: "No. of Nozzles", value: "24" },
+      { label: "Operating Pressure", value: "1–5 bar" },
+      { label: "Drive Type", value: "Tractor-Mounted (PTO)" },
+      { label: "Application Rate", value: "60–300 L/ha" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+    ],
+  },
+  {
+    id: "agricultural-drone-sprayer",
+    category: "SPRAYERS",
+    status: "In Use",
+    name: "Agricultural Drone Sprayer",
+    description:
+      "10-litre payload agricultural drone for precision pesticide and fertiliser application.",
+    fullDescription:
+      "A cutting-edge agricultural drone with a 10-litre spray tank and intelligent flight planning. Covers 15 acres per hour with precision GPS-guided spraying, reducing chemical use by up to 40%.",
+    state: "Abuja FCT",
+    price: "₦20,000/day",
+    lastServiced: "March 2026",
+    usageCategory:
+      "Suited for precision farmers, drone service providers, and farms with difficult terrain or dense canopy.",
+    images: [
+      "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?w=800&auto=format&fit=crop",
+    ],
+    specifications: [
+      { label: "Payload", value: "10 L" },
+      { label: "Coverage", value: "15 acres/hour" },
+      { label: "Flight Time", value: "~12 min per tank" },
+      { label: "Navigation", value: "GPS Auto-Pilot" },
+      { label: "Chemical Saving", value: "Up to 40%" },
+      { label: "Remote Range", value: "1.5 km" },
+    ],
+    trustBadges: [
+      "Verified equipment owner",
+      "Condition inspected before listing",
+      "Regular maintenance records",
+    ],
+  },
+];
+
+export const equipmentVerificationProcess = [
+  {
+    id: 1,
+    title: "Equipment Inspection",
+    description:
+      "Every piece of equipment undergoes thorough inspection before listing to verify operational status.",
+  },
+  {
+    id: 2,
+    title: "Owner Verification",
+    description:
+      "Equipment owners are verified participants with documented ownership and maintenance records.",
+  },
+  {
+    id: 3,
+    title: "Coordination Support",
+    description:
+      "We facilitate scheduling, logistics coordination, and clear terms between farmers and equipment owners.",
+  },
+];
+
+export const workPlacementProcess = [
+  {
+    id: 1,
+    title: "Small to Medium FarmersBackground Verification",
+    description:
+      "All job applicants undergo identity verification, reference checks, and skills assessment before placement coordination.",
+  },
+  {
+    id: 2,
+    title: "Employer Verification",
+    description:
+      "Farm employers are verified participants with documented operations and clear work terms before job posting..",
+  },
+  {
+    id: 3,
+    title: "Placement Coordination",
+    description:
+      "We coordinate introductions, facilitate communication, and ensure clear terms between verified workers and employers..",
+  },
+];
+
+export const jobsData = [
+  {
+    id: "rice-farm-worker-ebonyi",
+    category: "CROP PRODUCTION",
+    contractType: "Seasonal Contract",
+    title: "Rice Farm Worker",
+    description:
+      "Seeking experienced farm workers for rice planting, weeding, and harvest operations during the 2026 season.",
+    state: "Ebonyi State",
+    salaryMin: 45000,
+    salaryMax: 65000,
+    duration: "4–6 months",
+    positionType: null,
+    postedDaysAgo: 3,
+    // ── Detail fields ───────────────────────────────────────────────────
+    employer: "Abakaliki Rice Cooperative",
+    workSchedule: "Monday – Saturday, 7:00 AM – 4:00 PM",
+    startDate: "June 2026",
+    fullDescription:
+      "We are seeking experienced farm workers for our rice farming operations during the 2026 planting and harvest season. This is a seasonal contract position covering planting, irrigation management, weeding, pest management, and harvest operations.",
+    responsibilities: [
+      "Plant rice seedlings according to spacing requirements",
+      "Perform manual weeding and field maintenance",
+      "Assist with irrigation system management",
+      "Harvest rice at optimal maturity",
+      "Support post-harvest, husk drying, and preparation",
+    ],
+    requirements: [
+      "Previous experience in rice farming or general crop production",
+      "Ability to work outdoors in various weather conditions",
+      "Physical fitness for manual agricultural work",
+      "Willingness to work in a team environment",
+      "Basic understanding of rice farming cycles",
+    ],
+    whatWeOffer: [
+      "On-site accommodation provided",
+      "Daily meals during work periods",
+      "Transportation from major towns",
+      "Payment every two weeks",
+      "Safety equipment provided",
+    ],
+    trustNote:
+      "All applicants undergo background verification, reference checks, and skills assessment before placement coordination.",
+  },
+  {
+    id: "tractor-operator-kano",
+    category: "EQUIPMENT OPERATION",
+    contractType: "Full-time",
+    title: "Tractor Operator",
+    description:
+      "Experienced tractor operator needed for large-scale farming operations including plowing, harrowing, and planting.",
+    state: "Kano State",
+    salaryMin: 72000,
+    salaryMax: 95000,
+    duration: null,
+    positionType: "Permanent Position",
+    postedDaysAgo: 9,
+    employer: "Kano Agrifields Ltd",
+    workSchedule: "Monday – Friday, 7:00 AM – 5:00 PM",
+    startDate: "Immediate",
+    fullDescription:
+      "We are looking for a skilled tractor operator to join our mechanised farming team. The successful candidate will be responsible for operating and maintaining tractors and farm implements across a 500-hectare commercial farm.",
+    responsibilities: [
+      "Operate tractors for plowing, harrowing, planting, and harvesting",
+      "Perform routine maintenance checks and minor repairs",
+      "Follow safety protocols during all field operations",
+      "Keep accurate records of fuel usage and machine hours",
+      "Coordinate with farm supervisors on daily task schedules",
+    ],
+    requirements: [
+      "Minimum 3 years' experience operating tractors",
+      "Valid driver's licence (Class C or above)",
+      "Knowledge of farm implements and attachments",
+      "Ability to troubleshoot basic mechanical issues",
+      "Good communication and team-working skills",
+    ],
+    whatWeOffer: [
+      "Competitive monthly salary",
+      "Annual performance bonus",
+      "Health insurance coverage",
+      "13-month salary upon confirmation",
+      "Regular training and professional development",
+    ],
+    trustNote:
+      "All applicants undergo background verification, reference checks, and skills assessment before placement coordination.",
+  },
+  {
+    id: "poultry-farm-assistant-ogun",
+    category: "LIVESTOCK",
+    contractType: "Full-time",
+    title: "Poultry Farm Assistant",
+    description:
+      "Assist in daily poultry farm operations including feeding, cleaning, egg collection, and health monitoring.",
+    state: "Ogun State",
+    salaryMin: 40000,
+    salaryMax: 55000,
+    duration: null,
+    positionType: "Permanent Position",
+    postedDaysAgo: 14,
+    employer: "Sunrise Poultry Farms",
+    workSchedule: "Monday – Saturday, 6:00 AM – 3:00 PM",
+    startDate: "July 2026",
+    fullDescription:
+      "Sunrise Poultry Farms is recruiting dedicated farm assistants to support daily operations in our 50,000-bird layer and broiler facility. You will work under the supervision of the farm manager to ensure the health, welfare, and productivity of our flock.",
+    responsibilities: [
+      "Feed and water birds according to daily schedules",
+      "Collect, grade, and pack eggs for distribution",
+      "Clean and disinfect poultry houses regularly",
+      "Monitor bird health and report abnormalities",
+      "Assist in vaccination and medication programmes",
+    ],
+    requirements: [
+      "Experience in poultry or livestock farming preferred",
+      "Willingness to work early mornings and weekends",
+      "Good physical stamina for farm duties",
+      "Basic literacy and ability to follow instructions",
+      "Responsible and reliable work ethic",
+    ],
+    whatWeOffer: [
+      "On-farm accommodation available",
+      "Meals provided during shifts",
+      "Monthly performance bonus",
+      "Annual leave entitlement",
+      "Career progression opportunities",
+    ],
+    trustNote:
+      "All applicants undergo background verification, reference checks, and skills assessment before placement coordination.",
+  },
+  {
+    id: "farm-supervisor-oyo",
+    category: "FARM MANAGEMENT",
+    contractType: "Full-time",
+    title: "Farm Supervisor",
+    description:
+      "Supervise farm workers, coordinate daily operations, and ensure quality standards in cassava production.",
+    state: "Oyo State",
+    salaryMin: 90000,
+    salaryMax: 120000,
+    duration: null,
+    positionType: "Permanent Position",
+    postedDaysAgo: 14,
+    employer: "Oyo Cassava Growers Association",
+    workSchedule: "Monday – Saturday, 7:30 AM – 5:00 PM",
+    startDate: "August 2026",
+    fullDescription:
+      "We are seeking an experienced Farm Supervisor to oversee our 200-hectare cassava farm operations. The successful candidate will manage a team of 30+ farm workers, coordinate planting and harvest schedules, and ensure quality and safety standards are met.",
+    responsibilities: [
+      "Supervise and coordinate daily activities of farm workers",
+      "Plan and implement planting, maintenance, and harvest schedules",
+      "Monitor crop health and recommend agronomic interventions",
+      "Ensure compliance with farm safety regulations",
+      "Report weekly to the farm manager on KPIs and challenges",
+    ],
+    requirements: [
+      "Minimum 5 years' experience in farm supervision or management",
+      "OND/HND/BSc in Agriculture or related field preferred",
+      "Strong leadership and team management skills",
+      "Knowledge of cassava agronomy and post-harvest handling",
+      "Proficiency in basic record-keeping and reporting",
+    ],
+    whatWeOffer: [
+      "Competitive salary with annual review",
+      "Company vehicle for farm duties",
+      "Health insurance for employee and one dependent",
+      "Housing allowance",
+      "Opportunity to grow into Farm Manager role",
+    ],
+    trustNote:
+      "All applicants undergo background verification, reference checks, and skills assessment before placement coordination.",
+  },
+  {
+    id: "cassava-processing-technician-imo",
+    category: "PROCESSING",
+    contractType: "Contract",
+    title: "Cassava Processing Technician",
+    description:
+      "Operate and maintain cassava processing equipment for garri and flour production.",
+    state: "Imo State",
+    salaryMin: 55000,
+    salaryMax: 80000,
+    duration: "12 months",
+    positionType: null,
+    postedDaysAgo: 21,
+    employer: "EasternAg Processing Ltd",
+    workSchedule: "Monday – Friday, 8:00 AM – 5:00 PM",
+    startDate: "July 2026",
+    fullDescription:
+      "EasternAg Processing Ltd is looking for a skilled technician to operate and maintain our cassava processing line. You will be responsible for the smooth running of the peeling, grating, pressing, and frying equipment in our garri and flour production facility.",
+    responsibilities: [
+      "Operate cassava peeling, grating, and pressing machines",
+      "Monitor product quality at each processing stage",
+      "Carry out preventive maintenance on processing equipment",
+      "Ensure compliance with food safety and hygiene standards",
+      "Train junior operators on correct machine usage",
+    ],
+    requirements: [
+      "At least 2 years' experience in agro-processing or food manufacturing",
+      "Technical knowledge of mechanical or electrical systems is an advantage",
+      "Familiarity with garri or cassava starch production",
+      "Ability to work in a production environment",
+      "OND in Mechanical Engineering, Food Technology, or related field",
+    ],
+    whatWeOffer: [
+      "Competitive contract salary",
+      "Contract renewal based on performance",
+      "Technical training and certification support",
+      "Health and safety equipment provided",
+      "Possibility of permanent placement",
+    ],
+    trustNote:
+      "All applicants undergo background verification, reference checks, and skills assessment before placement coordination.",
+  },
+  {
+    id: "irrigation-technician-benue",
+    category: "CROP PRODUCTION",
+    contractType: "Full-time",
+    title: "Irrigation Technician",
+    description:
+      "Install, maintain, and repair drip and pivot irrigation systems across large commercial farmlands.",
+    state: "Benue State",
+    salaryMin: 60000,
+    salaryMax: 85000,
+    duration: null,
+    positionType: "Permanent Position",
+    postedDaysAgo: 5,
+    employer: "Benue Valley Farms",
+    workSchedule: "Monday – Saturday, 7:00 AM – 4:30 PM",
+    startDate: "Immediate",
+    fullDescription:
+      "Benue Valley Farms is seeking a qualified Irrigation Technician to install, operate, and maintain drip and sprinkler irrigation systems across our commercial farmlands. You will play a key role in ensuring optimal water management for crop production.",
+    responsibilities: [
+      "Install and commission drip, sprinkler, and pivot irrigation systems",
+      "Inspect systems regularly and carry out repairs as needed",
+      "Manage water scheduling and pump operations",
+      "Keep records of water usage and system performance",
+      "Train farm workers on basic irrigation operation",
+    ],
+    requirements: [
+      "Minimum 2 years' experience with irrigation systems",
+      "Technical qualification in Agriculture, Civil, or Mechanical Engineering",
+      "Knowledge of pumps, pipes, and water management systems",
+      "Ability to work in outdoor field environments",
+      "Valid driving licence is an advantage",
+    ],
+    whatWeOffer: [
+      "Competitive permanent salary",
+      "Field vehicle and equipment provided",
+      "Health insurance",
+      "Annual leave and public holidays",
+      "Professional development sponsorship",
+    ],
+    trustNote:
+      "All applicants undergo background verification, reference checks, and skills assessment before placement coordination.",
+  },
+  {
+    id: "cattle-herder-kaduna",
+    category: "LIVESTOCK",
+    contractType: "Seasonal Contract",
+    title: "Cattle Herder",
+    description:
+      "Manage and move cattle herds across grazing areas, monitor animal health and feed supply.",
+    state: "Kaduna State",
+    salaryMin: 35000,
+    salaryMax: 50000,
+    duration: "3–5 months",
+    positionType: null,
+    postedDaysAgo: 7,
+    employer: "Northern Ranches Cooperative",
+    workSchedule: "Daily, sunrise to sunset",
+    startDate: "June 2026",
+    fullDescription:
+      "Northern Ranches Cooperative is recruiting experienced cattle herders for the 2026 grazing season. You will be responsible for managing herds across designated grazing routes, monitoring animal health, and reporting any concerns to the ranch manager.",
+    responsibilities: [
+      "Guide cattle herds safely across grazing routes",
+      "Monitor animal health and identify sick or injured livestock",
+      "Ensure cattle have access to adequate water sources",
+      "Prevent cattle from straying into farmlands or roads",
+      "Report daily herd status and any incidents to the ranch manager",
+    ],
+    requirements: [
+      "Experience herding cattle or managing livestock",
+      "Good knowledge of grazing land management",
+      "Physical fitness and ability to walk long distances",
+      "Ability to work outdoors in all weather conditions",
+      "Responsible and trustworthy character",
+    ],
+    whatWeOffer: [
+      "Weekly payment",
+      "On-site accommodation during the season",
+      "Meals and basic provisions",
+      "Safety equipment and basic first-aid kit",
+      "Bonus for completing the full season",
+    ],
+    trustNote:
+      "All applicants undergo background verification, reference checks, and skills assessment before placement coordination.",
+  },
+  {
+    id: "agro-processing-manager-delta",
+    category: "FARM MANAGEMENT",
+    contractType: "Full-time",
+    title: "Agro-Processing Manager",
+    description:
+      "Oversee processing plant operations, manage staff, maintain quality control and equipment schedules.",
+    state: "Delta State",
+    salaryMin: 120000,
+    salaryMax: 160000,
+    duration: null,
+    positionType: "Permanent Position",
+    postedDaysAgo: 2,
+    employer: "Delta Agrivalue Ltd",
+    workSchedule: "Monday – Friday, 8:00 AM – 5:00 PM",
+    startDate: "Immediate",
+    fullDescription:
+      "Delta Agrivalue Ltd is seeking an experienced Agro-Processing Manager to lead operations at our processing facility. You will manage a team of 50+ staff, oversee machinery maintenance, ensure quality control, and drive continuous improvement in our palm oil and cassava processing lines.",
+    responsibilities: [
+      "Manage daily operations of the processing plant",
+      "Lead, motivate, and develop a team of 50+ processing staff",
+      "Oversee equipment maintenance schedules and downtime management",
+      "Implement quality control and food safety protocols",
+      "Prepare and manage processing budgets and production reports",
+    ],
+    requirements: [
+      "Minimum 7 years' experience in agro-processing or food manufacturing",
+      "BSc/HND in Food Technology, Agricultural Engineering, or related field",
+      "Proven team leadership and plant management experience",
+      "Strong understanding of quality management systems",
+      "Excellent reporting and communication skills",
+    ],
+    whatWeOffer: [
+      "Highly competitive salary",
+      "Executive health insurance package",
+      "Company vehicle",
+      "Annual performance bonus",
+      "Stock option plan after 2 years",
+    ],
+    trustNote:
+      "All applicants undergo background verification, reference checks, and skills assessment before placement coordination.",
+  },
+];

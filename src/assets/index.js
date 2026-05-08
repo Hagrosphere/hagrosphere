@@ -17,6 +17,7 @@ import Equipment from "./equipment.svg";
 import Access from "./access.svg";
 import Capital from "./growthcap.svg";
 import Distribution from "./distribution.svg";
+import Diaspora from "./diaspora.svg";
 
 export {
   HagroLogo,
@@ -38,4 +39,5 @@ export {
   Hub,
   Capital,
   Distribution,
+  Diaspora,
 };

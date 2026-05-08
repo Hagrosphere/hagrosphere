@@ -6,7 +6,7 @@ import { HagroHeroTwo } from "../assets";
 const HeroSection = ({ subtitle, title, description, author, date, time }) => {
   return (
     <div
-      className={`w-full relative flex items-start bg-cover bg-center text-white h-[46vh] md:h-[60vh]`}
+      className={`w-full relative flex items-start bg-cover bg-center text-white h-[46vh] md:h-[50vh]`}
       style={{
         backgroundImage: `url(${HagroHeroTwo})`,
       }}

@@ -27,6 +27,7 @@ const Footer = () => {
       header: "Company",
       other: [
         { id: 1, text: "About us", link: "/about" },
+        { id: 2, text: "Career", link: "/job-listing" },
         { id: 2, text: "Contact", link: "/contact-us" },
         { id: 3, text: "Terms & Privacy", link: "/privacy-policy" },
       ],

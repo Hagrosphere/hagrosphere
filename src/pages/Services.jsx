@@ -23,7 +23,7 @@ const Services = () => {
         <div className=""></div>
       </section>
       <section className="py-12 md:py-16 bg-[#E5DDD0] w-full">
-        <div className="w-[96%] md:w-[94%] mx-auto">
+        <div className="w-[90%] md:w-[94%] mx-auto">
           <h4 className="text-[#B07D2A] text-xs font-medium font-inter">
             Universal Process
           </h4>

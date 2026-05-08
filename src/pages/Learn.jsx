@@ -16,7 +16,7 @@ const Learn = () => {
     ...Array.from(new Set(articleData.map((a) => a.tag))),
   ];
   return (
-    <div className="w-full">
+    <div className="w-full mt-2">
       <HeroSection
         subtitle="Knowledge Base"
         title="Agricultural Content Hub"
