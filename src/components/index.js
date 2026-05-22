@@ -9,4 +9,8 @@ export { default as CarouselRow } from "./CarouselRow";
 export { default as HeroSection } from "./HeroSection";
 export { default as SolutionCard } from "./SolutionCard";
 export { default as ContentBlock } from "./ContentBlock";
+export { default as Sidebar } from "./Sidebar";
+export { default as Countup } from "./Countup";
+export { default as Topbar } from "./Topbar";
+export { default as ProtectedRoute } from "./ProtectedRoute";
 export { default as EquipmentCard } from "./EquipmentCard";

@@ -17,8 +17,23 @@ import {
   EquiptmentListingDetails,
   Jobs,
   JobDetails,
+  AdminLayout,
+  AdminDashboard,
+  AdminSetting,
+  AdminActivity,
+  AdminEquipment,
+  AdminEditEquipment,
+  AdminJobManagement,
+  AdminUserManagement,
+  AdminAddEquipment,
+  AdminPostJob,
+  AdminEditJob,
+  AdminManageArticle,
+  AdminEditArticle,
+  AdminPostArticle,
+  AdminLogin,
 } from "./pages";
-
+import { ProtectedRoute } from "./components";
 const routes = [
   {
     path: "/",
@@ -41,8 +56,44 @@ const routes = [
       },
       { path: "/job-listing", element: <Jobs /> },
       { path: "/job-listing-details/:id", element: <JobDetails /> },
-      { path: "*", element: <Errorpage /> },
     ],
+  },
+
+  // Admin login — public, no guard
+  {
+    path: "/admin/login",
+    element: <AdminLogin />,
+  },
+
+  // Admin routes — protected
+  {
+    path: "/admin",
+    element: <ProtectedRoute />,
+    children: [
+      {
+        element: <AdminLayout />,
+        children: [
+          { index: true, element: <AdminDashboard /> },
+          { path: "manage-equipment", element: <AdminEquipment /> },
+          { path: "add-equipment", element: <AdminAddEquipment /> },
+          { path: "edit-equipment/:name", element: <AdminEditEquipment /> },
+          { path: "manage-jobs", element: <AdminJobManagement /> },
+          { path: "add-job", element: <AdminPostJob /> },
+          { path: "edit-job/:id", element: <AdminEditJob /> },
+          { path: "manage-users", element: <AdminUserManagement /> },
+          { path: "manage-articles", element: <AdminManageArticle /> },
+          { path: "add-article", element: <AdminPostArticle /> },
+          { path: "edit-article/:id", element: <AdminEditArticle /> },
+          { path: "settings", element: <AdminSetting /> },
+          { path: "activity", element: <AdminActivity /> },
+        ],
+      },
+    ],
+  },
+
+  {
+    path: "*",
+    element: <Errorpage />,
   },
 ];
 

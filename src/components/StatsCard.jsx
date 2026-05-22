@@ -1,3 +1,5 @@
+import CountUp from "./Countup";
+
 const stats = [
   {
     value: "2,400+",
@@ -27,9 +29,12 @@ const StatsCard = () => {
       <div className="w-[95%] mx-auto border border-[#cfc8bd] bg-white">
         <div className="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#cfc8bd]">
           {stats.map((item, index) => (
-            <div key={index} className="text-center py-6 md:py-8 px-4">
+            <div key={index} className="px-4 py-6 text-center md:py-8">
               <h2 className="text-3xl md:text-4xl font-semibold text-[#1A3325]">
-                {item.value}
+                <CountUp
+                  end={parseInt(item.value.replace(/,/g, ""))}
+                  duration={2000}
+                />
               </h2>
 
               <p className="mt-2 text-sm font-medium text-black font-inter">

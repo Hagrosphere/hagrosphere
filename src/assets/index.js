@@ -18,6 +18,8 @@ import Access from "./access.svg";
 import Capital from "./growthcap.svg";
 import Distribution from "./distribution.svg";
 import Diaspora from "./diaspora.svg";
+import Adminlogo from "./adminlogo.svg";
+import Loginlogo from "./loginlogo.svg";
 
 export {
   HagroLogo,
@@ -40,4 +42,6 @@ export {
   Capital,
   Distribution,
   Diaspora,
+  Adminlogo,
+  Loginlogo,
 };
