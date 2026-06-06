@@ -6,17 +6,19 @@ const EquipmentCard = ({
   status,
   name,
   description,
-  state,
-  price,
+  location,
+  pricePerDay,
+  currency = "NGN",
   images = [],
   id,
+  slug,
 }) => {
   const navigate = useNavigate();
-  const FALLBACK_IMAGE =
-    "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&auto=format&fit=crop";
+  const FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23f0f4f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%239ca3af'%3ENo Image%3C/text%3E%3C/svg%3E";
 
-  const available = status === "Available";
-  const thumbnail = images[0] || FALLBACK_IMAGE;
+  const available = status === "AVAILABLE";
+  const thumbnail = images[0]?.url || FALLBACK_IMAGE;
+  const displayPrice = `${currency === "NGN" ? "₦" : currency}${Number(pricePerDay).toLocaleString()}/day`;
 
   return (
     <div className="w-[90%] mx-auto md:w-full flex flex-col bg-white rounded shadow-sm">
@@ -24,14 +26,12 @@ const EquipmentCard = ({
         src={thumbnail}
         alt={name}
         className="object-cover w-full h-52 md:h-64"
-        onError={(e) => {
-          e.target.src = FALLBACK_IMAGE;
-        }}
+        onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
       />
       <div className="flex flex-col flex-1 gap-4 px-4 py-5">
         <div className="flex items-center justify-between gap-3">
           <span className="text-xs font-inter tracking-[0.024em] text-[#B07D2A]">
-            {category}
+            {category?.name?.toUpperCase()}
           </span>
           <span
             className={`rounded px-2 py-1 font-inter text-xs tracking-[0.024em] ${
@@ -52,16 +52,16 @@ const EquipmentCard = ({
         <div className="flex items-center gap-x-0.5 md:gap-x-1">
           <IoLocationOutline className="inline-block w-4 h-4 md:w-5 md:h-5 text-[#7A7A72]" />
           <p className="text-xs md:text-sm leading-4 md:leading-5 text-[#7A7A72] font-inter">
-            {state}
+            {location}
           </p>
         </div>
         <p className="font-inter text-base md:text-lg lg:text-xl font-semibold text-[#1A1A17]">
-          {price}
+          {displayPrice}
         </p>
       </div>
       <div className="">
         <button
-          onClick={() => navigate(`/equipment-listing-details/${id}`)}
+          onClick={() => navigate(`/equipment-listing-details/${slug || id}`)}
           className="w-full rounded bg-[#1F4D3A]  cursor-pointer py-1.5 text-sm md:text-base leading-4 md:leading-6 text-white"
         >
           View Details

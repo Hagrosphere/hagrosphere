@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useAppInit } from "./features/auth/hooks/useAppInit";
 import { createBrowserRouter, RouterProvider } from "react-router";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   About,
   Home,
@@ -34,6 +36,7 @@ import {
   AdminLogin,
 } from "./pages";
 import { ProtectedRoute } from "./components";
+
 const routes = [
   {
     path: "/",
@@ -58,14 +61,10 @@ const routes = [
       { path: "/job-listing-details/:id", element: <JobDetails /> },
     ],
   },
-
-  // Admin login — public, no guard
   {
     path: "/admin/login",
     element: <AdminLogin />,
   },
-
-  // Admin routes — protected
   {
     path: "/admin",
     element: <ProtectedRoute />,
@@ -76,7 +75,7 @@ const routes = [
           { index: true, element: <AdminDashboard /> },
           { path: "manage-equipment", element: <AdminEquipment /> },
           { path: "add-equipment", element: <AdminAddEquipment /> },
-          { path: "edit-equipment/:name", element: <AdminEditEquipment /> },
+          { path: "edit-equipment/:id", element: <AdminEditEquipment /> },
           { path: "manage-jobs", element: <AdminJobManagement /> },
           { path: "add-job", element: <AdminPostJob /> },
           { path: "edit-job/:id", element: <AdminEditJob /> },
@@ -90,24 +89,15 @@ const routes = [
       },
     ],
   },
-
-  {
-    path: "*",
-    element: <Errorpage />,
-  },
+  { path: "*", element: <Errorpage /> },
 ];
 
 const router = createBrowserRouter(routes);
 
-function App() {
-  const [loading, setLoading] = useState(true);
+function AppContent() {
+  const { isInitialized } = useAppInit();
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 5000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
+  if (!isInitialized) {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="border-t-4 border-b-4 rounded-full animate-spin h-14 w-14 border-bg-btn-primary"></div>
@@ -116,6 +106,24 @@ function App() {
   }
 
   return <RouterProvider router={router} />;
+}
+
+function App() {
+  return (
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="light"
+      />
+      <AppContent />
+    </>
+  );
 }
 
 export default App;

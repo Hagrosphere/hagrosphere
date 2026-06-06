@@ -14,3 +14,4 @@ export { default as Countup } from "./Countup";
 export { default as Topbar } from "./Topbar";
 export { default as ProtectedRoute } from "./ProtectedRoute";
 export { default as EquipmentCard } from "./EquipmentCard";
+export { default as DeleteModal } from "./DeleteModal";

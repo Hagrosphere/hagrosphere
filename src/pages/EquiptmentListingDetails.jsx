@@ -4,14 +4,17 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { RiMapPinLine } from "react-icons/ri";
 import { HeroSection } from "../components";
 import { useNavigate, useParams } from "react-router";
-import { equipmentData } from "../components/DummyData";
 import { useState } from "react";
-import { Diaspora } from "../assets";
+import { useEquipmentDetail, useEquipment } from "../features/equipment/hooks/useEquipment";
 
 const EquiptmentListingDetails = () => {
   const [activeImage, setActiveImage] = useState(0);
   const navigate = useNavigate();
   const { id } = useParams();
+  const { data: equipmentData, isLoading, isError } = useEquipmentDetail(id);
+  const { equipment: relatedEquipment } = useEquipment();
+  const equipment = equipmentData?.data ?? equipmentData;
+
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     fullName: "",
@@ -24,26 +27,44 @@ const EquiptmentListingDetails = () => {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const equipment = equipmentData.find((item) => item.id === id);
-  if (!equipment) return <div>Not found</div>;
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="border-t-4 border-b-4 rounded-full animate-spin h-12 w-12 border-bg-btn-primary" />
+      </div>
+    );
+  }
+
+  if (isError || !equipment) {
+    return (
+      <div className="flex flex-col items-center justify-center h-64 gap-4">
+        <h2 className="text-lg font-semibold">Equipment not found</h2>
+        <button onClick={() => navigate("/equipment-listing")} className="text-[#2E6B4F] text-sm font-medium cursor-pointer">
+          ← Back to equipment
+        </button>
+      </div>
+    );
+  }
 
   const {
     category,
     status,
     name,
-    fullDescription,
-    state,
-    price,
-    lastServiced,
-    specifications,
-    trustBadges,
-    usageCategory,
-    images,
+    description,
+    location,
+    pricePerDay,
+    currency = "NGN",
+    brand,
+    model,
+    condition,
+    images = [],
+    features = [],
   } = equipment;
 
-  const available = status === "Available";
-  const FALLBACK_IMAGE =
-    "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&auto=format&fit=crop";
+  const available = status === "AVAILABLE";
+  const FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23f0f4f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%239ca3af'%3ENo Image%3C/text%3E%3C/svg%3E";
+
+  const displayImages = images.length > 0 ? images.map(img => img.url) : [FALLBACK_IMAGE];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -106,19 +127,16 @@ const EquiptmentListingDetails = () => {
               {/* Main image */}
               <div className="overflow-hidden rounded-lg">
                 <img
-                  src={images[activeImage]}
+                  src={displayImages[activeImage]}
                   alt={name}
                   className="h-87.5 w-full object-cover transition-all duration-300"
-                  onError={(e) => {
-                    e.target.src =
-                      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&auto=format&fit=crop";
-                  }}
+                  onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                 />
               </div>
 
               {/* Thumbnails */}
               <div className="flex gap-3">
-                {images.map((img, idx) => (
+                {displayImages.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveImage(idx)}
@@ -132,10 +150,7 @@ const EquiptmentListingDetails = () => {
                       src={img}
                       alt={`View ${idx + 1}`}
                       className="object-cover h-20 w-28"
-                      onError={(e) => {
-                        e.target.src =
-                          "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&auto=format&fit=crop";
-                      }}
+                      onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                     />
                   </button>
                 ))}
@@ -146,7 +161,7 @@ const EquiptmentListingDetails = () => {
                   Equipment Details
                 </h2>
                 <p className="text-sm font-inter leading-[1.75] text-[#4A4A42]">
-                  {fullDescription}
+                  {description}
                 </p>
               </div>
               {/* Specifications */}
@@ -155,30 +170,42 @@ const EquiptmentListingDetails = () => {
                   Specifications
                 </h3>
                 <div className="divide-y divide-[#E8E2D9] border-t font-inter border-[#E8E2D9]">
-                  {specifications.map((spec) => (
-                    <div
-                      key={spec.label}
-                      className="flex items-center justify-between py-3"
-                    >
-                      <span className="text-sm text-[#7A7A72]">
-                        {spec.label}
-                      </span>
-                      <span className="text-sm font-semibold text-[#1A1A17]">
-                        {spec.value}
-                      </span>
+                  {brand && (
+                    <div className="flex items-center justify-between py-3">
+                      <span className="text-sm text-[#7A7A72]">Brand</span>
+                      <span className="text-sm font-semibold text-[#1A1A17]">{brand}</span>
                     </div>
-                  ))}
+                  )}
+                  {model && (
+                    <div className="flex items-center justify-between py-3">
+                      <span className="text-sm text-[#7A7A72]">Model</span>
+                      <span className="text-sm font-semibold text-[#1A1A17]">{model}</span>
+                    </div>
+                  )}
+                  {condition && (
+                    <div className="flex items-center justify-between py-3">
+                      <span className="text-sm text-[#7A7A72]">Condition</span>
+                      <span className="text-sm font-semibold text-[#1A1A17]">{condition}</span>
+                    </div>
+                  )}
                 </div>
               </div>
-              {/* Usage Category */}
-              <div>
-                <h3 className="font-playfair text-xl font-semibold text-[#1A1A17] mb-2">
-                  Usage Category
-                </h3>
-                <p className="text-sm font-inter leading-[1.75] text-[#4A4A42]">
-                  {usageCategory}
-                </p>
-              </div>
+              {/* Features */}
+              {features.length > 0 && (
+                <div>
+                  <h3 className="font-playfair text-xl font-semibold text-[#1A1A17] mb-2">
+                    Features
+                  </h3>
+                  <ul className="flex flex-col gap-2">
+                    {features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2">
+                        <FiCheckCircle size={15} className="text-[#3D8B6A] shrink-0" />
+                        <span className="text-sm text-[#4A4A42]">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
 
             {/* ── RIGHT COLUMN ─────────────────────────────────────────────── */}
@@ -187,10 +214,9 @@ const EquiptmentListingDetails = () => {
               <div>
                 <div className="flex items-center gap-3 mb-3 font-inter">
                   <span className="text-xs font-medium tracking-[0.08em] text-[#B07D2A]">
-                    {category}
+                    {category?.name?.toUpperCase()}
                   </span>
-                  <span
-                    className={`rounded px-2.5 py-1 text-xs font-medium tracking-[0.024em] ${
+                  <span className={`rounded px-2.5 py-1 text-xs font-medium tracking-[0.024em] ${
                       available
                         ? "bg-[rgba(63,125,90,0.1)] text-[#3D8B6A]"
                         : "bg-[#E5DDD0] text-[#C6922A]"
@@ -206,29 +232,24 @@ const EquiptmentListingDetails = () => {
 
                 <div className="flex items-center gap-1.5 mb-1">
                   <RiMapPinLine size={14} className="text-[#7A7A72]" />
-                  <span className="text-sm text-[#7A7A72]">{state}</span>
+                  <span className="text-sm text-[#7A7A72]">{location}</span>
                 </div>
-
-                <p className="text-xs text-[#9A9A92] mt-2">
-                  Last serviced: {lastServiced}
-                </p>
               </div>
-              {/* Trust badges */}
-              <div className="flex flex-col gap-2 font-inter">
-                {trustBadges.map((badge) => (
-                  <div key={badge} className="flex items-center gap-2">
-                    <FiCheckCircle
-                      size={15}
-                      className="text-[#3D8B6A] shrink-0"
-                    />
-                    <span className="text-sm text-[#4A4A42]">{badge}</span>
-                  </div>
-                ))}
-              </div>
+              {/* Features */}
+              {features.length > 0 && (
+                <div className="flex flex-col gap-2 font-inter">
+                  {features.slice(0, 3).map((feature, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <FiCheckCircle size={15} className="text-[#3D8B6A] shrink-0" />
+                      <span className="text-sm text-[#4A4A42]">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
               {/* Price */}
               <div className="border-t border-[#E8E2D9] pt-4">
                 <span className="font-playfair text-lg md:text-xl lg:text-2xl font-bold text-[#1A1A17]">
-                  {price}
+                  {currency === "NGN" ? "₦" : currency}{Number(pricePerDay).toLocaleString()}/day
                 </span>
               </div>
               {/* Request form */}
@@ -419,8 +440,8 @@ const EquiptmentListingDetails = () => {
 
           <div className="mt-6 md:mt-8">
             <div className="grid grid-cols-1 gap-5 md:gap-8 lg:gap-16 md:grid-cols-3">
-              {equipmentData.slice(0, 3).map((item) => {
-                const thumbnail = item.images[0] || FALLBACK_IMAGE;
+              {relatedEquipment.slice(0, 3).map((item) => {
+                const thumbnail = item.images?.[0]?.url || FALLBACK_IMAGE;
                 return (
                   <div
                     className="w-[90%] mx-auto md:w-full bg-white"
@@ -430,9 +451,7 @@ const EquiptmentListingDetails = () => {
                       src={thumbnail}
                       alt={item.name}
                       className="object-cover w-full h-40 md:h-48"
-                      onError={(e) => {
-                        e.target.src = FALLBACK_IMAGE;
-                      }}
+                      onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                     />
                     <div className="pt-5 pb-3 w-[90%] mx-auto">
                       <h2 className="text-base font-medium lg:text-lg">
@@ -441,13 +460,13 @@ const EquiptmentListingDetails = () => {
                       <div className="flex items-center gap-1.5 my-4">
                         <RiMapPinLine size={16} className="text-[#7A7A72]" />
                         <span className="text-sm text-[#7A7A72]">
-                          {item.state}
+                          {item.location}
                         </span>
                       </div>
                       <button
                         className="flex items-center gap-2 text-sm font-medium cursor-pointer font-inter text-accent"
                         onClick={() =>
-                          navigate(`/equipment-listing-details/${item.id}`)
+                          navigate(`/equipment-listing-details/${item.slug || item.id}`)
                         }
                       >
                         <span>View Detail</span>

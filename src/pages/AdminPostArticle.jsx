@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { FiChevronDown, FiImage, FiArrowLeft } from "react-icons/fi";
+import { FiChevronDown, FiImage, FiArrowLeft, FiBold, FiItalic, FiList, FiCode } from "react-icons/fi";
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import Placeholder from "@tiptap/extension-placeholder";
+import { useArticles } from "../features/articles/hooks/useArticles";
+import { toast } from "react-toastify";
 
 // ── Shared primitives ─────────────────────────────────────────────────────────
 const inputCls =
@@ -31,24 +36,61 @@ const Divider = () => <div className="border-b border-[#F0F0F0] -mx-5 mb-1" />;
 
 const AdminPostArticle = () => {
   const navigate = useNavigate();
+  const { create, tags, isCreating } = useArticles(true);
 
   const [form, setForm] = useState({
     title: "",
     category: "",
-    tags: "",
+    tagIds: [],
     excerpt: "",
-    imageUrl: "",
+    coverImage: "",
+    status: "PUBLISHED",
+  });
+
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      Placeholder.configure({
+        placeholder: "Write your article content here. Use the toolbar to format text...",
+      }),
+    ],
     content: "",
-    seoTitle: "",
-    metaDesc: "",
+    editorProps: {
+      attributes: {
+        class: "prose prose-sm md:prose max-w-none focus:outline-none min-h-[200px] px-3 py-2",
+      },
+    },
   });
 
   const set = (key) => (e) =>
     setForm((prev) => ({ ...prev, [key]: e.target.value }));
 
-  const handleSubmit = () => {
-    // TODO: send form data to API
-    navigate(-1);
+  const handleSubmit = async (isDraft = false) => {
+    const content = editor?.getHTML();
+    if (!form.title || !content) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+    try {
+      const payload = {
+        title: form.title,
+        content: content,
+        status: isDraft ? "DRAFT" : "PUBLISHED",
+      };
+      
+      // Only add optional fields if they have values
+      if (form.excerpt) payload.excerpt = form.excerpt;
+      if (form.category) payload.category = form.category;
+      if (form.coverImage) payload.coverImage = form.coverImage;
+      if (form.tagIds && form.tagIds.length > 0) payload.tagIds = form.tagIds;
+
+      await create(payload).unwrap();
+      toast.success(isDraft ? "Article saved as draft!" : "Article published successfully!");
+      navigate("/admin/manage-articles");
+    } catch (err) {
+      console.error("Article creation error:", err);
+      toast.error(err?.data?.message ?? "Failed to create article");
+    }
   };
 
   return (
@@ -86,17 +128,17 @@ const AdminPostArticle = () => {
                   Select category…
                 </option>
                 {[
-                  "Crop Production",
-                  "Equipment Care",
-                  "Jobs & Careers",
-                  "Business",
-                  "Safety",
-                  "Market Trends",
-                  "Technology",
-                  "Sustainability",
-                ].map((o) => (
-                  <option key={o}>{o}</option>
-                ))}
+                  "FARMING_TIPS",
+                  "MARKET_NEWS",
+                  "TECHNOLOGY",
+                  "POLICY",
+                  "INVESTMENT",
+                  "DIASPORA",
+                  "GENERAL",
+                ].map((val) => {
+                  const label = val.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                  return <option key={val} value={val}>{label}</option>;
+                })}
               </select>
               <FiChevronDown
                 size={14}
@@ -105,13 +147,52 @@ const AdminPostArticle = () => {
             </div>
           </Field>
 
-          <Field label="Tags (comma-separated)">
-            <input
-              className={inputCls}
-              value={form.tags}
-              onChange={set("tags")}
-              placeholder="rice, farming, best practices"
-            />
+          <Field label="Tags">
+            <div className="relative">
+              <select
+                className={`${inputCls} appearance-none cursor-pointer pr-8`}
+                value=""
+                onChange={(e) => {
+                  const tagId = e.target.value;
+                  if (tagId && !form.tagIds.includes(tagId)) {
+                    setForm(prev => ({ ...prev, tagIds: [...prev.tagIds, tagId] }));
+                  }
+                }}
+              >
+                <option value="">Add tag…</option>
+                {tags.map((tag) => (
+                  <option key={tag.id} value={tag.id} disabled={form.tagIds.includes(tag.id)}>
+                    {tag.name}
+                  </option>
+                ))}
+              </select>
+              <FiChevronDown
+                size={14}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9CA3AF] pointer-events-none"
+              />
+            </div>
+            {form.tagIds.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                {form.tagIds.map((tagId) => {
+                  const tag = tags.find(t => t.id === tagId);
+                  return tag ? (
+                    <span
+                      key={tagId}
+                      className="inline-flex items-center gap-1 px-2 py-1 text-[11px] bg-[#F3F4F6] text-[#374151] rounded"
+                    >
+                      {tag.name}
+                      <button
+                        type="button"
+                        onClick={() => setForm(prev => ({ ...prev, tagIds: prev.tagIds.filter(id => id !== tagId) }))}
+                        className="text-[#6B7280] hover:text-[#111] bg-transparent border-0 cursor-pointer"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ) : null;
+                })}
+              </div>
+            )}
           </Field>
         </div>
 
@@ -135,8 +216,8 @@ const AdminPostArticle = () => {
             </span>
             <input
               className={`${inputCls} pl-8`}
-              value={form.imageUrl}
-              onChange={set("imageUrl")}
+              value={form.coverImage}
+              onChange={set("coverImage")}
               placeholder="e.g., https://example.com/image.jpg"
             />
           </div>
@@ -148,37 +229,101 @@ const AdminPostArticle = () => {
         <Divider />
         <div className="font-inter">
           <Label required>Content</Label>
-          <textarea
-            className={`${inputCls} resize-none h-[200px]`}
-            value={form.content}
-            onChange={set("content")}
-            placeholder="Write your article content here. Use markdown formatting for headings, lists, and emphasis..."
-          />
+          
+          {/* TipTap Toolbar */}
+          <div className="flex flex-wrap gap-1 p-2 mb-2 border border-[#E5E7EB] rounded-t-lg bg-[#F9FAFB]">
+            <button
+              type="button"
+              onClick={() => editor.chain().focus().toggleBold().run()}
+              className={`p-2 rounded hover:bg-[#E5E7EB] border-0 cursor-pointer transition-colors ${
+                editor?.isActive('bold') ? 'bg-[#E5E7EB]' : 'bg-transparent'
+              }`}
+              title="Bold"
+            >
+              <FiBold size={16} />
+            </button>
+            <button
+              type="button"
+              onClick={() => editor.chain().focus().toggleItalic().run()}
+              className={`p-2 rounded hover:bg-[#E5E7EB] border-0 cursor-pointer transition-colors ${
+                editor?.isActive('italic') ? 'bg-[#E5E7EB]' : 'bg-transparent'
+              }`}
+              title="Italic"
+            >
+              <FiItalic size={16} />
+            </button>
+            <button
+              type="button"
+              onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+              className={`p-2 rounded hover:bg-[#E5E7EB] border-0 cursor-pointer transition-colors ${
+                editor?.isActive('codeBlock') ? 'bg-[#E5E7EB]' : 'bg-transparent'
+              }`}
+              title="Code Block"
+            >
+              <FiCode size={16} />
+            </button>
+            <div className="w-px h-6 bg-[#E5E7EB] mx-1" />
+            <button
+              type="button"
+              onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+              className={`px-3 py-1 rounded text-[13px] font-semibold hover:bg-[#E5E7EB] border-0 cursor-pointer transition-colors ${
+                editor?.isActive('heading', { level: 1 }) ? 'bg-[#E5E7EB]' : 'bg-transparent'
+              }`}
+              title="Heading 1"
+            >
+              H1
+            </button>
+            <button
+              type="button"
+              onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+              className={`px-3 py-1 rounded text-[13px] font-semibold hover:bg-[#E5E7EB] border-0 cursor-pointer transition-colors ${
+                editor?.isActive('heading', { level: 2 }) ? 'bg-[#E5E7EB]' : 'bg-transparent'
+              }`}
+              title="Heading 2"
+            >
+              H2
+            </button>
+            <button
+              type="button"
+              onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+              className={`px-3 py-1 rounded text-[13px] font-semibold hover:bg-[#E5E7EB] border-0 cursor-pointer transition-colors ${
+                editor?.isActive('heading', { level: 3 }) ? 'bg-[#E5E7EB]' : 'bg-transparent'
+              }`}
+              title="Heading 3"
+            >
+              H3
+            </button>
+            <div className="w-px h-6 bg-[#E5E7EB] mx-1" />
+            <button
+              type="button"
+              onClick={() => editor.chain().focus().toggleBulletList().run()}
+              className={`p-2 rounded hover:bg-[#E5E7EB] border-0 cursor-pointer transition-colors ${
+                editor?.isActive('bulletList') ? 'bg-[#E5E7EB]' : 'bg-transparent'
+              }`}
+              title="Bullet List"
+            >
+              <FiList size={16} />
+            </button>
+            <button
+              type="button"
+              onClick={() => editor.chain().focus().toggleOrderedList().run()}
+              className={`px-3 py-1 rounded text-[13px] font-semibold hover:bg-[#E5E7EB] border-0 cursor-pointer transition-colors ${
+                editor?.isActive('orderedList') ? 'bg-[#E5E7EB]' : 'bg-transparent'
+              }`}
+              title="Numbered List"
+            >
+              1.
+            </button>
+          </div>
+
+          {/* TipTap Editor */}
+          <div className="border border-[#E5E7EB] rounded-b-lg bg-white overflow-hidden">
+            <EditorContent editor={editor} />
+          </div>
           <p className="text-[11px] text-[#9CA3AF] mt-1.5">
-            Supports Markdown formatting
+            Use the toolbar to format your content
           </p>
         </div>
-      </Section>
-
-      {/* ── SEO Settings ── */}
-      <Section title="SEO Settings">
-        <Divider />
-        <Field label="SEO Title">
-          <input
-            className={inputCls}
-            value={form.seoTitle}
-            onChange={set("seoTitle")}
-            placeholder="Leave empty to use article title"
-          />
-        </Field>
-        <Field label="Meta Description">
-          <input
-            className={inputCls}
-            value={form.metaDesc}
-            onChange={set("metaDesc")}
-            placeholder="Leave empty to use excerpt"
-          />
-        </Field>
       </Section>
 
       {/* ── Actions ── */}
@@ -191,15 +336,20 @@ const AdminPostArticle = () => {
         </button>
 
         <div className="flex items-center gap-3 md:gap-5">
-          <button className="px-5 py-2.5 text-[13px] font-medium text-[#374151] bg-white border border-[#E5E7EB] rounded-lg hover:bg-[#F9FAFB] cursor-pointer transition-colors">
-            Save as Draft
+          <button 
+            onClick={() => handleSubmit(true)}
+            disabled={isCreating}
+            className="px-5 py-2.5 text-[13px] font-medium text-[#374151] bg-white border border-[#E5E7EB] rounded-lg hover:bg-[#F9FAFB] cursor-pointer transition-colors disabled:opacity-60"
+          >
+            {isCreating ? "Saving..." : "Save as Draft"}
           </button>
 
           <button
-            onClick={handleSubmit}
-            className="px-5 py-2.5 text-[13px] font-semibold text-white bg-[#1A6B3C] hover:bg-[#155C32] rounded-lg border-0 cursor-pointer transition-colors"
+            onClick={() => handleSubmit(false)}
+            disabled={isCreating}
+            className="px-5 py-2.5 text-[13px] font-semibold text-white bg-[#1A6B3C] hover:bg-[#155C32] rounded-lg border-0 cursor-pointer transition-colors disabled:opacity-60"
           >
-            Post Article
+            {isCreating ? "Publishing..." : "Publish Article"}
           </button>
         </div>
       </div>

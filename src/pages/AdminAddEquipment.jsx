@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { LuChevronDown } from "react-icons/lu";
 import { useNavigate } from "react-router";
+import { useEquipment } from "../features/equipment/hooks/useEquipment";
+import { toast } from "react-toastify";
 
 const inputCls =
   "w-full px-3 py-2 border border-[#E5E7EB] rounded-lg text-[13px] text-[#374151] bg-white outline-none focus:border-[#1A6B3C] focus:ring-1 focus:ring-[#1A6B3C] transition-colors placeholder:text-[#9CA3AF]";
@@ -19,7 +21,7 @@ const Section = ({ title, children }) => (
   </div>
 );
 
-const Select = ({ value, onChange, options }) => (
+const SelectField = ({ value, onChange, options }) => (
   <div className="relative">
     <select
       value={value}
@@ -28,7 +30,9 @@ const Select = ({ value, onChange, options }) => (
     >
       <option value="">Select…</option>
       {options.map((o) => (
-        <option key={o}>{o}</option>
+        <option key={typeof o === "string" ? o : o.id} value={typeof o === "string" ? o : o.id}>
+          {typeof o === "string" ? o : o.name}
+        </option>
       ))}
     </select>
     <LuChevronDown
@@ -43,25 +47,140 @@ const Divider = () => (
 );
 
 const AdminAddEquipment = () => {
-  const [status, setStatus] = useState("Available");
-  const [category, setCategory] = useState("");
   const navigate = useNavigate();
+  const { create, categories, isCreating } = useEquipment();
+
+  const [form, setForm] = useState({
+    name: "",
+    categoryId: "",
+    location: "",
+    description: "",
+    specifications: "",
+    pricePerDay: "",
+    pricePerWeek: "",
+    pricePerMonth: "",
+    status: "AVAILABLE",
+    imageUrls: [""], // Array for multiple image URLs
+    brand: "",
+    model: "",
+    condition: "GOOD",
+    features: "",
+  });
+
+  const set = (field) => (e) => setForm((prev) => ({ ...prev, [field]: e.target.value }));
+
+  const addImageUrl = () => {
+    setForm(prev => ({ ...prev, imageUrls: [...prev.imageUrls, ""] }));
+  };
+
+  const removeImageUrl = (index) => {
+    setForm(prev => ({
+      ...prev,
+      imageUrls: prev.imageUrls.filter((_, i) => i !== index)
+    }));
+  };
+
+  const setImageUrl = (index, value) => {
+    setForm(prev => ({
+      ...prev,
+      imageUrls: prev.imageUrls.map((url, i) => i === index ? value : url)
+    }));
+  };
+
+  const handleSubmit = async () => {
+    // Basic validation
+    if (!form.name || !form.categoryId || !form.location || !form.description || !form.pricePerDay) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    const pricePerDay = parseFloat(form.pricePerDay);
+    if (isNaN(pricePerDay) || pricePerDay <= 0) {
+      toast.error("Please enter a valid daily rate");
+      return;
+    }
+
+    try {
+      const images = form.imageUrls
+        .filter(url => url.trim())
+        .map((url, index) => ({
+          url: url.trim(),
+          isPrimary: index === 0,
+          order: index,
+        }));
+
+      const features = form.features
+        .split('\n')
+        .map(f => f.trim())
+        .filter(f => f);
+
+      const payload = {
+        name: form.name.trim(),
+        categoryId: form.categoryId,
+        location: form.location.trim(),
+        description: form.description.trim(),
+        pricePerDay,
+        status: form.status,
+        currency: "NGN",
+      };
+
+      // Add optional numeric fields only if valid
+      if (form.pricePerWeek && !isNaN(parseFloat(form.pricePerWeek))) {
+        payload.pricePerWeek = parseFloat(form.pricePerWeek);
+      }
+      if (form.pricePerMonth && !isNaN(parseFloat(form.pricePerMonth))) {
+        payload.pricePerMonth = parseFloat(form.pricePerMonth);
+      }
+
+      // Add optional string fields only if not empty
+      if (form.brand?.trim()) payload.brand = form.brand.trim();
+      if (form.model?.trim()) payload.model = form.model.trim();
+      if (form.condition) payload.condition = form.condition;
+      if (features.length > 0) payload.features = features;
+      if (images.length > 0) payload.images = images;
+      if (form.specifications?.trim()) {
+        payload.specifications = { details: form.specifications.trim() };
+      }
+
+      console.log('Sending payload:', JSON.stringify(payload, null, 2));
+      await create(payload).unwrap();
+
+      toast.success("Equipment added successfully!");
+      navigate("/admin/manage-equipment");
+    } catch (err) {
+      console.error('Equipment creation error:', err);
+      console.error('Validation errors:', err?.data?.errors);
+      
+      // Show specific validation errors
+      if (err?.data?.errors && Array.isArray(err.data.errors)) {
+        const errorMessages = err.data.errors.map(e => `${e.field}: ${e.message}`).join('\n');
+        toast.error(`Validation failed:\n${errorMessages}`);
+      } else {
+        const message = err?.data?.message;
+        toast.error(message ?? "Failed to add equipment. Check console for details.");
+      }
+    }
+  };
 
   return (
     <div className="w-full pt-3 mb-8">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_260px] gap-4 items-start">
+
         {/* ════════════════ LEFT COLUMN ════════════════ */}
         <div className="flex flex-col gap-4">
+
           {/* Basic Information */}
           <Section title="Basic Information">
             <Divider />
 
             {/* Equipment name */}
             <div className="mb-4 font-inter">
-              <Label required>Equipment</Label>
+              <Label required>Equipment Name</Label>
               <input
                 className={inputCls}
                 placeholder="e.g., Massey Ferguson 375 Tractor"
+                value={form.name}
+                onChange={set("name")}
               />
             </div>
 
@@ -69,21 +188,20 @@ const AdminAddEquipment = () => {
             <div className="grid grid-cols-2 gap-4 mb-4 font-inter">
               <div>
                 <Label required>Category</Label>
-                <Select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  options={[
-                    "Tractors",
-                    "Harvesters",
-                    "Planters",
-                    "Irrigation",
-                    "Processing",
-                  ]}
+                <SelectField
+                  value={form.categoryId}
+                  onChange={set("categoryId")}
+                  options={categories}
                 />
               </div>
               <div>
                 <Label required>Location</Label>
-                <input className={inputCls} placeholder="e.g., Ogun State" />
+                <input
+                  className={inputCls}
+                  placeholder="e.g., Ogun State"
+                  value={form.location}
+                  onChange={set("location")}
+                />
               </div>
             </div>
 
@@ -93,6 +211,54 @@ const AdminAddEquipment = () => {
               <textarea
                 className={`${inputCls} resize-none h-[80px]`}
                 placeholder="Describe the equipment, its use case, and condition..."
+                value={form.description}
+                onChange={set("description")}
+              />
+            </div>
+
+            {/* Brand, Model, Condition */}
+            <div className="grid grid-cols-3 gap-4 mb-4 font-inter">
+              <div>
+                <Label>Brand</Label>
+                <input
+                  className={inputCls}
+                  placeholder="e.g., John Deere"
+                  value={form.brand}
+                  onChange={set("brand")}
+                />
+              </div>
+              <div>
+                <Label>Model</Label>
+                <input
+                  className={inputCls}
+                  placeholder="e.g., 5075E"
+                  value={form.model}
+                  onChange={set("model")}
+                />
+              </div>
+              <div>
+                <Label>Condition</Label>
+                <SelectField
+                  value={form.condition}
+                  onChange={set("condition")}
+                  options={[
+                    { id: "NEW", name: "New" },
+                    { id: "EXCELLENT", name: "Excellent" },
+                    { id: "GOOD", name: "Good" },
+                    { id: "FAIR", name: "Fair" },
+                  ]}
+                />
+              </div>
+            </div>
+
+            {/* Features */}
+            <div className="mb-4 font-inter">
+              <Label>Features (one per line)</Label>
+              <textarea
+                className={`${inputCls} resize-none h-[100px]`}
+                placeholder={`75HP diesel engine\n4-wheel drive system\nPower steering\nAir-conditioned cabin`}
+                value={form.features}
+                onChange={set("features")}
               />
             </div>
 
@@ -103,67 +269,100 @@ const AdminAddEquipment = () => {
                 <textarea
                   className="w-full text-[12px] text-[#374151] font-mono bg-transparent outline-none resize-none h-[88px] leading-relaxed placeholder:text-[#9CA3AF] placeholder:font-sans"
                   placeholder={`Engine: \nTransmission: \nFuel Capacity: \nWeight:`}
-                />
-              </div>
-            </div>
-          </Section>
-
-          {/* Owner Information */}
-          <Section title="Owner Information">
-            <Divider />
-            <div className="grid grid-cols-2 gap-4 font-inter">
-              <div>
-                <Label required>Owner Name</Label>
-                <input className={inputCls} placeholder="e.g., Adebayo Farms" />
-              </div>
-              <div>
-                <Label required>Contact Number</Label>
-                <input
-                  className={inputCls}
-                  placeholder="e.g., +234 801 234 5678"
+                  value={form.specifications}
+                  onChange={set("specifications")}
                 />
               </div>
             </div>
           </Section>
 
           {/* Pricing */}
-          <Section title="Pricing (Optional)">
+          <Section title="Pricing">
             <Divider />
             <div className="grid grid-cols-3 gap-4 font-inter">
               {[
-                { label: "Daily Rate (₦)", placeholder: "e.g., 15000" },
-                { label: "Weekly Rate (₦)", placeholder: "e.g., 90000" },
-                { label: "Monthly Rate (₦)", placeholder: "e.g., 300000" },
+                { label: "Daily Rate (₦)", field: "pricePerDay", placeholder: "e.g., 15000", required: true },
+                { label: "Weekly Rate (₦)", field: "pricePerWeek", placeholder: "e.g., 90000" },
+                { label: "Monthly Rate (₦)", field: "pricePerMonth", placeholder: "e.g., 300000" },
               ].map((f) => (
-                <div key={f.label}>
-                  <Label>{f.label}</Label>
-                  <input className={inputCls} placeholder={f.placeholder} />
+                <div key={f.field}>
+                  <Label required={f.required}>{f.label}</Label>
+                  <input
+                    className={inputCls}
+                    placeholder={f.placeholder}
+                    type="number"
+                    min="0"
+                    value={form[f.field]}
+                    onChange={set(f.field)}
+                  />
                 </div>
               ))}
+            </div>
+          </Section>
+
+          {/* Images */}
+          <Section title="Equipment Images">
+            <Divider />
+            <div className="font-inter space-y-3">
+              {form.imageUrls.map((url, index) => (
+                <div key={index} className="flex gap-2">
+                  <div className="flex-1">
+                    <Label>{index === 0 ? "Primary Image URL" : `Image ${index + 1} URL`}</Label>
+                    <input
+                      className={inputCls}
+                      placeholder="https://example.com/image.jpg"
+                      value={url}
+                      onChange={(e) => setImageUrl(index, e.target.value)}
+                    />
+                  </div>
+                  {form.imageUrls.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => removeImageUrl(index)}
+                      className="mt-6 px-3 py-2 text-sm text-red-600 hover:text-red-700 border-0 bg-transparent cursor-pointer"
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={addImageUrl}
+                className="text-sm text-[#1A6B3C] hover:text-[#155C32] font-medium border-0 bg-transparent cursor-pointer"
+              >
+                + Add Another Image
+              </button>
             </div>
           </Section>
         </div>
 
         {/* ════════════════ RIGHT COLUMN ════════════════ */}
         <div className="bg-white border border-[#ECECEC] rounded-2xl p-5">
-          <p className="font-bold text-[15px] text-[#111] mb-4">
-            Status & Actions
-          </p>
+          <p className="font-bold text-[15px] text-[#111] mb-4">Status & Actions</p>
           <Divider />
 
           {/* Availability Status */}
           <div className="mb-4 font-inter">
             <Label>Availability Status</Label>
-            <Select
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              options={["Available", "In Use", "Pending", "Maintenance"]}
+            <SelectField
+              value={form.status}
+              onChange={set("status")}
+              options={[
+                { id: "AVAILABLE", name: "Available" },
+                { id: "RENTED", name: "In Use" },
+                { id: "MAINTENANCE", name: "Maintenance" },
+              ]}
             />
           </div>
 
-          {/* Save */}
-          <button className="w-full font-inter bg-[#1A6B3C] hover:bg-[#155C32] text-white font-semibold text-[14px] py-2.5 rounded-xl border-0 cursor-pointer transition-colors mb-2">
-            Add Equipment
+          {/* Add Button */}
+          <button
+            onClick={handleSubmit}
+            disabled={isCreating}
+            className="w-full font-inter bg-[#1A6B3C] hover:bg-[#155C32] disabled:opacity-60 text-white font-semibold text-[14px] py-2.5 rounded-xl border-0 cursor-pointer transition-colors mb-2"
+          >
+            {isCreating ? "Adding..." : "Add Equipment"}
           </button>
 
           {/* Cancel */}
@@ -173,6 +372,18 @@ const AdminAddEquipment = () => {
           >
             Cancel
           </button>
+
+          {/* Helper info */}
+          <div className="mt-4 p-3 bg-[#F0FDF4] rounded-xl">
+            <p className="text-[11px] text-[#15803D] font-medium mb-1">Required fields</p>
+            <ul className="text-[11px] text-[#16A34A] space-y-0.5">
+              <li>• Equipment name</li>
+              <li>• Category</li>
+              <li>• Location</li>
+              <li>• Description</li>
+              <li>• Daily rate</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

@@ -1,77 +1,35 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 
 import { EquipmentCard, HeroSection } from "../components";
-import {
-  equipmentData,
-  equipmentVerificationProcess,
-} from "../components/DummyData";
-
-const ITEMS_PER_PAGE = 9;
-
-const TAGS = [
-  "All Equipment",
-  "Tractors",
-  "Harvesters",
-  "Planters",
-  "Irrigation",
-  "Processing",
-];
+import { equipmentVerificationProcess } from "../components/DummyData";
+import { useEquipment } from "../features/equipment/hooks/useEquipment";
 
 const EquiptmentListing = () => {
-  const [activeTag, setActiveTag] = useState("All Equipment");
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const { equipment, categories, meta, setFilters, setPage, isLoading } = useEquipment();
+  const [activeTag, setActiveTag] = useState("All Equipment");
+
+  const allCategories = ["All Equipment", ...categories.map((c) => c.name)];
 
   const handleViewDetails = (item) => {
     console.log("Selected:", item);
   };
 
-  // Filter by tag and search query
-  const filteredData = useMemo(() => {
-    return equipmentData.filter((item) => {
-      const matchesTag =
-        activeTag === "All Equipment" ||
-        item.category?.toLowerCase() === activeTag.toLowerCase();
-
-      const query = searchQuery.toLowerCase();
-      const matchesSearch =
-        !query ||
-        item.name?.toLowerCase().includes(query) ||
-        item.description?.toLowerCase().includes(query) ||
-        item.category?.toLowerCase().includes(query);
-
-      return matchesTag && matchesSearch;
-    });
-  }, [activeTag, searchQuery]);
-
-  // Pagination
-  const totalPages = Math.max(
-    1,
-    Math.ceil(filteredData.length / ITEMS_PER_PAGE),
-  );
-  const paginatedData = filteredData.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE,
-  );
-
-  // Reset to page 1 when filter or search changes
-  const handleTagChange = (tag) => {
-    setActiveTag(tag);
-    setCurrentPage(1);
+  const handleTagChange = (cat) => {
+    setActiveTag(cat);
+    if (cat === "All Equipment") {
+      setFilters({ category: undefined });
+    } else {
+      const found = categories.find((c) => c.name === cat);
+      if (found) setFilters({ category: found.slug });
+    }
   };
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setCurrentPage(1);
+    setFilters({ search: e.target.value || undefined });
   };
-
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) setCurrentPage(page);
-  };
-
-  // Generate page number array
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div className="w-full">
@@ -86,22 +44,17 @@ const EquiptmentListing = () => {
             {/* Filter Tags */}
             <div className="w-full">
               <div className="grid grid-cols-3 gap-2 mt-6 mb-8 md:flex md:flex-wrap">
-                {TAGS.map((tag) => (
+                {allCategories.map((cat) => (
                   <button
-                    key={tag}
-                    onClick={() => handleTagChange(tag)}
-                    className={`
-                      text-xs font-medium px-3 py-1 md:py-2 rounded-md
-                      tracking-[0.04em] transition-all duration-200
-                      border cursor-pointer font-inter
-                      ${
-                        activeTag === tag
-                          ? "bg-bg-btn-primary border-[#5C8A3A] text-white"
-                          : "bg-[#FAF8F3] border-[#D9D4C7] text-[#5B5B5B] hover:border-[#5C8A3A] hover:text-[#2F4F2F]"
-                      }
-                    `}
+                    key={cat}
+                    onClick={() => handleTagChange(cat)}
+                    className={`text-xs font-medium px-3 py-1 md:py-2 rounded-md tracking-[0.04em] transition-all duration-200 border cursor-pointer font-inter ${
+                      activeTag === cat
+                        ? "bg-bg-btn-primary border-[#5C8A3A] text-white"
+                        : "bg-[#FAF8F3] border-[#D9D4C7] text-[#5B5B5B] hover:border-[#5C8A3A] hover:text-[#2F4F2F]"
+                    }`}
                   >
-                    {tag}
+                    {cat}
                   </button>
                 ))}
               </div>
@@ -125,15 +78,19 @@ const EquiptmentListing = () => {
           <div className="my-4 md:my-8">
             {/* Results count */}
             <p className="text-sm text-[#7A7A72] mb-4">
-              Showing {paginatedData.length} of {filteredData.length} equipment
+              <span className="font-semibold text-[#1A1A17]">{meta?.total ?? equipment.length}</span> equipment available
             </p>
 
             {/* Equipment Grid */}
-            {paginatedData.length > 0 ? (
+            {isLoading ? (
+              <div className="flex justify-center items-center h-40">
+                <div className="border-t-4 border-b-4 rounded-full animate-spin h-10 w-10 border-bg-btn-primary" />
+              </div>
+            ) : equipment.length > 0 ? (
               <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-                {paginatedData.map((item, idx) => (
+                {equipment.map((item) => (
                   <EquipmentCard
-                    key={`${item.name}-${idx}`}
+                    key={item.id}
                     {...item}
                     onViewDetails={handleViewDetails}
                   />
@@ -151,36 +108,32 @@ const EquiptmentListing = () => {
             )}
 
             {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="flex flex-wrap items-center justify-center gap-2 mt-12">
+            {meta && meta.pages > 1 && (
+              <div className="flex items-center justify-center gap-1 mt-8">
                 <button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 1}
-                  className="rounded border border-[#E5DDD0] px-4 py-1 text-sm text-[#7A7A72] disabled:opacity-40 disabled:cursor-not-allowed hover:border-[#5C8A3A] transition-colors"
+                  onClick={() => setPage(meta.page - 1)}
+                  disabled={!meta.hasPrev}
+                  className="flex px-3 py-1 items-center justify-center rounded border border-[#D4C9B8] text-[#4A4A42] hover:bg-[#F0EBE3] disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   Previous
                 </button>
-
-                {pageNumbers.map((page) => (
+                {Array.from({ length: meta.pages }, (_, i) => i + 1).map((p) => (
                   <button
-                    key={page}
-                    onClick={() => handlePageChange(page)}
-                    className={`h-8 w-8 rounded text-sm md:text-base transition-colors
-                      ${
-                        currentPage === page
-                          ? "bg-[#1F4D3A] text-white"
-                          : "border border-[#E5DDD0] text-[#7A7A72] hover:border-[#5C8A3A]"
-                      }
-                    `}
+                    key={p}
+                    onClick={() => setPage(p)}
+                    className={`flex h-9 w-9 items-center justify-center rounded border text-sm font-medium transition-colors ${
+                      p === meta.page
+                        ? "border-[#1F4D3A] bg-[#1F4D3A] text-white"
+                        : "border-[#D4C9B8] text-[#4A4A42] hover:bg-[#F0EBE3]"
+                    }`}
                   >
-                    {page}
+                    {p}
                   </button>
                 ))}
-
                 <button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                  className="rounded border border-[#E5DDD0] px-4 py-1 text-sm text-[#7A7A72] disabled:opacity-40 disabled:cursor-not-allowed hover:border-[#5C8A3A] transition-colors"
+                  onClick={() => setPage(meta.page + 1)}
+                  disabled={!meta.hasNext}
+                  className="flex px-3 py-1 items-center justify-center rounded border border-[#D4C9B8] text-[#4A4A42] hover:bg-[#F0EBE3] disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   Next
                 </button>
@@ -227,7 +180,6 @@ const EquiptmentListing = () => {
         </p>
         <button
           className="px-6 py-2 text-sm rounded-md cursor-pointer bg-bg-btn font-inter"
-          // onClick={() => navigate()}
         >
           Submit Equipment Enquiry
         </button>

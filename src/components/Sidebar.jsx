@@ -1,4 +1,5 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
 import { Adminlogo } from "../assets";
 import { CiGrid42 } from "react-icons/ci";
 import { LuTractor, LuFileText } from "react-icons/lu";
@@ -6,8 +7,49 @@ import { FiBriefcase } from "react-icons/fi";
 import { RiGroupLine } from "react-icons/ri";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineSettings, MdLogout } from "react-icons/md";
+import { selectCurrentUser, clearAuth } from "../features/auth/slice/authSlice";
+import { useLogoutMutation } from "../features/auth/authApi";
+import { toast } from "react-toastify";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const [logout, { isLoading }] = useLogoutMutation();
+
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
+      dispatch(clearAuth());
+      toast.success("Logged out successfully");
+      navigate("/admin/login");
+    } catch (err) {
+      // Force logout on client side even if server call fails
+      dispatch(clearAuth());
+      toast.error("Logout failed");
+      navigate("/admin/login");
+    }
+  };
+
+  const getInitials = () => {
+    if (!currentUser) return "A";
+    const first = currentUser.firstName?.[0] || "";
+    const last = currentUser.lastName?.[0] || "";
+    return (first + last).toUpperCase() || "A";
+  };
+
+  const getFullName = () => {
+    if (!currentUser) return "Admin User";
+    return (
+      `${currentUser.firstName || ""} ${currentUser.lastName || ""}`.trim() ||
+      "Admin User"
+    );
+  };
+
+  const getRole = () => {
+    if (!currentUser?.role) return "Administrator";
+    return currentUser.role.replace("_", " ");
+  };
   return (
     <div className="flex flex-col w-full h-screen text-white ">
       <div className="py-3 border-b border-b-[#7A7A72] ">
@@ -75,21 +117,27 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="w-[85%] mx-auto space-y-4.5 py-3 mb-auto">
-        <div className="w-full py-2 bg-bg-btn-primary rounded-xl">
+        <div className="w-full py-1 bg-bg-btn-primary rounded-xl">
           <div className="w-[86%] mx-auto flex items-center gap-3">
             <div className="bg-[#1C1C18] h-8 w-8 rounded-full flex items-center justify-center">
-              <h2 className="text-base font-semibold font-inter">A</h2>
+              <h2 className="text-sm font-medium font-inter">
+                {getInitials()}
+              </h2>
             </div>
             <div className="font-inter">
-              <h2 className="text-sm font-bold lg:text-base">Admin User</h2>
-              <h4 className="text-sm">Administrator</h4>
+              <h2 className="text-xs font-medium">{getFullName()}</h2>
+              <h4 className="text-xs">{getRole()}</h4>
             </div>
           </div>
         </div>
         <div className="pl-2">
-          <button className="flex items-center gap-3 cursor-pointer font-inter">
+          <button
+            onClick={handleLogout}
+            disabled={isLoading}
+            className="flex items-center gap-3 cursor-pointer font-inter"
+          >
             <MdLogout className="w-5.5 h-5.5 " />
-            Logout
+            {isLoading ? "Logging out..." : "Logout"}
           </button>
         </div>
       </div>
