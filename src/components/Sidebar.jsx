@@ -5,7 +5,7 @@ import { CiGrid42 } from "react-icons/ci";
 import { LuTractor, LuFileText } from "react-icons/lu";
 import { FiBriefcase } from "react-icons/fi";
 import { RiGroupLine } from "react-icons/ri";
-import { IoNotificationsOutline } from "react-icons/io5";
+import { IoNotificationsOutline, IoDocumentTextOutline } from "react-icons/io5";
 import { MdOutlineSettings, MdLogout } from "react-icons/md";
 import { selectCurrentUser, clearAuth } from "../features/auth/slice/authSlice";
 import { useLogoutMutation } from "../features/auth/authApi";
@@ -85,6 +85,13 @@ const Sidebar = () => {
           >
             <FiBriefcase className="w-5.5 h-5.5 font-semibold" />
             Jobs
+          </NavLink>
+          <NavLink
+            to="/admin/applications"
+            className="flex items-center w-full gap-4 text-base font-inter "
+          >
+            <IoDocumentTextOutline className="w-5 h-5" />
+            Applications
           </NavLink>
           <NavLink
             to="/admin/manage-users"

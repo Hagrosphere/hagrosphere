@@ -6,6 +6,8 @@ import { HeroSection } from "../components";
 import { useNavigate, useParams } from "react-router";
 import { useState } from "react";
 import { useEquipmentDetail, useEquipment } from "../features/equipment/hooks/useEquipment";
+import { useSubmitEquipmentInquiryMutation } from "../features/equipment/equipmentApi";
+import { toast } from "react-toastify";
 
 const EquiptmentListingDetails = () => {
   const [activeImage, setActiveImage] = useState(0);
@@ -14,6 +16,7 @@ const EquiptmentListingDetails = () => {
   const { data: equipmentData, isLoading, isError } = useEquipmentDetail(id);
   const { equipment: relatedEquipment } = useEquipment();
   const equipment = equipmentData?.data ?? equipmentData;
+  const [submitInquiry, { isLoading: isSubmitting }] = useSubmitEquipmentInquiryMutation();
 
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -79,7 +82,7 @@ const EquiptmentListingDetails = () => {
     currentLocation: "Current Location",
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const newErrors = {};
     Object.entries(requiredFields).forEach(([field, label]) => {
       if (!formData[field].trim()) {
@@ -87,7 +90,6 @@ const EquiptmentListingDetails = () => {
       }
     });
 
-    // Basic email format check
     if (
       formData.emailAddress &&
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailAddress)
@@ -100,9 +102,25 @@ const EquiptmentListingDetails = () => {
       return;
     }
 
-    setErrors({});
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
+    try {
+      setErrors({});
+      await submitInquiry({
+        equipmentId: equipment.id,
+        data: {
+          fullName: formData.fullName,
+          phone: formData.phoneNumber,
+          email: formData.emailAddress,
+          currentLocation: formData.currentLocation,
+          farmSize: formData.farmSize || undefined,
+          usageDuration: formData.usageDuration || undefined,
+          additionalDetails: formData.additionalDetails || undefined,
+        },
+      }).unwrap();
+      setSubmitted(true);
+      toast.success("Inquiry submitted successfully!");
+    } catch (error) {
+      toast.error(error?.data?.message || "Failed to submit inquiry");
+    }
   };
 
   return (
@@ -410,14 +428,16 @@ const EquiptmentListingDetails = () => {
                     {/* Submit */}
                     <button
                       onClick={handleSubmit}
-                      disabled={!available}
+                      disabled={!available || isSubmitting}
                       className={`mt-1 w-full rounded px-6 py-1.5 md:py-2  lg:py-3 text-sm font-semibold uppercase tracking-widest text-white transition-all duration-200 ${
-                        available
+                        available && !isSubmitting
                           ? "bg-[#1F4D3A] hover:bg-[#174030] active:scale-[0.98]"
                           : "cursor-not-allowed bg-[#9A9A92]"
                       }`}
                     >
-                      {available
+                      {isSubmitting
+                        ? "Submitting..."
+                        : available
                         ? "Submit Application"
                         : "Currently Unavailable"}
                     </button>

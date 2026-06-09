@@ -57,6 +57,17 @@ export const jobsApi = baseApi.injectEndpoints({
     submitJobApplication: builder.mutation({
       query: ({ jobId, data }) => ({ url: `/jobs/${jobId}/apply`, method: 'POST', body: data }),
       transformResponse: (response) => response,
+      invalidatesTags: ['JobApplications'],
+    }),
+    getJobApplications: builder.query({
+      query: (params) => ({ url: '/jobs/admin/applications/all', params }),
+      transformResponse: (response) => response.data ? response : { data: response, meta: {} },
+      providesTags: ['JobApplications'],
+    }),
+    updateApplicationStatus: builder.mutation({
+      query: ({ id, status }) => ({ url: `/jobs/admin/applications/${id}/status`, method: 'PATCH', body: { status } }),
+      transformResponse: (response) => response.data ?? response,
+      invalidatesTags: ['JobApplications'],
     }),
   }),
   overrideExisting: false,
@@ -65,4 +76,5 @@ export const jobsApi = baseApi.injectEndpoints({
 export const {
   useGetJobsQuery, useGetAdminJobsQuery, useGetJobCategoriesQuery, useGetJobBySlugQuery, useGetJobByIdQuery,
   useCreateJobMutation, useUpdateJobMutation, useDeleteJobMutation, useSubmitJobApplicationMutation,
+  useGetJobApplicationsQuery, useUpdateApplicationStatusMutation,
 } = jobsApi

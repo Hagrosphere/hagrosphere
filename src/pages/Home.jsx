@@ -2,7 +2,6 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { HagroHero, Worker } from "../assets";
 import { Carousel, LearnCard, StatsCard, WeServeCard } from "../components";
 import {
-  articleData,
   features,
   howWeWork,
   testimonialData,
@@ -10,9 +9,11 @@ import {
   weServeData,
 } from "../components/DummyData";
 import { useNavigate } from "react-router";
+import { useArticles } from "../features/articles/hooks/useArticles";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { articles, isLoading } = useArticles();
   return (
     <div className="w-full">
       <div
@@ -37,15 +38,15 @@ const Home = () => {
           <div className="flex items-center mt-12 gap-x-7 md:gap-x-10 font-inter">
             <button
               className="px-3 py-2 text-sm text-white rounded-lg cursor-pointer bg-bg-btn md:text-base"
-              onClick={() => navigate("/equipment-listing")}
+              onClick={() => navigate("/services")}
             >
-              Book Equipment
+              Explore Platform
             </button>
             <button
               className="px-3 py-2 text-sm border border-white rounded-lg md:text-base"
-              onClick={() => navigate("/services")}
+              onClick={() => navigate("/equipment-listing")}
             >
-              View Services
+              Available Equipments
             </button>
           </div>
         </div>
@@ -225,11 +226,17 @@ const Home = () => {
               Nigerian agriculture.
             </p>
           </div>
-          <div className="mt-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[90%] mx-auto gap-8">
-            {articleData.slice(0, 3).map((item) => (
-              <LearnCard key={item.id} {...item} />
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="flex justify-center items-center h-40 mt-9">
+              <div className="border-t-4 border-b-4 rounded-full animate-spin h-10 w-10 border-bg-btn-primary" />
+            </div>
+          ) : (
+            <div className="mt-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[90%] mx-auto gap-8">
+              {articles.slice(0, 3).map((item) => (
+                <LearnCard key={item.id} {...item} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
       <section className="w-full py-12 md:py-16 bg-bg-secondary">

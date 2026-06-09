@@ -37,6 +37,23 @@ export const equipmentApi = baseApi.injectEndpoints({
       query: (id) => ({ url: `/equipment/${id}`, method: 'DELETE' }),
       invalidatesTags: [{ type: 'Equipment', id: 'LIST' }, 'Dashboard'],
     }),
+    submitEquipmentInquiry: builder.mutation({
+      query: ({ equipmentId, data }) => ({ url: `/equipment/${equipmentId}/inquire`, method: 'POST', body: data }),
+      transformResponse: (response) => response.data ?? response,
+    }),
+    getEquipmentInquiries: builder.query({
+      query: (params) => ({ url: '/equipment/admin/inquiries/all', params }),
+      transformResponse: (response) => {
+        // Backend returns { data: [...], meta: {...} }
+        return response.data ? response : { data: response, meta: {} };
+      },
+      providesTags: ['EquipmentInquiries'],
+    }),
+    updateEquipmentInquiryStatus: builder.mutation({
+      query: ({ id, status }) => ({ url: `/equipment/admin/inquiries/${id}/status`, method: 'PATCH', body: { status } }),
+      transformResponse: (response) => response.data ?? response,
+      invalidatesTags: ['EquipmentInquiries'],
+    }),
   }),
   overrideExisting: false,
 })
@@ -48,4 +65,7 @@ export const {
   useCreateEquipmentMutation,
   useUpdateEquipmentMutation,
   useDeleteEquipmentMutation,
+  useSubmitEquipmentInquiryMutation,
+  useGetEquipmentInquiriesQuery,
+  useUpdateEquipmentInquiryStatusMutation,
 } = equipmentApi

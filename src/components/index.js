@@ -15,3 +15,4 @@ export { default as Topbar } from "./Topbar";
 export { default as ProtectedRoute } from "./ProtectedRoute";
 export { default as EquipmentCard } from "./EquipmentCard";
 export { default as DeleteModal } from "./DeleteModal";
+export { default as ScrollToTop } from "./ScrollToTop";

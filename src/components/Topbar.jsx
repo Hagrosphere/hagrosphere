@@ -1,67 +1,14 @@
-// import { FiSearch } from "react-icons/fi";
-// import { IoNotificationsOutline, IoMenuSharp } from "react-icons/io5";
-// import { IoMdClose } from "react-icons/io";
-// import { Adminlogo } from "../assets";
-// import { useState } from "react";
-
-// const Topbar = () => {
-//   const [menu, setMenu] = useState(false);
-//   return (
-//     <div className="w-full bg-white border-b border-b-[#EFF6FF] shadow py-2 md:py-3 lg:py-2.5">
-//       <div className="w-[94%] md:w-[98%] mx-auto flex items-center justify-between font-inter">
-//         <div className="flex items-center gap-1.5 md:hidden ">
-//           <img src={Adminlogo} alt="" className="w-8 h-8 " />
-//           <div className="font-inter">
-//             <h2 className="text-sm font-bold">HAGROSPHERE</h2>
-//             <h4 className="text-[11px] font-medium text-[#7A7A72]">
-//               ADMIN PORTAL
-//             </h4>
-//           </div>
-//         </div>
-//         <div className="hidden md:block">
-//           <h2 className="text-base font-medium md:text-lg">Dashboard</h2>
-//           <p className="text-[#7A7A72] md:text-xs lg:text-sm ">
-//             Wednesday, May 6, 2026
-//           </p>
-//         </div>
-//         <div className="items-center hidden gap-4 md:flex">
-//           <div className="relative w-full md:w-78 font-inter">
-//             <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#7A7A72]" />
-//             <input
-//               type="text"
-//               //   value={searchQuery}
-//               //   onChange={handleSearchChange}
-//               placeholder="Search"
-//               className="w-full rounded border border-[#E5DDD0] pl-10 pr-4 py-1.5 text-sm text-[#7A7A72] placeholder:text-[#7A7A72] outline-0"
-//             />
-//           </div>
-//           <div className="relative">
-//             <IoNotificationsOutline className="text-[#7A7A72] h-5 w-5 lg:h-5.5 lg:w-5.5" />
-//             <div className="absolute -top-3 -right-1 text-[#E17100]">
-//               <h4 className="text-base font-semibold">3</h4>
-//             </div>
-//           </div>
-//         </div>
-//         <div className="block md:hidden" onClick={() => setMenu(!menu)}>
-//           {menu ? (
-//             <IoMdClose className="w-6 h-6" />
-//           ) : (
-//             <IoMenuSharp className="w-6 h-6" />
-//           )}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Topbar;
-
 import { FiSearch } from "react-icons/fi";
 import { IoNotificationsOutline, IoMenuSharp } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
+import { MdWork, MdEmail } from "react-icons/md";
+import { LuTractor } from "react-icons/lu";
 import { Adminlogo } from "../assets";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
+import { useDashboard } from "../features/dashboard/hooks/useDashboard";
+import { useJobApplications } from "../features/jobs/hooks/useJobApplications";
+import { useEquipmentInquiries } from "../features/equipment/hooks/useEquipmentInquiries";
 
 // Page config: maps route paths to title, subtitle, and optional action button
 
@@ -76,8 +23,49 @@ const getRealDate = () => {
 
 const Topbar = () => {
   const [menu, setMenu] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const notificationRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const { stats, recent } = useDashboard();
+  const { applications } = useJobApplications();
+  const { inquiries } = useEquipmentInquiries();
+
+  // Get pending applications and inquiries
+  const pendingJobApps = applications
+    .filter((app) => app.status === "PENDING")
+    .slice(0, 3);
+  const pendingEquipmentInq = inquiries
+    .filter((inq) => inq.status === "PENDING")
+    .slice(0, 3);
+  const recentContactMessages = (recent?.contactMessages ?? [])
+    .filter((msg) => msg.status === "UNREAD")
+    .slice(0, 3);
+
+  const totalNotifications =
+    (stats?.messages?.unread ?? 0) +
+    pendingJobApps.length +
+    pendingEquipmentInq.length;
+
+  // Close notifications dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        notificationRef.current &&
+        !notificationRef.current.contains(event.target)
+      ) {
+        setShowNotifications(false);
+      }
+    };
+
+    if (showNotifications) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showNotifications]);
 
   const PAGE_CONFIG = {
     "/admin": {
@@ -135,6 +123,10 @@ const Topbar = () => {
       title: "Edit Equipment",
       subtitle: "Update equipment information and availability",
     },
+    "/admin/applications": {
+      title: "Job Applications & Inquiries",
+      subtitle: "Review and manage job applications and equipment inquiries",
+    },
   };
 
   const getPageConfig = (pathname) => {
@@ -191,11 +183,203 @@ const Topbar = () => {
             />
           </div>
 
-          <div className="relative">
-            <IoNotificationsOutline className="text-[#7A7A72] h-5 w-5 lg:h-5.5 lg:w-5.5" />
-            <div className="absolute -top-3 -right-1 text-[#E17100]">
-              <h4 className="text-base font-semibold">3</h4>
-            </div>
+          <div className="relative" ref={notificationRef}>
+            <button
+              onClick={() => setShowNotifications(!showNotifications)}
+              className="relative hover:opacity-70 transition-opacity"
+            >
+              <IoNotificationsOutline className="text-[#7A7A72] h-5 w-5 lg:h-5.5 lg:w-5.5" />
+              {totalNotifications > 0 && (
+                <div className="absolute -top-1 -right-1 bg-[#E17100] text-white rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="text-[10px] font-bold">
+                    {totalNotifications > 9 ? "9+" : totalNotifications}
+                  </span>
+                </div>
+              )}
+            </button>
+
+            {/* Notifications Dropdown */}
+            {showNotifications && (
+              <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-[#E5E7EB] z-50">
+                <div className="px-4 py-3 border-b border-[#F0F0F0]">
+                  <h3 className="font-semibold text-sm text-[#111]">
+                    Notifications
+                  </h3>
+                  <p className="text-xs text-[#6B7280] mt-0.5">
+                    {totalNotifications} pending items
+                  </p>
+                </div>
+                <div className="max-h-96 overflow-y-auto">
+                  {/* Pending Job Applications */}
+                  {pendingJobApps.length > 0 && (
+                    <>
+                      <div className="px-4 py-2 bg-[#F9FAFB]">
+                        <p className="text-xs font-semibold text-[#6B7280] uppercase">
+                          Job Applications
+                        </p>
+                      </div>
+                      {pendingJobApps.map((app) => (
+                        <div
+                          key={app.id}
+                          className="px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-[#F0F0F0] transition-colors"
+                          onClick={() => {
+                            setShowNotifications(false);
+                            navigate("/admin/applications");
+                          }}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="p-2 bg-[#F0F9FF] rounded-lg shrink-0">
+                              <MdWork className="text-[#0369A1] text-lg" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium text-[#111] truncate">
+                                {app.fullName}
+                              </p>
+                              <p className="text-xs text-[#6B7280] truncate">
+                                {app.job?.title}
+                              </p>
+                              <p className="text-xs text-[#9CA3AF] mt-1">
+                                {new Date(app.createdAt).toLocaleDateString(
+                                  "en-US",
+                                  {
+                                    month: "short",
+                                    day: "numeric",
+                                  },
+                                )}
+                              </p>
+                            </div>
+                            <div className="w-2 h-2 bg-[#EA580C] rounded-full mt-1.5 shrink-0" />
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  )}
+
+                  {/* Pending Equipment Inquiries */}
+                  {pendingEquipmentInq.length > 0 && (
+                    <>
+                      <div className="px-4 py-2 bg-[#F9FAFB]">
+                        <p className="text-xs font-semibold text-[#6B7280] uppercase">
+                          Equipment Inquiries
+                        </p>
+                      </div>
+                      {pendingEquipmentInq.map((inq) => (
+                        <div
+                          key={inq.id}
+                          className="px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-[#F0F0F0] transition-colors"
+                          onClick={() => {
+                            setShowNotifications(false);
+                            navigate("/admin/applications");
+                          }}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="p-2 bg-[#FFF7ED] rounded-lg shrink-0">
+                              <LuTractor className="text-[#EA580C] text-lg" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium text-[#111] truncate">
+                                {inq.fullName}
+                              </p>
+                              <p className="text-xs text-[#6B7280] truncate">
+                                {inq.equipment?.name}
+                              </p>
+                              <p className="text-xs text-[#9CA3AF] mt-1">
+                                {new Date(inq.createdAt).toLocaleDateString(
+                                  "en-US",
+                                  {
+                                    month: "short",
+                                    day: "numeric",
+                                  },
+                                )}
+                              </p>
+                            </div>
+                            <div className="w-2 h-2 bg-[#EA580C] rounded-full mt-1.5 shrink-0" />
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  )}
+
+                  {/* Unread Contact Messages */}
+                  {recentContactMessages.length > 0 && (
+                    <>
+                      <div className="px-4 py-2 bg-[#F9FAFB]">
+                        <p className="text-xs font-semibold text-[#6B7280] uppercase">
+                          Contact Messages
+                        </p>
+                      </div>
+                      {recentContactMessages.map((msg) => (
+                        <div
+                          key={msg.id}
+                          className="px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-[#F0F0F0] transition-colors"
+                          onClick={() => {
+                            setShowNotifications(false);
+                            navigate("/admin");
+                          }}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="p-2 bg-[#F0FDF4] rounded-lg shrink-0">
+                              <MdEmail className="text-[#16A34A] text-lg" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium text-[#111] truncate">
+                                {msg.name}
+                              </p>
+                              <p className="text-xs text-[#6B7280] truncate">
+                                {msg.subject}
+                              </p>
+                              <p className="text-xs text-[#9CA3AF] mt-1">
+                                {new Date(msg.createdAt).toLocaleDateString(
+                                  "en-US",
+                                  {
+                                    month: "short",
+                                    day: "numeric",
+                                  },
+                                )}
+                              </p>
+                            </div>
+                            <div className="w-2 h-2 bg-[#DC2626] rounded-full mt-1.5 shrink-0" />
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  )}
+
+                  {totalNotifications === 0 && (
+                    <div className="px-4 py-8 text-center text-[#9CA3AF] text-sm">
+                      No pending notifications
+                    </div>
+                  )}
+                </div>
+                {totalNotifications > 0 && (
+                  <div className="px-4 py-3 border-t border-[#F0F0F0] space-y-2">
+                    {(pendingJobApps.length > 0 ||
+                      pendingEquipmentInq.length > 0) && (
+                      <button
+                        onClick={() => {
+                          setShowNotifications(false);
+                          navigate("/admin/applications");
+                        }}
+                        className="text-sm text-bg-btn-primary hover:underline font-medium w-full text-left"
+                      >
+                        View all applications
+                      </button>
+                    )}
+                    {recentContactMessages.length > 0 && (
+                      <button
+                        onClick={() => {
+                          setShowNotifications(false);
+                          navigate("/admin");
+                        }}
+                        className="text-sm text-bg-btn-primary hover:underline font-medium w-full text-left"
+                      >
+                        View all messages
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {config.action && (

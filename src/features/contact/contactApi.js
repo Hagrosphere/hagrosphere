@@ -5,6 +5,7 @@ export const contactApi = baseApi.injectEndpoints({
     submitContact: builder.mutation({
       query: (body) => ({ url: '/contact', method: 'POST', body }),
       transformResponse: (response) => response.data ?? response,
+      invalidatesTags: ['Dashboard', { type: 'Contact', id: 'LIST' }],
     }),
     getContactMessages: builder.query({
       query: (params) => ({ url: '/contact', params }),
@@ -17,12 +18,12 @@ export const contactApi = baseApi.injectEndpoints({
     markMessageRead: builder.mutation({
       query: (id) => ({ url: `/contact/${id}/read`, method: 'PATCH' }),
       transformResponse: (response) => response.data ?? response,
-      invalidatesTags: (_r, _e, id) => [{ type: 'Contact', id }, { type: 'Contact', id: 'LIST' }],
+      invalidatesTags: (_r, _e, id) => [{ type: 'Contact', id }, { type: 'Contact', id: 'LIST' }, 'Dashboard'],
     }),
     markMessageReplied: builder.mutation({
       query: ({ id, replyNote }) => ({ url: `/contact/${id}/replied`, method: 'PATCH', body: { replyNote } }),
       transformResponse: (response) => response.data ?? response,
-      invalidatesTags: (_r, _e, { id }) => [{ type: 'Contact', id }, { type: 'Contact', id: 'LIST' }],
+      invalidatesTags: (_r, _e, { id }) => [{ type: 'Contact', id }, { type: 'Contact', id: 'LIST' }, 'Dashboard'],
     }),
   }),
   overrideExisting: false,

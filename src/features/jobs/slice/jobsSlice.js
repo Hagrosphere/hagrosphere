@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   filters: { page: 1, limit: 10, sortBy: 'publishedAt', sortOrder: 'desc' },
   adminFilters: { page: 1, limit: 10, sortBy: 'createdAt', sortOrder: 'desc' },
+  applicationFilters: { page: 1, limit: 20 },
   selectedIds: [],
 }
 
@@ -26,6 +27,12 @@ const jobsSlice = createSlice({
       else state.selectedIds.splice(idx, 1)
     },
     clearSelectedIds: (state) => { state.selectedIds = [] },
+    setApplicationFilters: (state, action) => {
+      state.applicationFilters = { ...state.applicationFilters, ...action.payload }
+    },
+    setApplicationPage: (state, action) => {
+      state.applicationFilters.page = action.payload
+    },
   },
 })
 
@@ -33,6 +40,7 @@ export const {
   setFilters: setJobFilters, setPage: setJobPage,
   resetFilters: resetJobFilters, toggleSelectId: toggleSelectJobId,
   clearSelectedIds: clearSelectedJobIds,
+  setApplicationFilters, setApplicationPage,
 } = jobsSlice.actions
 
 export const selectJobFilters = (s) => {
@@ -42,4 +50,5 @@ export const selectJobFilters = (s) => {
     : s.jobs.filters;
 };
 export const selectAdminJobFilters = (s) => s.jobs.filters;
+export const selectApplicationFilters = (s) => s.jobs.applicationFilters;
 export default jobsSlice.reducer

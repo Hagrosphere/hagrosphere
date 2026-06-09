@@ -6,7 +6,7 @@ export const dashboardApi = baseApi.injectEndpoints({
       query: () => '/dashboard/overview',
       transformResponse: (response) => response.data ?? response,
       providesTags: ['Dashboard'],
-      keepUnusedDataFor: 300,
+      keepUnusedDataFor: 60, // Reduced from 300 to 60 seconds
     }),
     getActivityFeed: builder.query({
       query: (params) => ({ url: '/dashboard/activity', params }),

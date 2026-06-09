@@ -27,5 +27,7 @@ export { default as AdminEditJob } from "./AdminEditJob";
 export { default as AdminManageArticle } from "./AdminManageArticle";
 export { default as AdminEditArticle } from "./AdminEditArticle";
 export { default as AdminPostArticle } from "./AdminPostArticle";
+export { default as AdminJobApplications } from "./AdminJobApplications";
+export { default as AdminApplications } from "./AdminApplications";
 export { default as AdminLogin } from "./AdminLogin";
 export { default as Errorpage } from "./Errorpage";

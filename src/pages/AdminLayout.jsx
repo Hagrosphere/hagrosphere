@@ -1,9 +1,10 @@
 import { Outlet } from "react-router";
-import { Sidebar, Topbar } from "../components";
+import { Sidebar, Topbar, ScrollToTop } from "../components";
 
 const AdminLayout = () => {
   return (
     <div className="flex items-start w-full overflow-x-hidden">
+      <ScrollToTop />
       <div className="hidden md:block fixed md:w-[20%] lg:w-[17%] h-screen bg-bg-deepmain">
         <Sidebar />
       </div>

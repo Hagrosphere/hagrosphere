@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { HeroSection } from "../components";
 import { IoWarningOutline } from "react-icons/io5";
 import { FiCheckCircle } from "react-icons/fi";
@@ -7,8 +7,24 @@ import { solutionsData } from "../components/DummyData";
 
 const ServiceDetails = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const solution = solutionsData.find((item) => item.slug === slug);
   if (!solution) return <div>Not found</div>;
+
+  const handleCTAClick = () => {
+    if (slug === "farm-equipment") {
+      navigate("/equipment-listing");
+    } else if (slug === "farm-job") {
+      navigate("/job-listing");
+    } else if (slug === "growth-capital") {
+      navigate("/learn");
+    } else if (slug === "seamless-distribut") {
+      navigate("/contact-us");
+    } else {
+      // market-access - not available yet, do nothing or show message
+      return;
+    }
+  };
 
   const { title, subtitle, image, details, icon } = solution;
 
@@ -17,9 +33,9 @@ const ServiceDetails = () => {
       <HeroSection subtitle="SERVICES" title={title} description={subtitle} />
 
       <section className="bg-[#F8F8F8] py-8 md:py-16">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-8 items-center">
+        <div className="flex flex-col items-center max-w-6xl gap-8 px-4 mx-auto lg:flex-row">
           <div className="flex-1">
-            <div className="flex items-center gap-x-3 mb-3">
+            <div className="flex items-center mb-3 gap-x-3">
               <div className="bg-[#1A3325] text-white rounded-md flex items-center justify-center w-6 h-6 md:h-9 md:w-9">
                 {icon}
               </div>
@@ -27,7 +43,7 @@ const ServiceDetails = () => {
                 Service Overview
               </p>
             </div>
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mt-4  mb-4 md:mb-5 max-w-lg  leading-7 md:leading-10">
+            <h2 className="max-w-lg mt-4 mb-4 text-xl font-semibold leading-7 md:text-2xl lg:text-3xl md:mb-5 md:leading-10">
               {details.introTitle}
             </h2>
             <p className="text-[#4A4A42] text-xs md:text-sm font-inter">
@@ -42,7 +58,7 @@ const ServiceDetails = () => {
             <img
               src={image}
               alt={title}
-              className="w-full h-64 md:h-72 object-cover rounded-xl"
+              className="object-cover w-full h-64 md:h-72 rounded-xl"
             />
           </div>
         </div>
@@ -50,22 +66,22 @@ const ServiceDetails = () => {
       <div className="">
         {details.whoFor && (
           <section className="py-3 md:py-12 bg-[#FAF8F4]">
-            <div className="max-w-6xl mx-auto px-4">
+            <div className="max-w-6xl px-4 mx-auto">
               <h4 className="my-4 text-[#B07D2A] uppercase text-sm font-medium font-inter">
                 Eligibility
               </h4>
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 md:mb-9">
+              <h3 className="mb-6 text-xl font-bold md:text-2xl lg:text-3xl md:mb-9">
                 Who This Service Is For
               </h3>
 
-              <div className="grid grid-cols-1  md:grid-cols-3 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
                 {details.whoFor.map((item) => (
                   <div key={item.id} className="py-6 bg-white">
                     <div className="w-[90%] mx-auto">
                       <h3 className="text-sm md:text-base lg:text-lg font-semibold mb-3.5">
                         {item.title}
                       </h3>
-                      <p className="font-inter text-xs md:text-sm">
+                      <p className="text-xs font-inter md:text-sm">
                         {item.detail}
                       </p>
                     </div>
@@ -83,18 +99,18 @@ const ServiceDetails = () => {
             <h4 className="my-4 text-[#B07D2A] uppercase text-sm font-medium font-inter">
               Eligibility
             </h4>
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 md:mb-9">
+            <h3 className="mb-6 text-xl font-bold md:text-2xl lg:text-3xl md:mb-9">
               Two-Sided Service
             </h3>
           </div>
           <div className="w-[88%] mx-auto grid  md:grid-cols-2 gap-3.5 md:gap-0.5">
             {details.twoSided.map((item) => (
-              <div className="bg-white py-6 w-full" key={item.id}>
+              <div className="w-full py-6 bg-white" key={item.id}>
                 <div className="w-[90%] mx-auto">
                   <h4 className="font-inter text-xs md:text-sm text-[#B07D2A]">
                     {item.title}
                   </h4>
-                  <h4 className="font-medium text-base md:text-lg lg:text-xl my-4">
+                  <h4 className="my-4 text-base font-medium md:text-lg lg:text-xl">
                     {item.subtitle}
                   </h4>
                   <ul className="space-y-2 text-sm">
@@ -119,11 +135,11 @@ const ServiceDetails = () => {
 
       {details.howItWorks && (
         <section className="py-12 bg-[#F8F8F8]">
-          <div className="max-w-6xl mx-auto px-4">
+          <div className="max-w-6xl px-4 mx-auto">
             <h4 className="my-4 text-[#B07D2A] uppercase text-sm font-medium font-inter">
               process
             </h4>
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 md:mb-8">
+            <h3 className="mb-6 text-xl font-bold md:text-2xl lg:text-3xl md:mb-8">
               How It Works
             </h3>
 
@@ -137,10 +153,10 @@ const ServiceDetails = () => {
                     0{item.id}
                   </h4>
                   <div className="">
-                    <h2 className="font-medium text-base md:text-lg mb-1">
+                    <h2 className="mb-1 text-base font-medium md:text-lg">
                       {item.title}
                     </h2>
-                    <p className="font-inter text-xs md:text-sm">
+                    <p className="text-xs font-inter md:text-sm">
                       {item.detail}
                     </p>
                   </div>
@@ -154,13 +170,13 @@ const ServiceDetails = () => {
       {/* HOW IT WORKS FOR FARM JOB AGENT */}
       {details.twoSidedHowItWorks && (
         <section className="py-12 bg-white">
-          <div className="max-w-6xl mx-auto px-4 flex items-start flex-col md:flex-row gap-3 md:gap-10">
+          <div className="flex flex-col items-start max-w-6xl gap-3 px-4 mx-auto md:flex-row md:gap-10">
             {details.twoSidedHowItWorks.map((item) => (
               <div className="w-full md:w-[50%]" key={item.id}>
                 <h4 className="mb-2.5 text-[#B07D2A] uppercase text-sm font-medium font-inter">
                   {item.topTag}
                 </h4>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-6 md:mb-8">
+                <h3 className="mb-6 text-lg font-bold md:text-xl lg:text-2xl md:mb-8">
                   {item.title}
                 </h3>
                 <div className="">
@@ -173,10 +189,10 @@ const ServiceDetails = () => {
                         0{item.id}
                       </h4>
                       <div className="">
-                        <h2 className="font-medium text-base md:text-lg mb-1">
+                        <h2 className="mb-1 text-base font-medium md:text-lg">
                           {item.title}
                         </h2>
-                        <p className="font-inter text-xs ">{item.detail}</p>
+                        <p className="text-xs font-inter ">{item.detail}</p>
                       </div>
                     </div>
                   ))}
@@ -190,13 +206,13 @@ const ServiceDetails = () => {
       {/* PROCESS DATA FOR FARM EQUIPMENT */}
       {details.processDetail && (
         <section className="py-6 md:py-12 bg-[#FAF8F4]">
-          <div className="max-w-6xl mx-auto px-4 flex items-start flex-col md:flex-row gap-10">
+          <div className="flex flex-col items-start max-w-6xl gap-10 px-4 mx-auto md:flex-row">
             <div className="w-full md:w-[50%]">
               <div className="mb-6 md:mb-9">
                 <h4 className="mb-2.5 text-[#B07D2A] uppercase text-sm font-medium font-inter">
                   Requirements
                 </h4>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-bold">
+                <h3 className="text-lg font-bold md:text-xl lg:text-2xl">
                   Eligibility Criteria
                 </h3>
               </div>
@@ -216,7 +232,7 @@ const ServiceDetails = () => {
                 <h4 className="mb-2.5 text-[#B07D2A] uppercase text-sm font-medium font-inter">
                   Timeline
                 </h4>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-bold">
+                <h3 className="text-lg font-bold md:text-xl lg:text-2xl">
                   Expected Timeframes
                 </h3>
               </div>
@@ -247,13 +263,13 @@ const ServiceDetails = () => {
       {/* SERVICE SCOOPE FOR MARKET ACCESS */}
       {details.serviceScope && (
         <section className="py-12 bg-[#E5DDD0]">
-          <div className="max-w-6xl mx-auto px-4 flex items-start flex-col md:flex-row gap-3 md:gap-10">
+          <div className="flex flex-col items-start max-w-6xl gap-3 px-4 mx-auto md:flex-row md:gap-10">
             <div className="w-full md:w-[50%]">
               <div className="mb-6 md:mb-9">
                 <h4 className="mb-2.5 text-[#B07D2A] uppercase text-sm font-medium font-inter">
                   Supported Produce
                 </h4>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-bold">
+                <h3 className="text-lg font-bold md:text-xl lg:text-2xl">
                   Currently Coordinated Crops
                 </h3>
               </div>
@@ -267,7 +283,7 @@ const ServiceDetails = () => {
                       {item.title}
                     </h3>
                     <div className="">
-                      <p className="flex items-center  gap-x-2  flex-row">
+                      <p className="flex flex-row items-center gap-x-2">
                         {item.produce.map((item, i) => (
                           <p
                             className="text-[#4A4A42] text-xs md:text-sm "
@@ -291,7 +307,7 @@ const ServiceDetails = () => {
                 <h4 className="mb-2.5 text-[#B07D2A] uppercase text-sm font-medium font-inter">
                   Requirements
                 </h4>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-bold">
+                <h3 className="text-lg font-bold md:text-xl lg:text-2xl">
                   Eligibility Criteria
                 </h3>
               </div>
@@ -314,17 +330,17 @@ const ServiceDetails = () => {
 
       {details.requirements && (
         <section className="py-12 bg-[#FAF8F4]">
-          <div className="max-w-6xl mx-auto px-4 flex items-start flex-col md:flex-row gap-3 md:gap-10">
-            <div className="flex items-start flex-col gap-6 md:gap-8 md:flex-row w-full">
+          <div className="flex flex-col items-start max-w-6xl gap-3 px-4 mx-auto md:flex-row md:gap-10">
+            <div className="flex flex-col items-start w-full gap-6 md:gap-8 md:flex-row">
               {details.requirements.map((item) => (
                 <div className="mb-6 md:mb-9 w-full md:w-[50%] " key={item.id}>
                   <h4 className="mb-2.5 text-[#B07D2A] uppercase text-sm font-medium font-inter">
                     {item.topTag}
                   </h4>
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold">
+                  <h3 className="text-lg font-bold md:text-xl lg:text-2xl">
                     {item.title}
                   </h3>
-                  <div className="flex flex-col gap-y-3 mt-5 md:mt-8">
+                  <div className="flex flex-col mt-5 gap-y-3 md:mt-8">
                     {item.requirementList.map((item, index) => (
                       <div
                         className="flex items-center gap-3 md:gap-4"
@@ -346,13 +362,13 @@ const ServiceDetails = () => {
 
       {details.processingDetail && (
         <section className="py-12 bg-white">
-          <div className="max-w-6xl mx-auto px-4 flex items-start flex-col md:flex-row gap-3 md:gap-10">
+          <div className="flex flex-col items-start max-w-6xl gap-3 px-4 mx-auto md:flex-row md:gap-10">
             <div className="w-full md:w-[50%]">
               <div className="mb-6 md:mb-9">
                 <h4 className="mb-2.5 text-[#B07D2A] uppercase text-sm font-medium font-inter">
                   Timeline
                 </h4>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-bold">
+                <h3 className="text-lg font-bold md:text-xl lg:text-2xl">
                   Expected Timeframes
                 </h3>
               </div>
@@ -379,10 +395,10 @@ const ServiceDetails = () => {
             <div className="w-full md:w-[50%]">
               <div className="mb-6 md:mb-9">
                 <h4 className="mb-2.5 text-[#B07D2A] uppercase text-sm font-medium font-inter flex items-center gap-x-2">
-                  <IoWarningOutline className="h-5 w-5" />
+                  <IoWarningOutline className="w-5 h-5" />
                   <span>Limitations</span>
                 </h4>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-bold">
+                <h3 className="text-lg font-bold md:text-xl lg:text-2xl">
                   Risks & Limitations
                 </h3>
               </div>
@@ -393,7 +409,7 @@ const ServiceDetails = () => {
                     key={item.id}
                   >
                     <div className="">
-                      <h5 className="font-inter text-sm">
+                      <h5 className="text-sm font-inter">
                         <span className="font-medium ">{item.title}</span>
                       </h5>
                       <p className="text-[#4A4A42] mt-1.5 text-xs font-inter">
@@ -412,23 +428,23 @@ const ServiceDetails = () => {
 
       {details.limitation && (
         <section className="py-12 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
+          <div className="max-w-6xl px-4 mx-auto">
             <div className="flex items-start gap-4">
               <IoWarningOutline className="text-[#8B7355] w-6 h-6 md:w-8 md:h-8 animate-pulse" />
               <div className="">
                 <h4 className="uppercase font-inter text-xs text-[#8B7355] ">
                   Limitations
                 </h4>
-                <h2 className="mt-1 font-bold text-lg md:text-xl lg:text-2xl">
+                <h2 className="mt-1 text-lg font-bold md:text-xl lg:text-2xl">
                   Risks & Limitations
                 </h2>
               </div>
             </div>
-            <div className="mt-7 grid md:grid-cols-2 gap-4 md:gap-px">
+            <div className="grid gap-4 mt-7 md:grid-cols-2 md:gap-px">
               {details.limitation.map((item) => (
-                <div className="bg-bg-plane w-full py-6" key={item.id}>
+                <div className="w-full py-6 bg-bg-plane" key={item.id}>
                   <div className="w-[90%] mx-auto">
-                    <h3 className="font-inter text-base md:text-lg font-medium">
+                    <h3 className="text-base font-medium font-inter md:text-lg">
                       {item.title}
                     </h3>
                     <p className="py-3 text-xs md:text-sm font-inter text-[#4A4A42]">
@@ -444,15 +460,42 @@ const ServiceDetails = () => {
 
       {/* CTA */}
       <section className="bg-[#1F4D3A] text-white py-12 text-center">
-        <h3 className="text-lg md:text-xl lg:text-2xl font-semibold ">
-          Ready to Request Equipment Access?
+        <h3 className="text-lg font-semibold md:text-xl lg:text-2xl ">
+          {slug === "farm-equipment"
+            ? "Ready to Request Equipment Access?"
+            : slug === "farm-job"
+              ? "Ready to Explore Farm Job Opportunities?"
+              : slug === "market-access"
+                ? "Ready to Connect with Market Buyers?"
+                : slug === "growth-capital"
+                  ? "Ready to Explore Growth Capital Options?"
+                  : "Ready to Connect with Distribution Partners?"}
         </h3>
-        <p className="my-5 md:my-8 font-inter text-sm md:text-base lg:text-lg">
-          Submit an enquiry to see if equipment sharing is available in your
-          region.
+        <p className="my-5 text-sm md:my-8 font-inter md:text-base lg:text-lg">
+          {slug === "farm-equipment"
+            ? "Submit an enquiry to see if equipment sharing is available in your region."
+            : slug === "farm-job"
+              ? "Submit an enquiry to explore verified farm job opportunities or request workers."
+              : slug === "market-access"
+                ? "Submit an enquiry to connect with verified buyers and access commercial markets."
+                : slug === "growth-capital"
+                  ? "Submit an enquiry to explore financing options for your agricultural business."
+                  : "Submit an enquiry to connect with distribution networks nationwide."}
         </p>
-        <button className="bg-white font-inter text-[#1F4D3A] px-6 py-2 text-sm rounded-md">
-          Submit Equipment Enquiry
+        <button
+          onClick={handleCTAClick}
+          className="bg-white font-inter text-[#1F4D3A] px-6 py-2 text-sm rounded-md hover:bg-gray-100 transition-colors"
+          disabled={slug === "market-access"}
+        >
+          {slug === "farm-equipment"
+            ? "Explore Available Equipment"
+            : slug === "farm-job"
+              ? "Explore Available Jobs"
+              : slug === "market-access"
+                ? "Coming Soon"
+                : slug === "growth-capital"
+                  ? "Learn More"
+                  : "Contact Us"}
         </button>
       </section>
     </div>

@@ -33,6 +33,8 @@ import {
   AdminManageArticle,
   AdminEditArticle,
   AdminPostArticle,
+  AdminJobApplications,
+  AdminApplications,
   AdminLogin,
 } from "./pages";
 import { ProtectedRoute } from "./components";
@@ -79,6 +81,8 @@ const routes = [
           { path: "manage-jobs", element: <AdminJobManagement /> },
           { path: "add-job", element: <AdminPostJob /> },
           { path: "edit-job/:id", element: <AdminEditJob /> },
+          { path: "job-applications", element: <AdminJobApplications /> },
+          { path: "applications", element: <AdminApplications /> },
           { path: "manage-users", element: <AdminUserManagement /> },
           { path: "manage-articles", element: <AdminManageArticle /> },
           { path: "add-article", element: <AdminPostArticle /> },

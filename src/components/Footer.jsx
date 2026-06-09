@@ -37,7 +37,7 @@ const Footer = () => {
       header: "Contact Us",
       other: [
         { id: 1, text: "+234 803 816 3298 / +447349185956" },
-        { id: 2, text: "hello@hagrosphere.nga" },
+        { id: 2, text: "hello@hagrosphere.com" },
         {
           id: 3,
           text: "Room 7, Trinity Plaza,  By-Pass Junction. Oyemekun Road,  Akure Ondo State, Nigeria ",

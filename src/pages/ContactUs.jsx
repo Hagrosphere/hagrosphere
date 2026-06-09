@@ -4,11 +4,70 @@ import { IoIosArrowDown } from "react-icons/io";
 import { MdMailOutline } from "react-icons/md";
 import { LuPhone } from "react-icons/lu";
 import { IoLocationOutline } from "react-icons/io5";
+import { useContact } from "../features/contact/hooks/useContact";
+import { toast } from "react-toastify";
 
 const ContactUs = () => {
   const [userTypeOpen, setUserTypeOpen] = useState(false);
   const [serviceOpen, setServiceOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
+
+  // Form state
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    userType: "",
+    service: "",
+    subject: "",
+    message: "",
+  });
+
+  const { submit, isSubmitting, isSubmitted } = useContact();
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validation
+    if (!formData.name || !formData.email || !formData.message) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    // Build subject from selections
+    const subject = `${formData.userType || "General"} - ${formData.service || "Enquiry"}`;
+
+    try {
+      await submit({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: subject,
+        message: formData.message,
+      }).unwrap();
+
+      toast.success("Your enquiry has been submitted successfully!");
+
+      // Reset form
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        userType: "",
+        service: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      toast.error(
+        error?.data?.message || "Failed to submit enquiry. Please try again.",
+      );
+    }
+  };
 
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -49,7 +108,7 @@ const ContactUs = () => {
         <div className="w-[92%] md:w-[94%] mx-auto flex flex-col md:flex-row gap-8 md:gap-16">
           {/* LEFT SIDE */}
           <div className="w-full md:w-[50%]">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+            <h2 className="text-xl font-semibold md:text-2xl lg:text-3xl">
               Submit an Enquiry
             </h2>
 
@@ -58,25 +117,32 @@ const ContactUs = () => {
               eligibility.
             </p>
 
-            <form className="w-full mt-8">
+            <form className="w-full mt-8" onSubmit={handleSubmit}>
               {/* Name + Phone */}
-              <div className="flex flex-col md:flex-row gap-5">
+              <div className="flex flex-col gap-5 md:flex-row">
                 <div className="w-full">
-                  <label className="text-sm md:text-base font-medium font-inter">
-                    Full Name
+                  <label className="text-sm font-medium md:text-base font-inter">
+                    Full Name *
                   </label>
                   <input
                     type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
                     className="w-full bg-[#F8F9FA] rounded-md outline-0 px-4 mt-3 h-8 md:h-9 border border-[#dadada]"
                   />
                 </div>
 
                 <div className="w-full">
-                  <label className="text-sm md:text-base font-medium font-inter">
+                  <label className="text-sm font-medium md:text-base font-inter">
                     Phone Number
                   </label>
                   <input
                     type="text"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
                     className="w-full bg-[#F8F9FA] rounded-md outline-0 px-4 mt-3 h-8 md:h-9 border border-[#dadada]"
                   />
                 </div>
@@ -84,20 +150,24 @@ const ContactUs = () => {
 
               {/* Email */}
               <div className="mt-5">
-                <label className="text-sm md:text-base font-medium font-inter">
-                  Email
+                <label className="text-sm font-medium md:text-base font-inter">
+                  Email *
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
                   className="w-full bg-[#F8F9FA] rounded-md outline-0 px-4 mt-3 h-8 md:h-9 border border-[#dadada]"
                 />
               </div>
 
               {/* Dropdowns */}
-              <div className="mt-8 flex flex-col md:flex-row gap-5">
+              <div className="flex flex-col gap-5 mt-8 md:flex-row">
                 {/* User Type */}
                 <div className="relative w-full">
-                  <label className="text-sm md:text-base font-medium font-inter">
+                  <label className="text-sm font-medium md:text-base font-inter">
                     I am a...
                   </label>
 
@@ -105,7 +175,7 @@ const ContactUs = () => {
                     onClick={() => setUserTypeOpen(!userTypeOpen)}
                     className="mt-2 w-full bg-[#F8F9FA] cursor-pointer text-[#6B7280] px-4 py-2 rounded-md flex items-center justify-between text-xs md:text-sm font-inter"
                   >
-                    <span>Select type</span>
+                    <span>{formData.userType || "Select type"}</span>
                     <IoIosArrowDown
                       className={`transition-transform duration-200 ${
                         userTypeOpen ? "rotate-180" : ""
@@ -114,7 +184,7 @@ const ContactUs = () => {
                   </div>
 
                   {userTypeOpen && (
-                    <div className="absolute mt-1 w-full bg-white border rounded-md shadow">
+                    <div className="absolute z-10 w-full mt-1 bg-white border rounded-md shadow">
                       {[
                         "Farmers",
                         "Farm Worker",
@@ -124,8 +194,11 @@ const ContactUs = () => {
                       ].map((item, index) => (
                         <div
                           key={index}
-                          onClick={() => setUserTypeOpen(false)}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                          onClick={() => {
+                            setFormData({ ...formData, userType: item });
+                            setUserTypeOpen(false);
+                          }}
+                          className="px-4 py-2 cursor-pointer hover:bg-gray-100"
                         >
                           {item}
                         </div>
@@ -136,7 +209,7 @@ const ContactUs = () => {
 
                 {/* Service */}
                 <div className="relative w-full">
-                  <label className="text-sm md:text-base font-medium font-inter">
+                  <label className="text-sm font-medium md:text-base font-inter">
                     Service Needed
                   </label>
 
@@ -144,7 +217,7 @@ const ContactUs = () => {
                     onClick={() => setServiceOpen(!serviceOpen)}
                     className="mt-2 w-full bg-[#F8F9FA] cursor-pointer text-[#6B7280] px-4 py-2 rounded-md flex items-center justify-between text-xs md:text-sm font-inter"
                   >
-                    <span>Select Service</span>
+                    <span>{formData.service || "Select Service"}</span>
                     <IoIosArrowDown
                       className={`transition-transform duration-200 ${
                         serviceOpen ? "rotate-180" : ""
@@ -153,7 +226,7 @@ const ContactUs = () => {
                   </div>
 
                   {serviceOpen && (
-                    <div className="absolute mt-1 w-full bg-white border rounded-md shadow">
+                    <div className="absolute z-10 w-full mt-1 bg-white border rounded-md shadow">
                       {[
                         "Equipment Access",
                         "Market Access",
@@ -162,8 +235,11 @@ const ContactUs = () => {
                       ].map((item, index) => (
                         <div
                           key={index}
-                          onClick={() => setServiceOpen(false)}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                          onClick={() => {
+                            setFormData({ ...formData, service: item });
+                            setServiceOpen(false);
+                          }}
+                          className="px-4 py-2 cursor-pointer hover:bg-gray-100"
                         >
                           {item}
                         </div>
@@ -174,23 +250,34 @@ const ContactUs = () => {
               </div>
 
               {/* Textarea */}
-              <div className="mt-6 md:mt-9 w-full">
+              <div className="w-full mt-6 md:mt-9">
+                <label className="text-sm font-medium md:text-base font-inter">
+                  Message *
+                </label>
                 <textarea
-                  className="w-full resize-none h-24 md:h-36 border border-[#dadada] bg-[#F8F9FA] rounded-lg px-4 py-2 outline-0 font-inter text-xs md:text-sm"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full resize-none h-24 md:h-36 border border-[#dadada] bg-[#F8F9FA] rounded-lg px-4 py-2 outline-0 font-inter text-xs md:text-sm mt-2"
                   placeholder="Please provide details about your enquiry, including location, timeframes, and any specific requirements..."
                 />
               </div>
 
               {/* Button */}
-              <button className="w-full bg-bg-btn-primary text-white py-2 font-medium font-inter rounded-md mt-6 md:mt-9">
-                Submit Enquiry
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-2 mt-6 font-medium text-white transition-all rounded-md bg-bg-btn-primary font-inter md:mt-9 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-opacity-90"
+              >
+                {isSubmitting ? "Submitting..." : "Submit Enquiry"}
               </button>
             </form>
           </div>
 
           {/* RIGHT SIDE */}
           <div className="w-full md:w-[50%]">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+            <h2 className="text-xl font-semibold md:text-2xl lg:text-3xl">
               Other Ways to Reach Us
             </h2>
 
@@ -215,11 +302,11 @@ const ContactUs = () => {
               ].map((item, index) => (
                 <div key={index} className="bg-[#F7F5F1] py-3 rounded-md">
                   <div className="w-[94%] mx-auto flex items-start gap-3">
-                    <div className="bg-white rounded-md flex items-center justify-center w-7 h-7 md:h-9 md:w-9 text-bg-btn-primary text-lg md:text-xl">
+                    <div className="flex items-center justify-center text-lg bg-white rounded-md w-7 h-7 md:h-9 md:w-9 text-bg-btn-primary md:text-xl">
                       {item.icon}
                     </div>
                     <div>
-                      <h4 className="font-inter text-xs md:text-sm lg:text-base font-medium">
+                      <h4 className="text-xs font-medium font-inter md:text-sm lg:text-base">
                         {item.title}
                       </h4>
                       {item.details.map((text, i) => (
@@ -237,11 +324,11 @@ const ContactUs = () => {
 
               {/* FAQ */}
               <div className="mt-6 md:mt-8 bg-[#F8F9FA] py-5 px-4 rounded-md">
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+                <h2 className="text-xl font-semibold md:text-2xl lg:text-3xl">
                   Frequently asked questions
                 </h2>
 
-                <div className="mt-6 max-w-xl mx-auto space-y-4">
+                <div className="max-w-xl mx-auto mt-6 space-y-4">
                   {faqData.map((item, index) => (
                     <div
                       key={index}
