@@ -42,12 +42,12 @@ const Home = () => {
             >
               Explore Platform
             </button>
-            <button
+            {/* <button
               className="px-3 py-2 text-sm border border-white rounded-lg md:text-base"
               onClick={() => navigate("/equipment-listing")}
             >
               Available Equipments
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -227,8 +227,8 @@ const Home = () => {
             </p>
           </div>
           {isLoading ? (
-            <div className="flex justify-center items-center h-40 mt-9">
-              <div className="border-t-4 border-b-4 rounded-full animate-spin h-10 w-10 border-bg-btn-primary" />
+            <div className="flex items-center justify-center h-40 mt-9">
+              <div className="w-10 h-10 border-t-4 border-b-4 rounded-full animate-spin border-bg-btn-primary" />
             </div>
           ) : (
             <div className="mt-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[90%] mx-auto gap-8">
