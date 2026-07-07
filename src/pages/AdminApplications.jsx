@@ -254,24 +254,24 @@ const AdminApplications = () => {
           <div className="bg-white border border-[#ECECEC] rounded-2xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm min-w-[900px]">
-                <thead className="bg-[#F9FAFB] border-b border-[#F0F0F0]">
+                <thead className="bg-bg-main border-b border-[#F0F0F0]">
                   <tr>
-                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider whitespace-nowrap">
+                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
                       Inquirer
                     </th>
-                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider whitespace-nowrap">
+                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
                       Equipment
                     </th>
-                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider whitespace-nowrap">
+                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
                       Location
                     </th>
-                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider whitespace-nowrap">
+                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
                       Usage Duration
                     </th>
-                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider whitespace-nowrap">
+                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
                       Inquiry Date
                     </th>
-                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider whitespace-nowrap">
+                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
                       Status
                     </th>
                   </tr>
