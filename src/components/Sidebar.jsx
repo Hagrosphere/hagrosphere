@@ -15,7 +15,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
-  const [logout, { isLoading }] = useLogoutMutation();
+  const [logout] = useLogoutMutation();
 
   const handleLogout = async () => {
     try {
@@ -55,77 +55,126 @@ const Sidebar = () => {
       <div className="py-3 border-b border-b-[#7A7A72] ">
         <div className="w-[85%] mx-auto ">
           <div className="flex items-center gap-3 ">
-            <img src={Adminlogo} alt="" className="w-11 h-11 " />
+            <img src={Adminlogo} alt="" className="w-10 h-10 " />
             <div className="font-inter">
               <h2 className="text-sm font-bold md:text-base">HAGROSPHERE</h2>
-              <h4 className="text-xs md:text-sm ">ADMIN PORTAL</h4>
+              <h4 className="text-xs ">ADMIN PORTAL</h4>
             </div>
           </div>
         </div>
       </div>
-      <div className="w-[85%] mx-auto mt-10 flex-1">
-        <div className="space-y-6">
+      <div className="w-[85%] mx-auto mt-1 flex-1">
+        <div className="space-y-1.5">
           <NavLink
             to="/admin"
-            className="flex items-center w-full gap-4 text-base font-medium font-inter "
+            end
+            className={({ isActive }) =>
+              `flex items-center w-full gap-4 text-base font-medium font-inter px-3 py-2 rounded-lg transition-colors ${
+                isActive
+                  ? "bg-[#FFFFFF1A] border border-[#FFFFFF1A]"
+                  : "hover:bg-[#FFFFFF0D]"
+              }`
+            }
           >
             <CiGrid42 className="w-5.5 h-5.5 font-semibold" />
             Dashboard
           </NavLink>
           <NavLink
             to="/admin/manage-equipment"
-            className="flex items-center w-full gap-4 text-base font-inter "
+            className={({ isActive }) =>
+              `flex items-center w-full gap-4 text-base font-inter px-3 py-2 rounded-lg transition-colors ${
+                isActive
+                  ? "bg-[#FFFFFF1A] border border-[#FFFFFF1A]"
+                  : "hover:bg-[#FFFFFF0D]"
+              }`
+            }
           >
             <LuTractor className="w-5.5 h-5.5" />
             Equipment
           </NavLink>
           <NavLink
             to="/admin/manage-jobs"
-            className="flex items-center w-full gap-4 text-base font-inter "
+            className={({ isActive }) =>
+              `flex items-center w-full gap-4 text-base font-inter px-3 py-2 rounded-lg transition-colors ${
+                isActive
+                  ? "bg-[#FFFFFF1A] border border-[#FFFFFF1A]"
+                  : "hover:bg-[#FFFFFF0D]"
+              }`
+            }
           >
             <FiBriefcase className="w-5.5 h-5.5 font-semibold" />
             Jobs
           </NavLink>
           <NavLink
             to="/admin/applications"
-            className="flex items-center w-full gap-4 text-base font-inter "
+            className={({ isActive }) =>
+              `flex items-center w-full gap-4 text-base font-inter px-3 py-2 rounded-lg transition-colors ${
+                isActive
+                  ? "bg-[#FFFFFF1A] border border-[#FFFFFF1A]"
+                  : "hover:bg-[#FFFFFF0D]"
+              }`
+            }
           >
             <IoDocumentTextOutline className="w-5 h-5" />
             Applications
           </NavLink>
           <NavLink
             to="/admin/manage-users"
-            className="flex items-center w-full gap-4 text-base font-inter "
+            className={({ isActive }) =>
+              `flex items-center w-full gap-4 text-base font-inter px-3 py-2 rounded-lg transition-colors ${
+                isActive
+                  ? "bg-[#FFFFFF1A] border border-[#FFFFFF1A]"
+                  : "hover:bg-[#FFFFFF0D]"
+              }`
+            }
           >
             <RiGroupLine className="w-5.5 h-5.5 font-semibold" />
             Users
           </NavLink>
           <NavLink
             to="/admin/manage-articles"
-            className="flex items-center w-full gap-4 text-base font-inter "
+            className={({ isActive }) =>
+              `flex items-center w-full gap-4 text-base font-inter px-3 py-2 rounded-lg transition-colors ${
+                isActive
+                  ? "bg-[#FFFFFF1A] border border-[#FFFFFF1A]"
+                  : "hover:bg-[#FFFFFF0D]"
+              }`
+            }
           >
             <LuFileText className="w-5.5 h-5.5 font-semibold" />
             Articles
           </NavLink>
           <NavLink
             to="/admin/activity"
-            className="flex items-center w-full gap-4 text-base font-inter "
+            className={({ isActive }) =>
+              `flex items-center w-full gap-4 text-base font-inter px-3 py-2 rounded-lg transition-colors ${
+                isActive
+                  ? "bg-[#FFFFFF1A] border border-[#FFFFFF1A]"
+                  : "hover:bg-[#FFFFFF0D]"
+              }`
+            }
           >
             <IoNotificationsOutline className="w-5.5 h-5.5 font-semibold" />
             Activity
           </NavLink>
           <NavLink
             to="/admin/settings"
-            className="flex items-center w-full gap-4 text-base font-inter "
+            className={({ isActive }) =>
+              `flex items-center w-full gap-4 text-base font-inter px-3 py-2 rounded-lg transition-colors ${
+                isActive
+                  ? "bg-[#FFFFFF1A] border border-[#FFFFFF1A]"
+                  : "hover:bg-[#FFFFFF0D]"
+              }`
+            }
           >
             <MdOutlineSettings className="w-5.5 h-5.5 font-semibold" />
             Settings
           </NavLink>
         </div>
       </div>
-      <div className="w-[85%] mx-auto space-y-4.5 py-3 mb-auto">
+      <div className="w-[85%] mx-auto space-y-4 py-3 mb-auto">
         <div className="w-full py-1 bg-bg-btn-primary rounded-xl">
-          <div className="w-[86%] mx-auto flex items-center gap-3">
+          <div className="w-[92%] mx-auto flex items-center gap-3">
             <div className="bg-[#1C1C18] h-8 w-8 rounded-full flex items-center justify-center">
               <h2 className="text-sm font-medium font-inter">
                 {getInitials()}
@@ -133,18 +182,19 @@ const Sidebar = () => {
             </div>
             <div className="font-inter">
               <h2 className="text-xs font-medium">{getFullName()}</h2>
-              <h4 className="text-xs">{getRole()}</h4>
+              <h4 className="pt-1 text-xs">{getRole()}</h4>
             </div>
           </div>
         </div>
         <div className="pl-2">
           <button
             onClick={handleLogout}
-            disabled={isLoading}
+            // disabled={isLoading}
             className="flex items-center gap-3 cursor-pointer font-inter"
           >
             <MdLogout className="w-5.5 h-5.5 " />
-            {isLoading ? "Logging out..." : "Logout"}
+            {/* {isLoading ? "Logging out..." : "Logout"} */}
+            Logout
           </button>
         </div>
       </div>

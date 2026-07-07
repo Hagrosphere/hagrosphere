@@ -66,7 +66,7 @@ const AdminApplications = () => {
   if (jobLoading || equipmentLoading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="border-t-4 border-b-4 rounded-full animate-spin h-10 w-10 border-bg-btn-primary" />
+        <div className="w-10 h-10 border-t-4 border-b-4 rounded-full animate-spin border-bg-btn-primary" />
       </div>
     );
   }
@@ -108,7 +108,7 @@ const AdminApplications = () => {
       {activeTab === "jobs" ? (
         <>
           {/* Filter */}
-          <div className="mb-6 flex items-center font-inter gap-4">
+          <div className="flex items-center gap-4 mb-6 font-inter">
             <label className="text-sm font-medium text-[#111]">
               Filter by Status:
             </label>
@@ -136,24 +136,24 @@ const AdminApplications = () => {
           <div className="bg-white border border-[#ECECEC] rounded-2xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm min-w-[900px]">
-                <thead className="bg-[#F9FAFB] border-b border-[#F0F0F0]">
+                <thead className="bg-bg-main border-b border-[#F0F0F0]">
                   <tr>
-                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider whitespace-nowrap">
+                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
                       Applicant
                     </th>
-                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider whitespace-nowrap">
+                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
                       Job Title
                     </th>
-                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider whitespace-nowrap">
+                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
                       Location
                     </th>
-                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider whitespace-nowrap">
+                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
                       Experience
                     </th>
-                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider whitespace-nowrap">
+                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
                       Applied Date
                     </th>
-                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider whitespace-nowrap">
+                    <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
                       Status
                     </th>
                   </tr>
@@ -229,7 +229,7 @@ const AdminApplications = () => {
       ) : (
         <>
           {/* Filter */}
-          <div className="mb-6 flex font-inter items-center gap-4">
+          <div className="flex items-center gap-4 mb-6 font-inter">
             <label className="text-sm font-medium text-[#111]">
               Filter by Status:
             </label>
@@ -348,7 +348,7 @@ const AdminApplications = () => {
 
       {/* Application Detail Modal */}
       {selectedApplication && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
           <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
             {/* Modal Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-[#F0F0F0]">
@@ -372,7 +372,7 @@ const AdminApplications = () => {
               </div>
               <button
                 onClick={handleCloseModal}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="p-2 transition-colors rounded-full hover:bg-gray-100"
               >
                 <IoClose className="text-2xl text-[#6B7280]" />
               </button>
@@ -409,7 +409,7 @@ const AdminApplications = () => {
               </div>
 
               {/* Applicant Information */}
-              <div className="space-y-4 mb-6">
+              <div className="mb-6 space-y-4">
                 <div>
                   <label className="text-xs font-semibold text-[#6B7280] uppercase tracking-wide">
                     Full Name
@@ -419,7 +419,7 @@ const AdminApplications = () => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div>
                     <label className="text-xs font-semibold text-[#6B7280] uppercase tracking-wide flex items-center gap-1">
                       <MdEmail className="text-sm" />
@@ -451,7 +451,7 @@ const AdminApplications = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div>
                     <label className="text-xs font-semibold text-[#6B7280] uppercase tracking-wide flex items-center gap-1">
                       <MdLocationOn className="text-sm" />
