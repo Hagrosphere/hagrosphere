@@ -287,7 +287,7 @@ const ContactUs = () => {
                 {
                   icon: <MdMailOutline />,
                   title: "Email",
-                  details: ["enquiry@hagrosphere.com"],
+                  details: ["hello@hagrosphere.com"],
                 },
                 {
                   icon: <LuPhone />,

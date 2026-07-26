@@ -135,7 +135,7 @@ const AdminApplications = () => {
           {/* Applications Table */}
           <div className="bg-white border border-[#ECECEC] rounded-2xl overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full text-sm min-w-[900px]">
+              <table className="w-full text-sm min-w-225">
                 <thead className="bg-bg-main border-b border-[#F0F0F0]">
                   <tr>
                     <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
@@ -253,7 +253,7 @@ const AdminApplications = () => {
           {/* Inquiries Table */}
           <div className="bg-white border border-[#ECECEC] rounded-2xl overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full text-sm min-w-[900px]">
+              <table className="w-full text-sm min-w-225">
                 <thead className="bg-bg-main border-b border-[#F0F0F0]">
                   <tr>
                     <th className="px-4.5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap">
