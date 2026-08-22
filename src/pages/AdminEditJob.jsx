@@ -329,7 +329,7 @@ const AdminEditJob = () => {
             disabled={isUpdating}
             onClick={() => handleSave(false)}
           >
-            {isUpdating ? "Saving..." : "Save Changes"}
+            {isUpdating ? "Saving....." : "Save Changes"}
           </button>
         </div>
       </div>
