@@ -25,10 +25,16 @@ export const usersApi = baseApi.injectEndpoints({
       transformResponse: (response) => response.data ?? response,
       invalidatesTags: (_r, _e, { id }) => [{ type: 'User', id }, { type: 'Users', id: 'LIST' }],
     }),
+    createAdmin: builder.mutation({
+      query: (body) => ({ url: '/users', method: 'POST', body }),
+      transformResponse: (response) => response.data ?? response,
+      invalidatesTags: [{ type: 'Users', id: 'LIST' }],
+    }),
     deleteUser: builder.mutation({
       query: (id) => ({ url: `/users/${id}`, method: 'DELETE' }),
       invalidatesTags: [{ type: 'Users', id: 'LIST' }, 'Dashboard'],
     }),
+
   }),
   overrideExisting: false,
 })
@@ -36,4 +42,5 @@ export const usersApi = baseApi.injectEndpoints({
 export const {
   useGetUsersQuery, useGetUserStatsQuery,
   useUpdateUserRoleMutation, useUpdateUserStatusMutation, useDeleteUserMutation,
+  useCreateAdminMutation,
 } = usersApi

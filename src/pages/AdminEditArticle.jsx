@@ -39,7 +39,7 @@ const AdminEditArticle = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { update, remove, tags, isUpdating, isDeleting } = useArticles(true);
-  const { data: article, isLoading } = useArticleById(id);
+  const { data: article, isLoading, isError } = useArticleById(id);
 
   const [form, setForm] = useState({
     title: "",
@@ -68,25 +68,31 @@ const AdminEditArticle = () => {
   });
 
   useEffect(() => {
-    if (article) {
-      setForm({
-        title: article.title ?? "",
-        category: article.category ?? "",
-        tagIds: article.tags?.map(t => t.id) ?? [],
-        excerpt: article.excerpt ?? "",
-        coverImage: article.coverImage ?? "",
-        status: article.status ?? "PUBLISHED",
-      });
-      if (article.content) {
-        editor?.commands.setContent(article.content);
-      }
-    }
-  }, [article, editor]);
+    if (!article) return;
+    setForm({
+      title: article.title ?? "",
+      category: article.category ?? "",
+      tagIds: article.tags?.map(t => t.id) ?? [],
+      excerpt: article.excerpt ?? "",
+      coverImage: article.coverImage ?? "",
+      status: article.status ?? "PUBLISHED",
+    });
+  }, [article]);
+
+  // Set editor content separately once both article and editor are ready
+  useEffect(() => {
+    if (!article?.content || !editor || editor.isDestroyed) return;
+    // Small timeout ensures editor is fully mounted
+    const timer = setTimeout(() => {
+      editor.commands.setContent(article.content);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [article?.content, editor]);
 
   const set = (key) => (e) =>
     setForm((prev) => ({ ...prev, [key]: e.target.value }));
 
-  const handleSave = async () => {
+  const handleSave = async (publishNow = false) => {
     const content = editor?.getHTML();
     if (!form.title || !content) {
       toast.error("Please fill in all required fields");
@@ -96,17 +102,16 @@ const AdminEditArticle = () => {
       const payload = {
         title: form.title,
         content: content,
-        status: form.status,
+        status: publishNow ? "PUBLISHED" : form.status,
       };
       
-      // Only add optional fields if they have values
       if (form.excerpt) payload.excerpt = form.excerpt;
       if (form.category) payload.category = form.category;
       if (form.coverImage) payload.coverImage = form.coverImage;
       if (form.tagIds && form.tagIds.length > 0) payload.tagIds = form.tagIds;
 
       await update({ id, data: payload }).unwrap();
-      toast.success("Article updated successfully!");
+      toast.success(publishNow ? "Article published successfully!" : "Article updated successfully!");
       navigate("/admin/manage-articles");
     } catch (err) {
       console.error("Article update error:", err);
@@ -125,10 +130,24 @@ const AdminEditArticle = () => {
     }
   };
 
-  if (isLoading) {
+  if (isLoading || !article) {
     return (
       <div className="flex justify-center items-center h-64">
         <div className="border-t-4 border-b-4 rounded-full animate-spin h-10 w-10 border-bg-btn-primary" />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="flex flex-col justify-center items-center h-64 gap-3">
+        <p className="text-sm text-[#DC2626] font-inter">Failed to load article. You may not have permission or the session expired.</p>
+        <button
+          onClick={() => navigate("/admin/manage-articles")}
+          className="px-4 py-2 text-sm font-medium text-white bg-[#1A6B3C] rounded-lg cursor-pointer border-0"
+        >
+          Back to Articles
+        </button>
       </div>
     );
   }
@@ -380,8 +399,17 @@ const AdminEditArticle = () => {
           >
             Cancel
           </button>
+          {form.status === "DRAFT" && (
+            <button
+              onClick={() => handleSave(true)}
+              disabled={isUpdating}
+              className="px-5 py-2.5 text-[13px] font-semibold text-white bg-[#1A6B3C] hover:bg-[#155C32] rounded-lg border-0 cursor-pointer transition-colors disabled:opacity-60"
+            >
+              {isUpdating ? "Publishing..." : "Publish Article"}
+            </button>
+          )}
           <button
-            onClick={handleSave}
+            onClick={() => handleSave(false)}
             disabled={isUpdating}
             className="px-5 py-2.5 text-[13px] font-semibold text-white bg-[#1A6B3C] hover:bg-[#155C32] rounded-lg border-0 cursor-pointer transition-colors disabled:opacity-60"
           >

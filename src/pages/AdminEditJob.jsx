@@ -25,15 +25,25 @@ const Field = ({ label, required, children }) => (
 const SelectField = ({ label, required, options, value, onChange }) => (
   <Field label={label} required={required}>
     <div className="relative font-inter">
-      <select className={`${inputCls} appearance-none cursor-pointer pr-8`} value={value} onChange={onChange}>
+      <select
+        className={`${inputCls} appearance-none cursor-pointer pr-8`}
+        value={value}
+        onChange={onChange}
+      >
         <option value="">Select…</option>
         {options.map((o) => (
-          <option key={typeof o === "string" ? o : o.id} value={typeof o === "string" ? o : o.id}>
+          <option
+            key={typeof o === "string" ? o : o.id}
+            value={typeof o === "string" ? o : o.id}
+          >
             {typeof o === "string" ? o : o.name}
           </option>
         ))}
       </select>
-      <LuChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9CA3AF] pointer-events-none" />
+      <LuChevronDown
+        size={14}
+        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9CA3AF] pointer-events-none"
+      />
     </div>
   </Field>
 );
@@ -91,10 +101,16 @@ const AdminEditJob = () => {
     }
   }, [job]);
 
-  const set = (key) => (e) => setForm((prev) => ({ ...prev, [key]: e.target.value }));
+  const set = (key) => (e) =>
+    setForm((prev) => ({ ...prev, [key]: e.target.value }));
 
-  const handleSave = async () => {
-    if (!form.title || !form.categoryId || !form.location || !form.description) {
+  const handleSave = async (publishNow = false) => {
+    if (
+      !form.title ||
+      !form.categoryId ||
+      !form.location ||
+      !form.description
+    ) {
       toast.error("Please fill in all required fields");
       return;
     }
@@ -108,15 +124,21 @@ const AdminEditJob = () => {
           type: form.type || undefined,
           description: form.description,
           requirements: form.requirements || undefined,
-          benefits: form.benefits ? form.benefits.split("\n").filter(Boolean) : [],
+          benefits: form.benefits
+            ? form.benefits.split("\n").filter(Boolean)
+            : [],
           salaryMin: form.salaryMin ? parseFloat(form.salaryMin) : undefined,
           salaryMax: form.salaryMax ? parseFloat(form.salaryMax) : undefined,
           applicationEmail: form.applicationEmail || undefined,
           deadline: form.deadline || undefined,
-          status: form.status,
+          status: publishNow ? "OPEN" : form.status,
         },
       }).unwrap();
-      toast.success("Job updated successfully!");
+      toast.success(
+        publishNow
+          ? "Job published successfully!"
+          : "Job updated successfully!",
+      );
       navigate("/admin/manage-jobs");
     } catch (err) {
       toast.error(err?.data?.message ?? "Failed to update job");
@@ -136,8 +158,8 @@ const AdminEditJob = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="border-t-4 border-b-4 rounded-full animate-spin h-10 w-10 border-bg-btn-primary" />
+      <div className="flex items-center justify-center h-64">
+        <div className="w-10 h-10 border-t-4 border-b-4 rounded-full animate-spin border-bg-btn-primary" />
       </div>
     );
   }
@@ -147,19 +169,36 @@ const AdminEditJob = () => {
       <Section title="Basic Information">
         <Divider />
         <Field label="Job Title" required>
-          <input className={inputCls} value={form.title} onChange={set("title")} placeholder="e.g., Rice Farm Worker" />
+          <input
+            className={inputCls}
+            value={form.title}
+            onChange={set("title")}
+            placeholder="e.g., Rice Farm Worker"
+          />
         </Field>
 
         <div className="grid grid-cols-2 gap-4">
-          <SelectField label="Category" required options={categories} value={form.categoryId} onChange={set("categoryId")} />
+          <SelectField
+            label="Category"
+            required
+            options={categories}
+            value={form.categoryId}
+            onChange={set("categoryId")}
+          />
           <Field label="Location (State)" required>
-            <input className={inputCls} value={form.location} onChange={set("location")} placeholder="e.g., Ogun State" />
+            <input
+              className={inputCls}
+              value={form.location}
+              onChange={set("location")}
+              placeholder="e.g., Ogun State"
+            />
           </Field>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <SelectField
-            label="Employment Type" required
+            label="Employment Type"
+            required
             value={form.type}
             onChange={set("type")}
             options={[
@@ -171,7 +210,12 @@ const AdminEditJob = () => {
             ]}
           />
           <Field label="Application Deadline">
-            <input type="date" className={`${inputCls} cursor-pointer`} value={form.deadline} onChange={set("deadline")} />
+            <input
+              type="date"
+              className={`${inputCls} cursor-pointer`}
+              value={form.deadline}
+              onChange={set("deadline")}
+            />
           </Field>
         </div>
 
@@ -193,10 +237,22 @@ const AdminEditJob = () => {
           <Divider />
           <div className="grid grid-cols-2 gap-4">
             <Field label="Minimum Salary (₦/month)">
-              <input className={inputCls} type="number" value={form.salaryMin} onChange={set("salaryMin")} placeholder="e.g., 40000" />
+              <input
+                className={inputCls}
+                type="number"
+                value={form.salaryMin}
+                onChange={set("salaryMin")}
+                placeholder="e.g., 40000"
+              />
             </Field>
             <Field label="Maximum Salary (₦/month)">
-              <input className={inputCls} type="number" value={form.salaryMax} onChange={set("salaryMax")} placeholder="e.g., 85000" />
+              <input
+                className={inputCls}
+                type="number"
+                value={form.salaryMax}
+                onChange={set("salaryMax")}
+                placeholder="e.g., 85000"
+              />
             </Field>
           </div>
         </Section>
@@ -205,13 +261,28 @@ const AdminEditJob = () => {
       <Section title="Job Details">
         <Divider />
         <Field label="Job Description" required>
-          <textarea className={`${inputCls} resize-none h-24`} value={form.description} onChange={set("description")} placeholder="Describe responsibilities..." />
+          <textarea
+            className={`${inputCls} resize-none h-24`}
+            value={form.description}
+            onChange={set("description")}
+            placeholder="Describe responsibilities..."
+          />
         </Field>
         <Field label="Requirements & Qualifications">
-          <textarea className={`${inputCls} resize-none h-24`} value={form.requirements} onChange={set("requirements")} placeholder="List required skills..." />
+          <textarea
+            className={`${inputCls} resize-none h-24`}
+            value={form.requirements}
+            onChange={set("requirements")}
+            placeholder="List required skills..."
+          />
         </Field>
         <Field label="Benefits (one per line)">
-          <textarea className={`${inputCls} resize-none h-24`} value={form.benefits} onChange={set("benefits")} placeholder="Housing provided&#10;Three meals daily" />
+          <textarea
+            className={`${inputCls} resize-none h-24`}
+            value={form.benefits}
+            onChange={set("benefits")}
+            placeholder="Housing provided&#10;Three meals daily"
+          />
         </Field>
       </Section>
 
@@ -219,7 +290,12 @@ const AdminEditJob = () => {
         <Section title="Contact Information">
           <Divider />
           <Field label="Application Email">
-            <input className={inputCls} value={form.applicationEmail} onChange={set("applicationEmail")} placeholder="jobs@hagrosphere.com" />
+            <input
+              className={inputCls}
+              value={form.applicationEmail}
+              onChange={set("applicationEmail")}
+              placeholder="jobs@hagrosphere.com"
+            />
           </Field>
         </Section>
       </div>
@@ -239,10 +315,19 @@ const AdminEditJob = () => {
           >
             Cancel
           </button>
+          {form.status === "DRAFT" && (
+            <button
+              className="px-5 py-2.5 text-[13px] font-semibold text-white bg-[#1A6B3C] hover:bg-[#155C32] rounded-lg border-0 cursor-pointer transition-colors disabled:opacity-60"
+              disabled={isUpdating}
+              onClick={() => handleSave(true)}
+            >
+              {isUpdating ? "Posting..." : "Post Job"}
+            </button>
+          )}
           <button
             className="px-5 py-2.5 text-[13px] font-semibold text-white bg-[#1A6B3C] hover:bg-[#155C32] rounded-lg border-0 cursor-pointer transition-colors disabled:opacity-60"
             disabled={isUpdating}
-            onClick={handleSave}
+            onClick={() => handleSave(false)}
           >
             {isUpdating ? "Saving..." : "Save Changes"}
           </button>

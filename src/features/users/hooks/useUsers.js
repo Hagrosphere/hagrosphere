@@ -4,6 +4,7 @@ import { selectUserFilters, setUserFilters, setUserPage, resetUserFilters } from
 import {
   useGetUsersQuery, useGetUserStatsQuery,
   useUpdateUserRoleMutation, useUpdateUserStatusMutation, useDeleteUserMutation,
+  useCreateAdminMutation,
 } from '../usersApi'
 
 export function useUsers() {
@@ -15,6 +16,11 @@ export function useUsers() {
   const [updateRoleMutation, { isLoading: isUpdatingRole }] = useUpdateUserRoleMutation()
   const [updateStatusMutation, { isLoading: isUpdatingStatus }] = useUpdateUserStatusMutation()
   const [deleteMutation, { isLoading: isDeleting }] = useDeleteUserMutation()
+  const [createAdminMutation, { isLoading: isCreating }] = useCreateAdminMutation()
+
+  const createAdmin = useCallback(async (body) => {
+    return createAdminMutation(body).unwrap()
+  }, [createAdminMutation])
 
   return {
     users: data?.data ?? [],
@@ -28,6 +34,8 @@ export function useUsers() {
     updateRole: useCallback((id, role) => updateRoleMutation({ id, role }), [updateRoleMutation]),
     updateStatus: useCallback((id, status) => updateStatusMutation({ id, status }), [updateStatusMutation]),
     deleteUser: useCallback((id) => deleteMutation(id), [deleteMutation]),
+    createAdmin,
+    isCreating,
     refetch,
   }
 }
